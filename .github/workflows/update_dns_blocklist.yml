@@ -1,0 +1,40 @@
+name: Update DNS Blocklists
+
+on:
+  schedule:
+    - cron: '13 * * * *' # Every hour at minute 13
+      timezone: 'Asia/Ho_Chi_Minh'
+  workflow_dispatch:
+
+concurrency:
+  group: git-operations
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  update-lists:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@main
+
+      - name: Run update script
+        run: |
+          chmod +x update_lists.sh
+          ./update_lists.sh
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto-update: blocklists and allowlists"
+            git pull --rebase origin main
+            git push
+          fi

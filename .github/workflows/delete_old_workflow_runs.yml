@@ -1,0 +1,23 @@
+name: Delete Old Workflow Runs
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '18 2 * * *'
+      timezone: 'Asia/Ho_Chi_Minh'
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: Delete all workflow runs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          while :; do
+            ids=$(gh run list --limit 100 --json databaseId -q ".[].databaseId | select(. != ${{ github.run_id }})")
+            [ -z "$ids" ] && break
+            echo "$ids" | xargs -I{} gh run delete {}
+          done
