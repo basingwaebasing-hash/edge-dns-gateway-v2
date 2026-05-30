@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Private DNS-over-HTTPS</title>
+    <title>doh.bibica.net — Private DNS-over-HTTPS</title>
     <meta name="description" content="Fast, private, and secure DNS-over-HTTPS with zero logs, ECS optimization, global anycast, and built-in ad blocking.">
     <meta property="og:type" content="website">
-    <meta property="og:url" id="og-url" content="">
-    <meta property="og:title" id="og-title" content="Private DNS-over-HTTPS">
+    <meta property="og:url" content="https://doh.bibica.net/">
+    <meta property="og:title" content="doh.bibica.net — Private DNS-over-HTTPS">
     <meta property="og:description" content="Fast, private, and secure DNS-over-HTTPS with zero logs, ECS optimization, global anycast, and built-in ad blocking.">
     <meta property="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -176,8 +176,14 @@
             padding: 2px 10px; border-radius: 100px;
             background: transparent;
             border: 1px solid var(--border);
-            transition: all .3s;
+            transition: all .2s cubic-bezier(0.4, 0, 0.2, 1);
             display: none;
+            cursor: pointer;
+        }
+        .ping-badge:hover {
+            transform: scale(1.08);
+            background: var(--bg-2) !important;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
         .route-line { stroke: var(--border); stroke-width: 1.5; stroke-dasharray: 4 4; opacity: 0.4; }
         .route-packet { fill: var(--accent); }
@@ -267,8 +273,20 @@
         #dns-status-badge.checking { color: var(--text-3); }
         #dns-status-badge.checking .status-dot {
             background: #94a3b8 !important;
-            animation: none !important;
+            animation: pulse-gray 1.5s infinite ease-in-out !important;
             box-shadow: none !important;
+        }
+        #dns-status-badge.checking #dns-status-text {
+            animation: pulse-text 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse-text {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+        @keyframes pulse-gray {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(0.85); }
         }
         #dns-status-badge.not-using { color: #d97706; }
         #dns-status-badge.not-using .status-dot {
@@ -314,14 +332,14 @@
             margin-bottom: 14px;
         }
         .features {
-            display: grid; grid-template-columns: repeat(2, 1fr);
+            display: grid; grid-template-columns: repeat(3, 1fr);
             gap: 14px; margin-bottom: 20px;
         }
         .feature {
             background: var(--card);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 24px;
+            padding: 20px;
             cursor: pointer;
             transition: border-color .2s;
             box-shadow: var(--shadow);
@@ -416,6 +434,47 @@
             padding: 10px 14px;
             display: flex; align-items: center; gap: 10px;
             margin-top: 10px; margin-left: 30px;
+        }
+        .code-block {
+            background: #0d1117;
+            color: #e6edf3;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: var(--font-mono);
+            font-size: 12px;
+            line-height: 1.5;
+            margin: 12px 0 12px 30px;
+            overflow-x: auto;
+            border: 1px solid #30363d;
+            white-space: pre;
+            position: relative;
+        }
+        .code-block .copy-btn {
+            position: absolute;
+            top: 8px; right: 8px;
+            opacity: 0;
+            transition: opacity .2s;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .code-block:hover .copy-btn { opacity: 1; }
+        .code-comment { color: #8b949e; }
+        .code-key { color: #7ee787; }
+        .code-val { color: #a5d6ff; }
+        .setup-sub-title {
+            font-size: 13px; font-weight: 700; color: var(--text);
+            margin: 20px 0 8px 30px; display: flex; align-items: center; gap: 8px;
+        }
+        .setup-sub-title::before { content: ''; width: 4px; height: 14px; background: var(--accent); border-radius: 2px; }
+
+        code {
+            padding: 2px 5px;
+            font-size: 13px;
+            background-color: rgba(175,184,193,0.2);
+            border-radius: 5px;
+            font-family: var(--font-mono);
+            font-weight: 500;
+            color: var(--text);
         }
 
         /* ─── MODAL ─── */
@@ -512,6 +571,25 @@
             .illustration-container { grid-template-columns: 1fr; }
             .modal-content { padding: 28px 20px; max-height: 90vh; overflow-y: auto; }
             nav .container { gap: 10px; }
+            
+            /* Modals Mobile Tweaks */
+            .variant-row { grid-template-columns: 1fr; gap: 10px; padding: 14px 20px; }
+            .variant-row-url-wrapper { padding: 6px 10px; min-width: 0; }
+            
+            .perf-table, .perf-table tbody, .perf-table tr, .perf-table td { display: block; width: 100%; box-sizing: border-box; }
+            .perf-table thead { display: none; }
+            .perf-table tr { padding: 14px 0; border-bottom: 1px solid var(--border); }
+            .perf-table tr:last-child { border-bottom: none; }
+            .perf-table td { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border: none; }
+            .perf-table td::before { font-weight: 700; color: var(--text-3); font-size: 11px; text-transform: uppercase; }
+            .perf-table td:nth-child(1)::before { content: "Target"; }
+            .perf-table td:nth-child(2)::before { content: "Gateway"; }
+            .perf-table td:nth-child(3)::before { content: "Google DNS"; }
+            .perf-table td > div { text-align: right; align-items: flex-end; }
+            
+            .domain-name { font-size: 13px; }
+            .location-info { font-size: 11px; }
+            .location-city { font-size: 13px; }
         }
 
         /* ─── PERFORMANCE ─── */
@@ -609,6 +687,92 @@
         }
         .btn-primary-sm:disabled { color: var(--text-3); cursor: not-allowed; opacity: 0.7; }
         .btn-primary-sm .status-dot { margin-right: 0; }
+        .btn-primary-sm .status-dot { margin-right: 0; }
+
+        /* ─── VARIANTS ─── */
+        .variant-group-title {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 14px 20px 8px;
+            background: var(--bg-2);
+            border-bottom: 1px solid var(--border);
+        }
+        .variant-row {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            align-items: center;
+            padding: 14px 20px;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
+            gap: 20px;
+        }
+        .variant-row:last-child { border-bottom: none; }
+        .variant-row:hover { background: var(--accent-dim); }
+        .variant-row-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            overflow: hidden;
+        }
+        .variant-row-icon {
+            width: 24px; height: 16px;
+            border-radius: 2px;
+            object-fit: cover;
+            border: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+        .variant-row-name {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--text);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .variant-row-url-wrapper {
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            padding: 8px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: border-color 0.2s;
+        }
+        .variant-row:hover .variant-row-url-wrapper { border-color: var(--border-hover); }
+        .variant-row-url {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: var(--text);
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .variant-row-copy {
+            background: none; border: none; color: var(--text-3);
+            cursor: pointer; padding: 4px; border-radius: 6px;
+            display: flex; transition: color .2s, background .2s;
+            flex-shrink: 0;
+        }
+        .variant-row-copy:hover { color: var(--accent); background: var(--accent-dim); }
+        .variant-row-copy.copied { color: var(--success); }
+
+        .variant-tabs-inner {
+            display: flex; background: var(--bg-2);
+            padding: 3px; border-radius: 7px; border: 1px solid var(--border); gap: 2px;
+            margin: 20px 24px 10px; width: fit-content;
+        }
+        .variant-tab-btn {
+            padding: 3px 11px; font-size: 11px; font-weight: 700;
+            font-family: var(--font-mono);
+            border-radius: 5px; cursor: pointer;
+            color: var(--text-3); transition: all .2s; user-select: none;
+        }
+        .variant-tab-btn.active { background: var(--accent-glow); color: var(--accent); }
     </style>
 </head>
 <body>
@@ -622,7 +786,7 @@
                         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                     </svg>
                 </div>
-                <span class="host-name"></span>
+                doh.bibica.net
             </a>
             <div class="nav-right">
                 <a href="/resolver.html" class="nav-btn" title="Resolver Tool" aria-label="Resolver Tool">
@@ -653,7 +817,7 @@
             </div>
 
             <div class="routing-center">
-                <div class="ping-badge" id="ping-badge">
+                <div class="ping-badge" id="ping-badge" onclick="openPerfModal()" title="Analyze ECS Routing">
                     <span id="ping-value-live">--</span> ms
                 </div>
                 <svg width="80" height="16" viewBox="0 0 80 16">
@@ -675,13 +839,15 @@
         <!-- ENDPOINT -->
         <div class="endpoint-card fade-up delay-2">
             <div class="endpoint-header">
-                <div class="status-badge" id="dns-status-badge">
+                <div class="status-badge checking" id="dns-status-badge">
                     <span class="status-dot"></span>
-                    <span id="dns-status-text">Gateway Operational</span>
+                    <span id="dns-status-text">Checking connection…</span>
                 </div>
                 <div class="proto-switch">
                     <div class="proto-btn active" onclick="setProto('https', this)">DoH</div>
                     <div class="proto-btn" onclick="setProto('h3', this)">DoH3</div>
+                    <div style="width: 1px; height: 12px; background: var(--border); margin: 0 4px; align-self: center;"></div>
+                    <div class="proto-btn" onclick="showModal('variants-modal')">Variants</div>
                 </div>
             </div>
             <div class="url-box">
@@ -691,6 +857,7 @@
                 </button>
             </div>
         </div>
+
 
         <!-- FEATURES -->
         <div class="section-label fade-up delay-3">What's included</div>
@@ -719,55 +886,34 @@
                 <p>Blocks ads, trackers, and malware at the DNS level using curated AdGuard, ABPVN, and 1Hosts lists.</p>
                 <span class="feature-cta">SEE HOW →</span>
             </div>
-            <div class="feature" onclick="showModal('proto-modal')">
-                <div class="feature-header">
-                    <div class="feature-icon">⚡</div>
-                    <h3>HTTP/3 &amp; DoH Encrypted</h3>
-                </div>
-                <p>DNS wrapped in HTTPS with HTTP/3 support — faster handshakes, zero plaintext exposure.</p>
-                <span class="feature-cta">TECH DETAILS →</span>
-            </div>
-        </div>
-
-        <!-- PERFORMANCE CHECK -->
-        <div class="section-label fade-up delay-4">Optimization Check</div>
-        <div class="perf-card fade-up delay-4">
-            <div class="perf-header-wrapper" onclick="togglePerf(this)">
-                <div class="perf-title-group">
-                    <div class="perf-icon-circle">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-                    </div>
-                    <h3 class="perf-title">ECS Optimized Performance</h3>
-                </div>
-                <div class="perf-actions">
-                    <button onclick="event.stopPropagation(); runPerformanceTest();" id="run-test-btn" class="btn-primary-sm">
-                        <span class="status-dot"></span>
-                        Start Analysis
-                    </button>
-                    <span class="arrow">▶</span>
-                </div>
-            </div>
-
-            <div id="perf-table-container" class="perf-body collapsed">
-                <div class="perf-content">
-                    <table class="perf-table">
-                        <thead>
-                            <tr>
-                                <th style="width: 40%;">Target</th>
-                                <th style="width: 60%;">Resolved Edge (Geo / ISP)</th>
-                            </tr>
-                        </thead>
-                        <tbody id="perf-body">
-                            <!-- Results injected here -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
 
         <!-- SETUP GUIDE -->
         <div class="section-label fade-up delay-4">Setup Guide</div>
         <div class="fade-up delay-4">
+            <div class="setup-section">
+                <div class="setup-header" onclick="toggleSetup(this)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1V11.7H0V3.449zm0 9.151h9.75v9.6L0 20.851V12.6zm10.55-10.55L24 0v11.7h-13.45V2.05zM24 12.6v11.4L10.55 22.05V12.6H24z"/></svg>
+                    Windows 10 / 11
+                    <span class="arrow">▶</span>
+                </div>
+                <div class="setup-body collapsed">
+                    <ul class="setup-list">
+                        <li><span class="step-num">1</span>Run the <strong>PowerShell (Admin)</strong> command below:</li>
+                        <div class="inner-url-box">
+                            <div class="url-text" id="win-cmd">irm https://go.bibica.net/doh-bibica-net | iex</div>
+                            <button class="copy-btn" onclick="copyValue('win-cmd', this)" aria-label="Copy">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                            </button>
+                        </div>
+                        <div style="margin: 14px 0 0 30px;">
+                            <button class="feature-cta" style="background: none; border: none; padding: 0; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--accent); opacity: 1;" onclick="showModal('ecs-modal')">
+                                Advanced: Customize your ECS configuration →
+                            </button>
+                        </div>
+                    </ul>
+                </div>
+            </div>
 
             <div class="setup-section">
                 <div class="setup-header" onclick="toggleSetup(this)">
@@ -800,7 +946,13 @@
                 <div class="setup-body collapsed">
                     <ul class="setup-list">
                         <!-- APPLE_CONFIG_START -->
-                        <li><span class="step-num">1</span>Download and install <a href="/apple">this configuration profile</a> (iOS 14+ / macOS Big Sur+)</li>
+                        <li><span class="step-num">1</span>Download and install <a href="/mobileconfig/doh.bibica.net.mobileconfig">this configuration profile</a> (Expires: 08/23/2026) (iOS 14+ / macOS Big Sur+)</li>
+                        <div style="margin: -8px 0 16px 30px;">
+                            <button class="feature-cta" style="background: none; border: none; padding: 0; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 6px; font-size: 12.5px; opacity: 0.7;" onclick="showModal('verified-modal')">
+                                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--success);"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                                Learn about "Verified" status &amp; expiry
+                            </button>
+                        </div>
                         <!-- APPLE_CONFIG_END -->
                         <li><span class="step-num">2</span>Go to <strong>Settings</strong> → VPN &amp; Device Management → DNS and activate it</li>
                         <li><span class="step-num">3</span>Or use a third-party app: <a href="https://apps.apple.com/app/id1452162351" target="_blank">DNSCloak</a>, <a href="https://apps.apple.com/app/id1126386264" target="_blank">AdGuard Pro</a>, or <a href="https://apps.apple.com/us/app/dnsecure/id1533413232" target="_blank">DNSecure</a></li>
@@ -822,6 +974,7 @@
                 </div>
             </div>
         </div>
+
 
         <footer class="fade-up delay-5">
             Powered by <a href="https://cloudflare.com" target="_blank">Cloudflare</a>
@@ -961,34 +1114,95 @@
         </div>
     </div>
 
-    <!-- Protocol Modal -->
-    <div class="modal-overlay" id="proto-modal" onclick="hideModals()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <button class="modal-close" onclick="hideModals()">✕</button>
-            <h2>HTTP/3 &amp; DoH Encryption</h2>
-            <div class="illustration-container">
-                <div class="ill-side">
-                    <h4>Standard DNS (UDP)</h4>
-                    <div class="ill-svg-wrapper">
-                        <svg width="100%" height="100%" viewBox="0 0 200 200">
-                            <text x="100" y="90" text-anchor="middle" font-size="11" fill="#f87171" font-weight="600" font-family="sans-serif">Plaintext ⚠️</text>
-                            <path d="M40,110 L160,110" stroke="#f87171" stroke-width="1" stroke-dasharray="2 2" opacity="0.4" />
-                            <circle r="3" fill="#f87171"><animateMotion dur="2s" repeatCount="indefinite" path="M40,110 L160,110" /></circle>
-                        </svg>
-                    </div>
-                    <p>Fully exposed to ISP interception, DNS hijacking, and network surveillance.</p>
-                </div>
-                <div class="ill-side">
-                    <h4>DoH / HTTP/3</h4>
-                    <div class="ill-svg-wrapper">
-                        <svg width="100%" height="100%" viewBox="0 0 200 200">
-                            <rect x="55" y="80" width="90" height="36" rx="18" fill="#34d399" opacity="0.15" />
-                            <text x="100" y="103" text-anchor="middle" font-size="11" fill="#34d399" font-weight="700" font-family="sans-serif">Encrypted 🔒</text>
-                            <circle r="4" fill="#34d399"><animateMotion dur="0.75s" repeatCount="indefinite" path="M30,100 L170,100" /></circle>
-                        </svg>
-                    </div>
-                    <p>Wrapped in TLS with HTTP/3 — faster QUIC handshakes, impossible to sniff or tamper.</p>
-                </div>
+
+    <!-- ECS Customization Modal -->
+    <div class="modal-overlay" id="ecs-modal" onclick="hideModals()">
+        <div class="modal-content" style="max-width: 820px; padding: 0; overflow: hidden; display: flex; flex-direction: column; max-height: 85vh;" onclick="event.stopPropagation()">
+            <div style="padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--bg-2);">
+                <h2 style="margin: 0; text-align: left; font-size: 18px;">Advanced: ECS Customization</h2>
+                <button class="modal-close" style="position: static;" onclick="hideModals()">✕</button>
+            </div>
+            
+            <div style="overflow-y: auto; flex: 1; background: #fff; padding: 24px;">
+                <ul class="setup-list">
+                    <li><span class="step-num">1</span>Open <code>C:\dns-bibica-net-doh\dnsproxy\config.yaml</code> to see 5 pre-configured ECS lines:</li>
+                    <div class="code-block" style="margin-left: 0;" id="code-ecs-1"><button class="copy-btn" onclick="copyCode('code-ecs-1', this)" title="Copy Code"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button><span class="code-comment">#edns: true
+#edns-addr: "1.32.226.0"    # Japan
+#edns-addr: "212.165.2.0"   # Sing
+#edns-addr: "2.20.40.0"     # Hong Kong
+#edns-addr: "3.2.88.0"      # Thai Lan</span></div>
+
+                    <li style="margin-top: 24px;"><span class="step-num">2</span>Uncomment (remove <code>#</code>) to select your preferred ECS. The final configuration will look like this:</li>
+                    <div class="code-block" style="margin-left: 0;" id="code-ecs-2"><button class="copy-btn" onclick="copyCode('code-ecs-2', this)" title="Copy Code"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button><span class="code-key">listen-addrs:</span>
+  - <span class="code-val">127.0.0.1</span>
+<span class="code-key">listen-ports:</span>
+  - <span class="code-val">53</span>
+<span class="code-key">upstream:</span>
+  - <span class="code-val">h3://doh.bibica.net/dns-query</span>
+  - <span class="code-val">https://doh.bibica.net/dns-query</span>
+<span class="code-key">bootstrap:</span> 
+  - <span class="code-val">1.1.1.1:53</span>
+  - <span class="code-val">8.8.8.8:53</span>
+<span class="code-key">cache:</span> <span class="code-val">false</span>
+<span class="code-key">edns:</span> <span class="code-val">true</span>
+<span class="code-key">edns-addr:</span> <span class="code-val">"1.32.226.255"</span></div>
+                    
+                    <li style="margin-top: 24px;"><span class="step-num">3</span>Run <code>C:\dns-bibica-net-doh\dns-bibica-net-restart.bat</code> to apply changes.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Perf Modal -->
+    <div class="modal-overlay" id="perf-modal" onclick="hideModals()">
+        <div class="modal-content" style="max-width: 820px; padding: 0; overflow: hidden; display: flex; flex-direction: column; max-height: 85vh; margin-top: 8vh; margin-bottom: auto;" onclick="event.stopPropagation()">
+            <div style="padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--bg-2);">
+                <h2 style="margin: 0; text-align: left; font-size: 18px;">Analyze ECS Routing</h2>
+                <button class="modal-close" style="position: static;" onclick="hideModals()">✕</button>
+            </div>
+            
+            <div style="overflow-y: auto; flex: 1; background: #fff; padding: 24px;">
+                <table class="perf-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 30%;">Target</th>
+                            <th style="width: 35%;" id="perf-header-gateway">Gateway</th>
+                            <th style="width: 35%;" id="perf-header-google">Google DNS</th>
+                        </tr>
+                    </thead>
+                    <tbody id="perf-body">
+                        <!-- Results injected here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="padding: 14px 24px; border-top: 1px solid var(--border); background: var(--bg-2); display: flex; justify-content: flex-end;">
+                 <button onclick="runPerformanceTest()" id="run-test-btn" class="btn-primary-sm" style="margin: 0;">
+                    <span class="status-dot"></span> Re-analyze
+                 </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Variants Modal -->
+    <div class="modal-overlay" id="variants-modal" onclick="hideModals()">
+        <div class="modal-content" style="max-width: 820px; padding: 0; overflow: hidden; display: flex; flex-direction: column; max-height: 85vh; margin-top: 8vh; margin-bottom: auto;" onclick="event.stopPropagation()">
+            <div style="padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--bg-2);">
+                <h2 style="margin: 0; text-align: left; font-size: 18px;">DNS Variants</h2>
+                <button class="modal-close" style="position: static;" onclick="hideModals()">✕</button>
+            </div>
+            
+            <div class="variant-tabs-inner">
+                <div class="variant-tab-btn active" onclick="switchVariantTab('vn', this)">Vietnam ISPs</div>
+                <div class="variant-tab-btn" onclick="switchVariantTab('global', this)">Global Regions</div>
+            </div>
+
+            <div id="variants-list-container" style="overflow-y: auto; flex: 1; background: #fff;">
+                <!-- Variants will be injected here -->
+            </div>
+            
+            <div style="padding: 14px 24px; border-top: 1px solid var(--border); background: var(--bg-2); font-size: 12px; color: var(--text-3);">
+                Tip: These endpoints use ECS to ensure the best routing for specific networks.
             </div>
         </div>
     </div>
@@ -1005,13 +1219,11 @@
                 <p style="margin-bottom: 16px;">This configuration profile is digitally signed using a Let's Encrypt certificate. This ensures your device displays a green <strong>'Verified'</strong> status, guaranteeing the profile's authenticity.</p>
                 
                 <ul class="setup-list" style="margin-bottom: 16px;">
-                    <li style="margin-bottom: 10px;"><span class="step-num">1</span><!-- MODAL_EXPIRY_START -->Current profile "Verified" status expires on: <strong>N/A</strong><!-- MODAL_EXPIRY_END --></li>
+                    <li style="margin-bottom: 10px;"><span class="step-num">1</span><!-- MODAL_EXPIRY_START -->Current profile "Verified" status expires on: <strong>08/23/2026</strong><!-- MODAL_EXPIRY_END --></li>
                     <li style="margin-bottom: 10px;"><span class="step-num">2</span>Expired profiles show an "Unverified" warning (standard system behavior).</li>
                     <li style="margin-bottom: 10px;"><span class="step-num">3</span>Active users are <strong>NOT</strong> affected; the profile continues to work indefinitely.</li>
                 </ul>
-                <div style="background: var(--accent-dim); padding: 16px; border-radius: 12px; border-left: 4px solid var(--accent);">
-                    <p style="font-size: 13.5px;">Download the latest version from this page to maintain the <strong>'Verified'</strong> status.</p>
-                </div>
+                <p style="font-size: 13.5px; opacity: 0.8; margin-top: 16px;">Download the latest version from this page to maintain the <strong>'Verified'</strong> status.</p>
             </div>
         </div>
     </div>
@@ -1022,12 +1234,7 @@
         const dohUrl = `https://${host}/dns-query`;
         document.getElementById('endpoint').textContent = dohUrl;
         document.getElementById('endpoint-browser').textContent = dohUrl;
-        document.querySelectorAll('.host-name').forEach(el => el.textContent = host);
-        document.title = `${host} — Private DNS-over-HTTPS`;
-        const ogTitle = document.getElementById('og-title');
-        if (ogTitle) ogTitle.content = `${host} — Private DNS-over-HTTPS`;
-        const ogUrl = document.getElementById('og-url');
-        if (ogUrl) ogUrl.content = `https://${host}/`;
+        document.getElementById('perf-header-gateway').textContent = host;
 
         let ALL_LOCATIONS = null;
         async function fetchLocations() {
@@ -1117,7 +1324,9 @@
             }
 
             const finalData = { ip: currentIp, isp, city, countryCode, colo, nodeLocation };
-            sessionStorage.setItem(cacheKey, JSON.stringify(finalData));
+            if (isp !== 'Unknown ISP') {
+                sessionStorage.setItem(cacheKey, JSON.stringify(finalData));
+            }
             updateUI(finalData); startLivePing();
         };
 
@@ -1162,6 +1371,243 @@
             el.classList.add('active');
         }
 
+        // ── Variants ──
+        // <!-- JS_EXPIRY_START -->
+        const PROFILE_EXPIRY = "08/23/2026";
+        // <!-- JS_EXPIRY_END -->
+        // <!-- JS_IS_SIGNED_START -->
+        const IS_PROFILE_SIGNED = true;
+        // <!-- JS_IS_SIGNED_END -->
+        const ECS_DATA = [
+            {
+                group: 'Vietnam — by ISP & region',
+                items: [
+                    { id: 'vn-vnpt-hcm', name: 'VNPT Ho Chi Minh', icon: 'vn' },
+                    { id: 'vn-vnpt-hn',  name: 'VNPT Hanoi', icon: 'vn' },
+                    { id: 'vn-vnpt-dn',  name: 'VNPT Da Nang', icon: 'vn' },
+                    { id: 'vn-fpt-hcm',  name: 'FPT Ho Chi Minh', icon: 'vn' },
+                    { id: 'vn-fpt-hn',   name: 'FPT Hanoi', icon: 'vn' },
+                    { id: 'vn-fpt-dn',   name: 'FPT Da Nang', icon: 'vn' },
+                    { id: 'vn-viettel-hcm', name: 'Viettel Ho Chi Minh', icon: 'vn' },
+                    { id: 'vn-viettel-hn',  name: 'Viettel Hanoi', icon: 'vn' },
+                    { id: 'vn-viettel-dn',  name: 'Viettel Da Nang', icon: 'vn' },
+                    { id: 'vn-mb-hcm',   name: 'MobiFone Ho Chi Minh', icon: 'vn' },
+                    { id: 'vn-mb-hn',    name: 'MobiFone Hanoi', icon: 'vn' },
+                    { id: 'vn-sctv',     name: 'SCTV', icon: 'vn' },
+                    { id: 'vn-cmc',      name: 'CMC Telecom', icon: 'vn' },
+                    { id: 'vn-netnam',   name: 'NetNam', icon: 'vn' }
+                ]
+            },
+            {
+                group: 'Southeast Asia',
+                items: [
+                    { id: 'sg', name: 'Singapore', icon: 'sg' },
+                    { id: 'th', name: 'Thailand', icon: 'th' },
+                    { id: 'my', name: 'Malaysia', icon: 'my' },
+                    { id: 'id', name: 'Indonesia', icon: 'id' },
+                    { id: 'ph', name: 'Philippines', icon: 'ph' },
+                    { id: 'mm', name: 'Myanmar', icon: 'mm' },
+                    { id: 'kh', name: 'Cambodia', icon: 'kh' },
+                    { id: 'la', name: 'Laos', icon: 'la' },
+                    { id: 'bn', name: 'Brunei', icon: 'bn' },
+                    { id: 'tl', name: 'Timor-Leste', icon: 'tl' }
+                ]
+            },
+            {
+                group: 'East Asia',
+                items: [
+                    { id: 'jp', name: 'Japan', icon: 'jp' },
+                    { id: 'kr', name: 'South Korea', icon: 'kr' },
+                    { id: 'tw', name: 'Taiwan', icon: 'tw' },
+                    { id: 'hk', name: 'Hong Kong', icon: 'hk' },
+                    { id: 'cn', name: 'China', icon: 'cn' },
+                    { id: 'mo', name: 'Macau', icon: 'mo' },
+                    { id: 'mn', name: 'Mongolia', icon: 'mn' }
+                ]
+            },
+            {
+                group: 'South Asia',
+                items: [
+                    { id: 'in', name: 'India', icon: 'in' },
+                    { id: 'pk', name: 'Pakistan', icon: 'pk' },
+                    { id: 'bd', name: 'Bangladesh', icon: 'bd' },
+                    { id: 'lk', name: 'Sri Lanka', icon: 'lk' },
+                    { id: 'np', name: 'Nepal', icon: 'np' },
+                    { id: 'mv', name: 'Maldives', icon: 'mv' }
+                ]
+            },
+            {
+                group: 'Middle East',
+                items: [
+                    { id: 'ae', name: 'United Arab Emirates', icon: 'ae' },
+                    { id: 'sa', name: 'Saudi Arabia', icon: 'sa' },
+                    { id: 'qa', name: 'Qatar', icon: 'qa' },
+                    { id: 'kw', name: 'Kuwait', icon: 'kw' },
+                    { id: 'bh', name: 'Bahrain', icon: 'bh' },
+                    { id: 'om', name: 'Oman', icon: 'om' },
+                    { id: 'il', name: 'Israel', icon: 'il' },
+                    { id: 'tr', name: 'Turkey', icon: 'tr' },
+                    { id: 'ir', name: 'Iran', icon: 'ir' },
+                    { id: 'iq', name: 'Iraq', icon: 'iq' },
+                    { id: 'jo', name: 'Jordan', icon: 'jo' },
+                    { id: 'lb', name: 'Lebanon', icon: 'lb' }
+                ]
+            },
+            {
+                group: 'Europe',
+                items: [
+                    { id: 'gb', name: 'United Kingdom', icon: 'gb' },
+                    { id: 'de', name: 'Germany', icon: 'de' },
+                    { id: 'fr', name: 'France', icon: 'fr' },
+                    { id: 'nl', name: 'Netherlands', icon: 'nl' },
+                    { id: 'se', name: 'Sweden', icon: 'se' },
+                    { id: 'no', name: 'Norway', icon: 'no' },
+                    { id: 'dk', name: 'Denmark', icon: 'dk' },
+                    { id: 'fi', name: 'Finland', icon: 'fi' },
+                    { id: 'ch', name: 'Switzerland', icon: 'ch' },
+                    { id: 'at', name: 'Austria', icon: 'at' },
+                    { id: 'be', name: 'Belgium', icon: 'be' },
+                    { id: 'es', name: 'Spain', icon: 'es' },
+                    { id: 'pt', name: 'Portugal', icon: 'pt' },
+                    { id: 'it', name: 'Italy', icon: 'it' },
+                    { id: 'pl', name: 'Poland', icon: 'pl' },
+                    { id: 'cz', name: 'Czech Republic', icon: 'cz' },
+                    { id: 'sk', name: 'Slovakia', icon: 'sk' },
+                    { id: 'hu', name: 'Hungary', icon: 'hu' },
+                    { id: 'ro', name: 'Romania', icon: 'ro' },
+                    { id: 'bg', name: 'Bulgaria', icon: 'bg' },
+                    { id: 'gr', name: 'Greece', icon: 'gr' },
+                    { id: 'ua', name: 'Ukraine', icon: 'ua' },
+                    { id: 'ru', name: 'Russia', icon: 'ru' },
+                    { id: 'ie', name: 'Ireland', icon: 'ie' },
+                    { id: 'is', name: 'Iceland', icon: 'is' },
+                    { id: 'lt', name: 'Lithuania', icon: 'lt' },
+                    { id: 'lv', name: 'Latvia', icon: 'lv' },
+                    { id: 'ee', name: 'Estonia', icon: 'ee' },
+                    { id: 'hr', name: 'Croatia', icon: 'hr' },
+                    { id: 'si', name: 'Slovenia', icon: 'si' },
+                    { id: 'rs', name: 'Serbia', icon: 'rs' },
+                    { id: 'ba', name: 'Bosnia', icon: 'ba' },
+                    { id: 'al', name: 'Albania', icon: 'al' },
+                    { id: 'mk', name: 'North Macedonia', icon: 'mk' },
+                    { id: 'me', name: 'Montenegro', icon: 'me' },
+                    { id: 'by', name: 'Belarus', icon: 'by' },
+                    { id: 'md', name: 'Moldova', icon: 'md' },
+                    { id: 'cy', name: 'Cyprus', icon: 'cy' },
+                    { id: 'mt', name: 'Malta', icon: 'mt' },
+                    { id: 'lu', name: 'Luxembourg', icon: 'lu' }
+                ]
+            },
+            {
+                group: 'North America',
+                items: [
+                    { id: 'us', name: 'United States', icon: 'us' },
+                    { id: 'ca', name: 'Canada', icon: 'ca' },
+                    { id: 'mx', name: 'Mexico', icon: 'mx' }
+                ]
+            },
+            {
+                group: 'South America & Caribbean',
+                items: [
+                    { id: 'br', name: 'Brazil', icon: 'br' },
+                    { id: 'ar', name: 'Argentina', icon: 'ar' },
+                    { id: 'cl', name: 'Chile', icon: 'cl' },
+                    { id: 'co', name: 'Colombia', icon: 'co' },
+                    { id: 'pe', name: 'Peru', icon: 'pe' },
+                    { id: 've', name: 'Venezuela', icon: 've' },
+                    { id: 'ec', name: 'Ecuador', icon: 'ec' },
+                    { id: 'bo', name: 'Bolivia', icon: 'bo' },
+                    { id: 'py', name: 'Paraguay', icon: 'py' },
+                    { id: 'uy', name: 'Uruguay', icon: 'uy' },
+                    { id: 'cu', name: 'Cuba', icon: 'cu' }
+                ]
+            },
+            {
+                group: 'Africa',
+                items: [
+                    { id: 'za', name: 'South Africa', icon: 'za' },
+                    { id: 'ng', name: 'Nigeria', icon: 'ng' },
+                    { id: 'ke', name: 'Kenya', icon: 'ke' },
+                    { id: 'eg', name: 'Egypt', icon: 'eg' },
+                    { id: 'gh', name: 'Ghana', icon: 'gh' },
+                    { id: 'et', name: 'Ethiopia', icon: 'et' },
+                    { id: 'tz', name: 'Tanzania', icon: 'tz' },
+                    { id: 'ug', name: 'Uganda', icon: 'ug' },
+                    { id: 'ma', name: 'Morocco', icon: 'ma' },
+                    { id: 'dz', name: 'Algeria', icon: 'dz' },
+                    { id: 'tn', name: 'Tunisia', icon: 'tn' },
+                    { id: 'sd', name: 'Sudan', icon: 'sd' },
+                    { id: 'ao', name: 'Angola', icon: 'ao' },
+                    { id: 'zw', name: 'Zimbabwe', icon: 'zw' },
+                    { id: 'mz', name: 'Mozambique', icon: 'mz' },
+                    { id: 'cm', name: 'Cameroon', icon: 'cm' },
+                    { id: 'ci', name: 'Cote d\'Ivoire', icon: 'ci' },
+                    { id: 'sn', name: 'Senegal', icon: 'sn' }
+                ]
+            },
+            {
+                group: 'Oceania',
+                items: [
+                    { id: 'au', name: 'Australia', icon: 'au' },
+                    { id: 'nz', name: 'New Zealand', icon: 'nz' },
+                    { id: 'pg', name: 'Papua New Guinea', icon: 'pg' },
+                    { id: 'fj', name: 'Fiji', icon: 'fj' }
+                ]
+            }
+        ];
+
+        let activeEcsTab = 'vn';
+        function switchVariantTab(tab, el) {
+            activeEcsTab = tab;
+            document.querySelectorAll('.variant-tab-btn').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+            renderVariants();
+        }
+
+        function renderVariants() {
+            const container = document.getElementById('variants-list-container');
+            container.innerHTML = '';
+            
+            const dataToRender = activeEcsTab === 'vn' 
+                ? [ECS_DATA[0]] 
+                : ECS_DATA.slice(1);
+
+            dataToRender.forEach(group => {
+                if (activeEcsTab === 'global') {
+                    const title = document.createElement('div');
+                    title.className = 'variant-group-title';
+                    title.textContent = group.group;
+                    container.appendChild(title);
+                }
+                
+                group.items.forEach(v => {
+                    const url = `https://${host}/ecs/${v.id}`;
+                    const appleUrl = IS_PROFILE_SIGNED ? `/mobileconfig/variants/${v.id}.mobileconfig` : `/apple/${v.id}`;
+                    const appleTooltip = IS_PROFILE_SIGNED ? `Apple Profile (Expires: ${PROFILE_EXPIRY})` : `Apple Profile (Unverified)`;
+                    const row = document.createElement('div');
+                    row.className = 'variant-row';
+                    row.innerHTML = `
+                        <div class="variant-row-info">
+                            <img src="frontend/svg/${v.icon}.svg" class="variant-row-icon" alt="${v.name}">
+                            <span class="variant-row-name">${v.name}</span>
+                        </div>
+                        <div class="variant-row-url-wrapper">
+                            <div class="variant-row-url" id="url-${v.id}">${url}</div>
+                            <a class="variant-row-copy" href="${appleUrl}" title="${appleTooltip}">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16.365 21.435c-1.12.83-2.09.84-3.13.34-1.07-.48-2.07-.5-3.17 0-1.4.63-2.22.42-3.17-.46C1.945 15.685 3.335 7.495 8.925 7.295c1.4.08 2.45.85 3.25.9 1.15-.05 2.4-.85 3.75-.75 1.55.15 2.85.75 3.75 1.95-3.2 1.8-2.6 6.3 0.45 7.55-1.25 3.2-2.7 5.3-2.9 3.5zm-4.3-14.1c-.2-2.3 1.7-4.2 3.8-4.4.3 2.7-2.4 4.7-3.8 4.4z"/></svg>
+                            </a>
+                            <button class="variant-row-copy" onclick="copyValue('url-${v.id}', this)" title="Copy URL">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(row);
+                });
+            });
+        }
+
+        renderVariants();
+
         // ── Copy ──
         function copyValue(id, btn) {
             const text = document.getElementById(id).textContent;
@@ -1170,6 +1616,22 @@
                 toast.classList.add('show');
                 const orig = btn.innerHTML;
                 btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 11"/></svg>';
+                btn.classList.add('copied');
+                setTimeout(() => { toast.classList.remove('show'); btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
+            });
+        }
+
+        function copyCode(id, btn) {
+            const el = document.getElementById(id);
+            const clone = el.cloneNode(true);
+            const btnInClone = clone.querySelector('.copy-btn');
+            if (btnInClone) btnInClone.remove();
+            
+            navigator.clipboard.writeText(clone.innerText.trim()).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                const orig = btn.innerHTML;
+                btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 11"/></svg>';
                 btn.classList.add('copied');
                 setTimeout(() => { toast.classList.remove('show'); btn.innerHTML = orig; btn.classList.remove('copied'); }, 2000);
             });
@@ -1189,89 +1651,217 @@
             { name: "Lazada.vn",     domain: "img.lazcdn.com" }
         ];
 
-        function togglePerf(header) {
-            const body = document.getElementById('perf-table-container');
-            const isOpen = header.classList.toggle('open');
-            body.classList.toggle('collapsed', !isOpen);
+        const PERF_ROUNDS = 3; // Number of rounds per domain for median calculation
+
+        const geoCache = new Map();
+        async function fetchGeo(ip) {
+            if (!ip || ip === '0.0.0.0') return { org: 'Unknown' };
+            const cached = sessionStorage.getItem(`geo_${ip}`);
+            if (cached) return JSON.parse(cached);
+            
+            try {
+                const res = await fetch(`https://ipinfo.io/${ip}/json`);
+                if (res.ok) {
+                    const r = await res.json();
+                    if (r.org) {
+                        sessionStorage.setItem(`geo_${ip}`, JSON.stringify(r));
+                        return r;
+                    }
+                }
+            } catch(e) {}
+            try {
+                const res = await fetch(`https://ipapi.co/${ip}/json/`);
+                if (res.ok) {
+                    const r = await res.json();
+                    if (r.org) {
+                        sessionStorage.setItem(`geo_${ip}`, JSON.stringify(r));
+                        return r;
+                    }
+                }
+            } catch(e) {}
+            return { org: 'Unknown' };
+        }
+
+        const cacheBuster = () => `&cb=${Date.now()}-${Math.random().toString(16).slice(2, 8)}`;
+
+        async function measureOnce(url) {
+            const start = performance.now();
+            try {
+                const r = await fetch(url + (url.includes('?') ? '&' : '?') + cacheBuster(), { cache: 'no-store' });
+                const json = await r.json();
+                const end = performance.now();
+                let ip = null;
+                if (json.Answer && json.Answer[0]) ip = json.Answer[0].data;
+                return { time: Math.round(end - start), ip };
+            } catch(e) {
+                return { time: 999, ip: null };
+            }
+        }
+
+        const median = arr => {
+            const s = [...arr].sort((a,b) => a - b);
+            const mid = Math.floor(s.length / 2);
+            return s.length % 2 !== 0 ? s[mid] : Math.round((s[mid - 1] + s[mid]) / 2);
+        };
+
+        function renderCell(row, cellIdx, ip, time, geo) {
+            const cell = row.cells[cellIdx];
+            if (time === null || time >= 999) {
+                cell.innerHTML = '<span style="color:var(--text-3)">Timeout</span>';
+                return;
+            }
+            const isp = geo ? (geo.org || '').replace(/^AS\d+\s+/, '') : '...';
+            cell.innerHTML = `
+                <div style="display:flex; flex-direction:column; gap:2px">
+                    <div style="font-weight:700; color:var(--text)">${time}ms</div>
+                    <div style="font-size:10px; color:var(--text-3); white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:140px;" title="${isp} (${ip})">
+                        ${isp}
+                    </div>
+                    <div style="font-size:9px; font-family:var(--font-mono); opacity:0.5">${ip || ''}</div>
+                </div>
+            `;
+        }
+
+        function openPerfModal() {
+
+            showModal('perf-modal');
+            const body = document.getElementById('perf-body');
+            if (body.children.length === 0) {
+                runPerformanceTest();
+            }
         }
 
         async function runPerformanceTest() {
             const btn = document.getElementById('run-test-btn');
             const body = document.getElementById('perf-body');
-            const container = document.getElementById('perf-table-container');
-            const header = document.querySelector('.perf-header-wrapper');
-            
-            // Show and expand if collapsed
-            container.classList.remove('collapsed');
-            header.classList.add('open');
 
             btn.disabled = true;
             btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation: spin 1s linear infinite;"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Analyzing...`;
-            
             body.innerHTML = '';
-            
+
+            let totalTimeGateway = 0;
+            let totalTimeGoogle = 0;
+
+            // ── Helpers ──
+            const median = (arr) => {
+                if (!arr.length) return 0;
+                const s = [...arr].sort((a, b) => a - b);
+                const m = Math.floor(s.length / 2);
+                return s.length % 2 !== 0 ? s[m] : Math.round((s[m - 1] + s[m]) / 2);
+            };
+
+            const cacheBuster = () => `&_cb=${Date.now()}_${Math.random().toString(36).substring(2, 9)}`;
+
+            const measureOnce = async (url) => {
+                const start = performance.now();
+                const res = await fetch(url + cacheBuster(), { cache: 'no-store' });
+                const data = await res.json();
+                const time = Math.round(performance.now() - start);
+                const ip = data.Answer ? (data.Answer.find(r => r.type === 1)?.data ?? null) : null;
+                return { time, ip };
+            };
+
+            const renderCell = (row, cellIndex, ip, dnsTime, geoData) => {
+                const otherTime = cellIndex === 1 ? row.googleDnsTime : row.gatewayDnsTime;
+                let badge = '';
+                if (otherTime && dnsTime) {
+                    const diff = otherTime - dnsTime;
+                    const max = Math.max(dnsTime, otherTime) || 1;
+                    const pct = Math.abs((diff / max) * 100).toFixed(0);
+                    if (diff > 0)      badge = `<span style="color:var(--success); font-weight:700; margin-left:4px">-${pct}%</span>`;
+                    else if (diff < 0) badge = `<span style="color:var(--danger); font-weight:700; margin-left:4px">+${pct}%</span>`;
+                }
+                row.cells[cellIndex].innerHTML = `
+                    <div class="location-info">
+                        <span class="location-city">${geoData ? geoData.city + ', ' + geoData.org : '<span style="color:var(--text-3); font-size:11px;">Locating...</span>'}</span>
+                        <div style="font-size:10px; opacity:0.6; margin-top:2px">IP: ${ip || 'N/A'} <span style="color:var(--accent); font-weight:700">(${dnsTime}ms)</span>${badge}</div>
+                    </div>
+                `;
+            };
+
+            try {
+                await Promise.all([
+                    fetch(`/dns-query?domain=example.com${cacheBuster()}`, { cache: 'no-store' }).catch(() => {}),
+                    fetch(`https://dns.google/resolve?name=example.com&type=A${cacheBuster()}`, { cache: 'no-store' }).catch(() => {})
+                ]);
+            } catch(e) {}
+            btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation: spin 1s linear infinite;"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Analyzing...`;
+
             for (const t of PERF_TARGETS) {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td><div class="domain-name">${t.name}</div><div style="font-size:10px; opacity:0.5">${t.domain}</div></td>
-                    <td><div class="shimmer-cell" style="width:150px"></div></td>
+                    <td><div class="shimmer-cell" style="width:120px"></div></td>
+                    <td><div class="shimmer-cell" style="width:120px"></div></td>
                 `;
                 body.appendChild(row);
-                
-                try {
-                    // 1. Resolve via our Gateway
-                    const res = await fetch(`/dns-query?domain=${t.domain}`);
-                    const data = await res.json();
-                    let ip = data.Answer ? (data.Answer.find(r => r.type === 1)?.data) : null;
 
-                    // 2. Get Location Info with Caching
-                    let geoData = { city: 'Unknown', org: 'Unknown' };
-                    if (ip) {
-                        const geoCacheKey = `geo_cache_${ip}`;
-                        const cachedGeo = sessionStorage.getItem(geoCacheKey);
-                        
-                        if (cachedGeo) {
-                            geoData = JSON.parse(cachedGeo);
-                        } else {
-                            try {
-                                const gRes = await fetch(`https://ipinfo.io/${ip}/json`).then(r => r.json());
-                                geoData = { city: gRes.city || 'Unknown', org: gRes.org || 'Unknown' };
-                                sessionStorage.setItem(geoCacheKey, JSON.stringify(geoData));
-                            } catch(e) {
-                                geoData = { city: 'Unknown', org: 'Unknown' };
-                            }
-                        }
-                    }
+                const gwTimes = [], glTimes = [];
+                let gwIp = null, glIp = null;
 
-                    row.cells[1].innerHTML = `
-                        <div class="location-info">
-                            <span class="location-city">${geoData.city}, ${geoData.org}</span>
-                            <div style="font-size:10px; opacity:0.5; margin-top:2px">IP: ${ip || 'N/A'}</div>
-                        </div>
-                    `;
-                } catch(e) {
-                    row.cells[1].innerHTML = `<span style="font-size:11px; color:var(--text-3)">Resolution failed</span>`;
+                for (let round = 0; round < PERF_ROUNDS; round++) {
+                    try {
+                        const [gwResult, glResult] = await Promise.all([
+                            measureOnce(`/dns-query?domain=${t.domain}`),
+                            measureOnce(`https://dns.google/resolve?name=${t.domain}&type=A`)
+                        ]);
+                        gwTimes.push(gwResult.time);
+                        glTimes.push(glResult.time);
+                        if (!gwIp && gwResult.ip) gwIp = gwResult.ip;
+                        if (!glIp && glResult.ip) glIp = glResult.ip;
+                    } catch(e) {}
                 }
-                await new Promise(r => setTimeout(r, 150)); 
+
+                const gwMedian = gwTimes.length ? median(gwTimes) : null;
+                const glMedian = glTimes.length ? median(glTimes) : null;
+
+                row.gatewayDnsTime = gwMedian;
+                row.googleDnsTime  = glMedian;
+
+                if (gwMedian !== null) totalTimeGateway += gwMedian;
+                if (glMedian !== null) totalTimeGoogle  += glMedian;
+
+                renderCell(row, 1, gwIp, gwMedian, null);
+                renderCell(row, 2, glIp, glMedian, null);
+
+                const [gwGeo, glGeo] = await Promise.all([fetchGeo(gwIp), fetchGeo(glIp)]);
+                renderCell(row, 1, gwIp, gwMedian, gwGeo);
+                renderCell(row, 2, glIp, glMedian, glGeo);
             }
-            
+
+            const headerGateway = document.getElementById('perf-header-gateway');
+            const headerGoogle  = document.getElementById('perf-header-google');
+            const diff    = totalTimeGoogle - totalTimeGateway;
+            const maxTime = Math.max(totalTimeGateway, totalTimeGoogle) || 1;
+            const pct     = Math.abs((diff / maxTime) * 100).toFixed(1);
+
+            let gatewayBadge = '', googleBadge = '';
+            if (diff > 0) {
+                gatewayBadge = `<span class="badge badge-green" style="margin-left:4px; font-size:9px">-${pct}%</span>`;
+                googleBadge  = `<span class="badge" style="margin-left:4px; font-size:9px; color:var(--danger); border-color:rgba(207,34,46,0.2); background:rgba(207,34,46,0.05)">+${pct}%</span>`;
+            } else if (diff < 0) {
+                gatewayBadge = `<span class="badge" style="margin-left:4px; font-size:9px; color:var(--danger); border-color:rgba(207,34,46,0.2); background:rgba(207,34,46,0.05)">+${pct}%</span>`;
+                googleBadge  = `<span class="badge badge-green" style="margin-left:4px; font-size:9px">-${pct}%</span>`;
+            }
+
+            const roundNote = `<span style="color:var(--text-3); font-size:10px; margin-left:2px">(median of ${PERF_ROUNDS})</span>`;
+            headerGateway.innerHTML = `${host} <div style="font-size:11px; font-weight:500; color:var(--text-2); margin-top:4px; display:flex; align-items:center;">Total: <span style="color:var(--text); font-weight:700; margin-left:3px">${totalTimeGateway}ms</span> ${gatewayBadge} <span style="margin-left:4px">${roundNote}</span></div>`;
+            headerGoogle.innerHTML  = `Google DNS <div style="font-size:11px; font-weight:500; color:var(--text-2); margin-top:4px; display:flex; align-items:center;">Total: <span style="color:var(--text); font-weight:700; margin-left:3px">${totalTimeGoogle}ms</span> ${googleBadge} <span style="margin-left:4px">${roundNote}</span></div>`;
+
             btn.disabled = false;
             btn.innerHTML = `<span class="status-dot"></span> Re-analyze`;
         }
 
-        // Add spin animation
         const styleTag = document.createElement('style');
         styleTag.textContent = `@keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`;
         document.head.appendChild(styleTag);
 
-        // ── Accordion ──
         function toggleSetup(header) {
             const body = header.nextElementSibling;
             const isOpen = header.classList.toggle('open');
             body.classList.toggle('collapsed', !isOpen);
         }
 
-        // ── Modals ──
         function showModal(id) {
             document.getElementById(id).classList.add('show');
             document.body.style.overflow = 'hidden';
@@ -1281,10 +1871,472 @@
             document.body.style.overflow = '';
         }
         document.addEventListener('keydown', e => { if (e.key === 'Escape') hideModals(); });
-        // ── DNS Status Check ──
-        // (Check removed per request)
+
+        async function checkDnsStatus() {
+            const badge = document.getElementById('dns-status-badge');
+            const text  = document.getElementById('dns-status-text');
+            badge.className = 'status-badge checking';
+            text.textContent = 'Checking connection…';
+
+            const startTime = performance.now();
+            const now = new Date().toLocaleTimeString();
+            console.log(`[DNS Check] [${now}] Starting check...`);
+            let tokenVerified = false;
+
+            const clientId = Math.floor(Math.random() * 0xffffffff).toString(16).padStart(8, '0');
+            let lastEntryTime = Date.now();
+            let dohQnames = new Set();
+            let hasDoh = false;
+            let cfLeak = false;
+            const entries = []; // {qname, ip, label, subnetPrefix} from dnscheck WS
+            const pat = new RegExp(clientId, 'i');
+
+            const makeQuery = async (subdomain) => {
+                const controller = new AbortController();
+                // 3000ms is more robust for slow networks to ensure DNS query is sent
+                const timeoutId = setTimeout(() => controller.abort(), 3000);
+                try {
+                    await fetch(`https://${subdomain}.dnscheck.tools/`, { 
+                        signal: controller.signal, 
+                        mode: 'no-cors', 
+                        cache: 'no-store' 
+                    });
+                } catch (_) {} finally { clearTimeout(timeoutId); }
+            };
+
+            // Step 1: Collect entries from dnscheck WS
+            await new Promise(resolve => {
+                let resolved = false;
+                const done = () => { if (!resolved) { resolved = true; resolve(); } };
+                console.log('[DNS Check] Connecting to dnscheck.tools WS...');
+                const ws = new WebSocket(`wss://ws.dnscheck.tools/watch/${clientId}`, 'full');
+                // 8000ms (8s) is a safe fallback timeout if the network drops.
+                const fallback = setTimeout(() => { ws.close(); done(); }, 8000);
+                ws.onopen = async () => {
+                    const subdomains = [];
+                    for (let i = 0; i < 4; i++) subdomains.push(`${String.fromCharCode(97+i)}.nullip-${clientId}.test`);
+                    subdomains.push(`nullip-${clientId}.test-ipv6`);
+                    subdomains.push(`truncate-${clientId}.test`);
+                    for (const alg of ['alg13','alg14','alg15'])
+                        for (const sig of ['','badsig-','expiredsig-','nosig-'])
+                            subdomains.push(`${sig}${clientId}.test-${alg}`);
+                    
+                    // Fire queries in batches (6 queries every 200ms) to balance speed and server load
+                    (async () => {
+                        for (let i = 0; i < subdomains.length; i += 6) {
+                            subdomains.slice(i, i + 6).forEach(sub => makeQuery(sub));
+                            if (i + 6 < subdomains.length) await new Promise(r => setTimeout(r, 200));
+                        }
+                    })();
+
+                    const queryStart = Date.now();
+                    console.log('[DNS Check] Queries fired (batched), monitoring results...');
+                    
+                    // Smart wait loop: 2s minimum to 4s maximum
+                    while (Date.now() - queryStart < 4000) {
+                        const now = Date.now();
+                        const seen = new Set(entries.map(e => e.qname.replace('.dnscheck.tools', '')));
+                        let hasAll = true;
+                        for (const s of subdomains) { if (!seen.has(s)) { hasAll = false; break; } }
+
+                        // Use a consistent 500ms quiet period for absolute accuracy
+                        const quietThreshold = 500;
+                        const isQuiet = (now - lastEntryTime) > quietThreshold;
+                        const minTimePassed = (now - queryStart) > 2000;
+
+                        if (hasAll && isQuiet && minTimePassed) {
+                            console.log(`[DNS Check] 100% coverage & stable at ${now - queryStart}ms.`);
+                            break;
+                        }
+                        await new Promise(r => setTimeout(r, 100));
+                    }
+                    
+                    clearTimeout(fallback);
+                    ws.close();
+                    done();
+                };
+                ws.onmessage = ({ data }) => {
+                    try {
+                        const req = JSON.parse(data);
+                        if (!req.remoteIp || !pat.test(req.qname)) return;
+                        const qname = req.qname.toLowerCase().replace(/\.$/, '');
+                        
+                        // Extract label to filter out Delegation Walk records
+                        const parts = qname.replace('.dnscheck.tools', '').split('.');
+                        let label = null;
+                        if (parts[0].includes('truncate')) label = 'truncate';
+                        else if (parts.length > 1 && parts[1].includes('test-ipv6')) label = 'ipv6';
+                        else if (['a','b','c','d'].includes(parts[0])) label = parts[0];
+                        else if (parts.length > 1 && parts[1].includes('test-alg')) label = parts[1];
+                        
+                        let subnetPrefix = null;
+                        if (req.clientSubnet && !req.clientSubnet.endsWith('/0')) {
+                            subnetPrefix = parseInt(req.clientSubnet.split('/')[1], 10);
+                        }
+                        
+                        entries.push({ qname, ip: req.remoteIp, label, subnetPrefix });
+                        lastEntryTime = Date.now();
+                        console.log(`[DNS Check] Initial read: qname=${qname} | ip=${req.remoteIp} | label=${label} | ecs=${subnetPrefix}`);
+                    } catch (_) {}
+                };
+                ws.onerror = () => { clearTimeout(fallback); done(); };
+            });
+
+            // Step 2: Send entries to server, server checks cache, receive results
+            await new Promise(resolve => {
+                let resolved = false;
+                const done = () => { if (!resolved) { resolved = true; resolve(); } };
+                const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+                const ws = new WebSocket(`${protocol}//${window.location.host}/check`);
+                // Server is highly optimized, so a 5s fallback timeout is safe.
+                const fallback = setTimeout(() => { ws.close(); done(); }, 5000);
+                ws.onopen = () => {
+                    console.log(`[DNS Check] Sending ${entries.length} entries to server...`);
+                    ws.send(JSON.stringify({ type: 'entries', entries }));
+                };
+                ws.onmessage = (e) => {
+                    try {
+                        const data = JSON.parse(e.data);
+                        if (data.type === 'result') {
+                            hasDoh = data.hasDoh;
+                            cfLeak = data.cfLeak;
+                            if (data.dohQnames) dohQnames = new Set(data.dohQnames);
+                            console.log(`[DNS Check] Result: hasDoh=${hasDoh}, cfLeak=${cfLeak}, dohQnames=${dohQnames.size}`);
+                            clearTimeout(fallback);
+                            ws.close();
+                            done();
+                        }
+                    } catch (_) {}
+                };
+                ws.onerror = () => { clearTimeout(fallback); done(); };
+            });
 
 
+            // ── Step 2: Recognition Info ──
+
+            const LABELS = ['a', 'b', 'c', 'd'];
+            const RANGES = {
+
+                'Cloudflare DNS': {
+                    v4: ['173.245.48.0/20','103.21.244.0/22','103.22.200.0/22','103.31.4.0/22','141.101.64.0/18','108.162.192.0/18','190.93.240.0/20','188.114.96.0/20','197.234.240.0/22','198.41.128.0/17','162.158.0.0/15','104.16.0.0/13','104.24.0.0/14','172.64.0.0/13','131.0.72.0/22'],
+                    v6: ['2400:cb00::/32','2606:4700::/32','2803:f800::/32','2405:b500::/32','2405:8100::/32','2a06:98c0::/29','2c0f:f248::/32']
+                },
+                'Quad9 DNS': {
+                    v4: ["102.217.157.128/28","102.217.157.144/28","103.142.152.112/28","103.175.186.195/32","103.191.77.195/32","103.194.167.224/28","103.227.66.240/28","103.23.18.113/32","103.245.97.203/32","103.248.210.99/32","103.94.94.3/32","109.200.195.192/28","109.200.199.192/28","109.200.209.192/28","113.23.196.123/32","113.23.196.139/32","119.31.179.35/32","121.78.35.51/32","125.20.237.115/32","125.20.246.123/32","125.254.84.240/28","134.195.207.13/32","138.121.98.179/32","138.128.139.128/28","138.128.140.224/28","147.72.242.0/28","154.113.24.11/32","158.38.58.179/32","158.38.58.187/32","160.0.104.240/28","160.0.105.240/28","160.0.108.240/28","160.0.97.240/28","160.0.98.240/28","160.0.99.240/28","161.53.251.21/32","162.244.53.192/28","162.244.55.16/28","164.113.205.224/28","166.70.78.3/32","170.75.247.123/32","177.101.25.155/32","177.93.141.224/28","178.132.70.15/32","179.0.200.40/32","185.211.231.155/32","185.33.111.67/32","185.40.106.224/28","185.44.108.99/32","185.70.1.160/28","188.122.68.208/28","188.122.78.192/28","188.122.80.224/28","188.93.173.251/32","192.115.209.68/32","192.40.40.3/32","192.43.217.224/28","192.75.191.32/32","193.136.252.224/28","193.148.250.92/32","193.167.245.112/28","193.188.15.195/32","193.4.59.50/32","193.46.232.192/28","193.46.232.224/28","193.46.232.240/28","194.116.81.227/32","194.149.135.211/32","194.54.137.35/32","195.140.195.213/32","196.10.54.180/32","196.10.55.181/32","196.216.149.43/32","196.216.216.43/32","196.43.240.43/32","196.49.10.187/32","196.49.100.181/32","196.49.14.21/32","196.49.19.202/32","196.49.5.131/32","196.49.7.61/32","196.49.88.167/32","197.230.227.227/32","200.107.82.206/32","200.115.95.147/32","200.12.251.67/32","200.25.1.192/28","200.25.17.208/28","200.25.22.176/28","200.25.38.240/28","200.25.43.176/28","200.25.46.192/28","200.25.48.240/28","200.25.52.208/28","200.25.56.96/28","200.25.70.192/28","200.25.72.0/28","200.25.78.32/28","200.25.81.144/28","200.25.91.176/28","200.25.97.160/28","202.152.129.91/32","202.153.128.44/32","202.160.5.147/32","202.59.208.41/32","202.76.225.74/32","202.8.10.208/28","203.159.70.147/32","205.215.193.195/32","206.1.36.91/32","206.126.112.186/32","206.126.244.184/32","208.118.224.144/28","212.0.192.187/32","212.20.230.109/32","213.128.135.26/32","213.163.69.192/28","213.179.203.128/27","213.179.217.0/28","23.136.248.67/32","23.137.40.66/32","23.138.113.67/32","23.171.112.251/32","23.189.49.96/28","31.204.133.192/28","43.225.27.91/32","43.226.5.169/32","45.136.139.193/32","45.183.45.243/32","45.68.21.5/32","45.68.27.224/28","45.68.35.195/32","45.68.6.3/32","45.94.14.200/32","46.19.95.208/28","5.1.97.80/28","5.200.12.224/28","51.162.33.58/32","58.96.159.224/28","62.72.179.131/32","63.254.161.16/28","63.254.168.32/28","64.71.188.19/32","66.102.40.112/28","66.102.43.240/28","66.185.112.240/28","66.185.113.240/28","66.185.114.240/28","66.185.115.240/28","66.185.116.240/28","66.185.117.240/28","66.185.119.240/28","66.185.120.240/28","66.185.122.240/28","66.185.123.224/27","66.185.126.240/28","66.185.127.240/28","74.63.16.224/27","74.63.17.224/27","74.63.18.240/28","74.63.19.224/28","74.63.20.224/27","74.63.21.240/28","74.63.22.224/28","74.63.23.240/28","74.63.24.192/26","74.63.25.224/27","74.63.26.224/27","74.63.27.240/28","74.63.28.224/27","74.63.29.224/27","74.63.30.224/27","74.80.77.240/28","8.2.187.165/32","80.233.251.173/32","82.219.42.233/32","83.212.7.243/32","85.209.99.11/32","88.201.53.115/32","89.104.170.192/28","89.23.254.240/28","91.102.14.195/32","91.213.30.98/32","94.199.175.119/32","94.207.34.219/32"],
+                    v6: ["2001:468:500:100::/56","2001:4830:c200::/56","2001:49d0:3403::/56","2001:5e8:e0::/56","2001:690:200c::/56","2001:708:1f:900::/56","2001:def:c000:600::/56","2400:8280:2:100::/56","2400:8280:3:100::/56","2400:8280:5:100::/56","2607:d440:9999::/56","2607:fdc0:1c2::/56","2607:fdc0:202::/56","2607:fdc0:83::/56","2620:0:877:4700::/56","2620:0:877:5100::/56","2620:171:12:f000::/56","2620:171:14:f000::/56","2620:171:16:f000::/56","2620:171:1b:f000::/56","2620:171:1c::/56","2620:171:1f:f000::/56","2620:171:21:f000::/56","2620:171:22:f000::/56","2620:171:29::/56","2620:171:2a::/56","2620:171:2b:f000::/56","2620:171:2d:f000::/56","2620:171:2e:f000::/56","2620:171:2f:f000::/56","2620:171:3d:f000::/56","2620:171:3f:f000::/56","2620:171:43:f000::/56","2620:171:45:f000::/56","2620:171:4b:f000::/56","2620:171:4c:f000::/56","2620:171:4d:f000::/56","2620:171:57:f000::/56","2620:171:5a:f000::/56","2620:171:5c:f000::/56","2620:171:5e:f000::/56","2620:171:5f:f000::/56","2620:171:60::/56","2620:171:62:f000::/56","2620:171:63::/56","2620:171:66:f000::/56","2620:171:67:f000::/56","2620:171:6a:f000::/56","2620:171:6c:f000::/56","2620:171:70:f000::/56","2620:171:73:f000::/56","2620:171:74:f000::/56","2620:171:75:f000::/56","2620:171:77:f000::/56","2620:171:7a:f000::/56","2620:171:7b:f000::/56","2620:171:7e:f000::/56","2620:171:81:f000::/56","2620:171:82:f000::/56","2620:171:83:f000::/56","2620:171:85:f000::/56","2620:171:89:f000::/56","2620:171:8a:f000::/56","2620:171:8b::/56","2620:171:8d:f000::/56","2620:171:8e:f000::/56","2620:171:90:f000::/56","2620:171:96:f000::/56","2620:171:99:f000::/56","2620:171:9a:f000::/56","2620:171:9d:f000::/56","2620:171:a4:f000::/56","2620:171:a5:f000::/56","2620:171:a7:f000::/56","2620:171:ab:f000::/56","2620:171:ac:f000::/56","2620:171:ae:f000::/56","2620:171:af:f000::/56","2620:171:b1:f000::/56","2620:171:b2:f000::/56","2620:171:b5:f000::/56","2620:171:b6:f000::/56","2620:171:b7:f000::/56","2620:171:b8:f000::/56","2620:171:bb:f000::/56","2620:171:bd:f000::/56","2620:171:be:f000::/56","2620:171:bf:f000::/56","2620:171:c1:f000::/56","2620:171:c2:f000::/56","2620:171:c3:f000::/56","2620:171:c4:f000::/56","2620:171:c5:f000::/56","2620:171:c6:f000::/56","2620:171:c7:f000::/56","2620:171:c8:f000::/56","2620:171:c9:f000::/56","2620:171:cc:f000::/56","2620:171:ce::/56","2620:171:cf:f000::/56","2620:171:d0:f000::/56","2620:171:d1:f000::/56","2620:171:d3::/56","2620:171:d4:f000::/56","2620:171:d5::/56","2620:171:d6:f000::/56","2620:171:d7:f000::/56","2620:171:d9:f000::/56","2620:171:db:f000::/56","2620:171:df::/56","2620:171:e0::/56","2620:171:e1::/56","2620:171:e2:f000::/56","2620:171:e3::/56","2620:171:e4:f000::/56","2620:171:e5:f000::/56","2620:171:e7::/56","2620:171:e8:f000::/56","2620:171:ea:f000::/56","2620:171:eb::/56","2620:171:ee:f000::/56","2620:171:ef:f000::/56","2620:171:f0::/56","2620:171:f1::/56","2620:171:f2:f000::/56","2620:171:f3::/56","2620:171:f4::/56","2620:171:f5:f000::/56","2620:171:f6::/56","2620:171:f7::/56","2620:171:f8::/56","2620:171:f9::/56","2620:171:f:f000::/56","2620:171:fa::/56","2620:171:fb:f000::/56","2620:171:fc::/56","2620:171:fd::/56","2620:171:fe::/56","2800:1e0:1020::/56","2800:1e0:1025:400::/56","2800:1e0:1030:200::/56","2800:1e0:1040::/56","2800:1e0:1060::/56","2800:1e0:1080::/56","2800:1e0:1090::/56","2800:1e0:1100:100::/56","2800:1e0:1604::/56","2800:1e0:1701:100::/56","2800:1e0:2000:100::/56","2800:1e0:2441::/56","2800:1e0:3001::/56","2800:1e0:a06::/56","2800:1e0:d32:100::/56","2803:6d90:242:9900::/56","2803:cd60:5102:100::/56","2a00:1630:409::/56","2a00:1633:409::/56","2a00:1636:409::/56","2a00:1637:409::/56","2a00:1d20:49::/56","2a00:1d24:409::/56","2a00:1d26:8409::/56","2a00:1d26:c409::/56","2a00:c380:c102:1a00::/56","2a00:c380:c102:ec00::/56","2a00:c380:c102:ed00::/56","2a00:c380:f002::/56","2a01:9580:409::/56","2a01:9580:4409::/56","2a01:9580:8409::/56","2a03:2040:43::/56","2a03:2760:1:9000::/56","2a03:5440:1:4900::/56","2a04:c602:409::/56","2a04:c603:409::/56","2a04:c604:409::/56","2a04:c605:409::/56","2a04:c606:409::/56","2a04:c607:33::/56","2a0c:e080::/56","2c0f:6300:2:100::/56","2c0f:6300:2:200::/56"]
+                },
+                'Google Public DNS': {
+                    v4: ['34.64.0.0/24', '34.64.1.0/24', '34.64.2.0/24', '34.101.0.0/24', '34.101.1.0/24', '34.101.2.0/24', '34.116.32.0/24', '34.153.64.0/25', '34.153.64.128/26', '34.153.64.192/26', '34.153.65.0/25', '34.153.65.128/26', '34.153.65.192/26', '34.153.66.0/24', '74.114.28.0/26', '74.114.28.64/26', '74.114.28.128/26', '74.114.28.192/26', '74.114.29.0/26', '74.114.29.64/26', '74.114.29.128/26', '74.114.29.192/26', '74.114.30.0/26', '74.114.30.64/26', '74.114.30.128/25', '74.114.31.0/26', '74.114.31.64/26', '74.114.31.128/26', '74.114.31.192/26', '74.125.16.128/26', '74.125.16.192/26', '74.125.17.128/26', '74.125.17.192/26', '74.125.18.0/25', '74.125.18.128/26', '74.125.18.192/26', '74.125.19.0/25', '74.125.19.128/25', '74.125.40.0/25', '74.125.40.128/26', '74.125.40.192/26', '74.125.41.0/24', '74.125.42.0/24', '74.125.43.0/25', '74.125.43.128/25', '74.125.44.0/24', '74.125.45.0/24', '74.125.46.0/24', '74.125.47.0/24', '74.125.72.0/24', '74.125.73.0/24', '74.125.74.0/24', '74.125.75.0/24', '74.125.76.0/24', '74.125.77.0/24', '74.125.78.0/24', '74.125.79.0/24', '74.125.80.0/24', '74.125.81.0/24', '74.125.92.0/24', '74.125.112.0/24', '74.125.113.0/24', '74.125.114.128/26', '74.125.114.192/26', '74.125.115.0/24', '74.125.177.0/24', '74.125.178.0/24', '74.125.179.0/25', '74.125.179.128/26', '74.125.179.192/26', '74.125.180.0/24', '74.125.181.0/25', '74.125.181.128/26', '74.125.181.192/26', '74.125.182.0/24', '74.125.183.0/24', '74.125.184.0/24', '74.125.185.0/25', '74.125.185.128/26', '74.125.185.192/26', '74.125.186.0/25', '74.125.186.128/26', '74.125.186.192/26', '74.125.187.128/26', '74.125.187.192/26', '74.125.191.0/24', '172.217.32.0/25', '172.217.32.128/26', '172.217.32.192/26', '172.217.33.0/25', '172.217.33.128/25', '172.217.34.0/26', '172.217.34.64/26', '172.217.34.128/26', '172.217.34.192/26', '172.217.35.0/26', '172.217.35.64/26', '172.217.35.128/26', '172.217.35.192/26', '172.217.36.0/24', '172.217.37.0/25', '172.217.37.128/26', '172.217.37.192/26', '172.217.38.0/25', '172.217.38.128/26', '172.217.38.192/26', '172.217.39.128/26', '172.217.39.192/26', '172.217.40.0/25', '172.217.40.128/25', '172.217.41.0/25', '172.217.41.128/26', '172.217.41.192/26', '172.217.42.0/25', '172.217.42.128/26', '172.217.42.192/26', '172.217.43.0/25', '172.217.43.128/26', '172.217.43.192/26', '172.217.44.0/25', '172.217.44.128/26', '172.217.44.192/26', '172.217.45.0/25', '172.217.45.128/25', '172.217.46.0/24', '172.217.47.0/25', '172.217.47.128/25', '172.217.96.0/26', '172.217.96.64/26', '172.217.96.128/25', '172.217.97.0/26', '172.217.97.64/26', '172.217.97.128/25', '172.217.98.0/24', '172.217.106.0/25', '172.217.106.128/25', '172.217.107.0/26', '172.217.107.64/26', '172.217.107.128/25', '172.217.108.0/24', '172.217.109.0/25', '172.217.109.128/25', '172.217.110.0/24', '172.217.111.128/26', '172.217.111.192/26', '172.253.0.0/25', '172.253.0.128/25', '172.253.1.0/25', '172.253.1.128/26', '172.253.1.192/26', '172.253.2.0/25', '172.253.2.128/26', '172.253.2.192/26', '172.253.3.0/25', '172.253.3.128/26', '172.253.3.192/26', '172.253.4.0/25', '172.253.4.128/25', '172.253.5.0/25', '172.253.5.128/25', '172.253.6.0/25', '172.253.6.128/25', '172.253.7.0/25', '172.253.7.128/26', '172.253.7.192/26', '172.253.8.0/25', '172.253.8.128/26', '172.253.8.192/26', '172.253.9.0/25', '172.253.9.128/26', '172.253.9.192/26', '172.253.10.0/25', '172.253.10.128/25', '172.253.11.0/25', '172.253.11.128/26', '172.253.11.192/26', '172.253.12.0/25', '172.253.12.128/25', '172.253.13.0/25', '172.253.13.128/26', '172.253.13.192/26', '172.253.14.0/25', '172.253.14.128/26', '172.253.14.192/26', '172.253.15.0/25', '172.253.15.128/26', '172.253.15.192/26', '172.253.80.0/26', '172.253.80.64/26', '172.253.80.128/26', '172.253.80.192/26', '172.253.81.0/26', '172.253.81.64/26', '172.253.81.128/26', '172.253.81.192/26', '172.253.82.0/26', '172.253.82.64/26', '172.253.82.128/26', '172.253.82.192/26', '172.253.83.0/26', '172.253.83.64/26', '172.253.83.128/26', '172.253.83.192/26', '172.253.84.0/26', '172.253.84.64/26', '172.253.84.128/26', '172.253.84.192/26', '172.253.85.0/26', '172.253.85.64/26', '172.253.85.128/25', '172.253.86.0/25', '172.253.86.128/27', '172.253.86.160/27', '172.253.86.192/26', '172.253.87.0/26', '172.253.87.64/26', '172.253.87.128/25', '172.253.88.0/26', '172.253.88.64/26', '172.253.88.128/26', '172.253.88.192/27', '172.253.88.224/27', '172.253.89.0/27', '172.253.89.32/27', '172.253.89.64/26', '172.253.89.128/26', '172.253.89.192/27', '172.253.89.224/27', '172.253.90.0/26', '172.253.90.64/26', '172.253.90.128/26', '172.253.90.192/26', '172.253.91.0/26', '172.253.91.64/26', '172.253.91.128/26', '172.253.91.192/26', '172.253.92.0/26', '172.253.92.64/26', '172.253.92.128/26', '172.253.92.192/26', '172.253.93.0/26', '172.253.93.64/26', '172.253.93.128/26', '172.253.93.192/26', '172.253.94.0/25', '172.253.94.128/25', '172.253.95.0/25', '172.253.95.128/26', '172.253.95.192/26', '172.253.184.0/24', '172.253.185.0/25', '172.253.185.128/25', '172.253.186.0/24', '172.253.187.0/24', '172.253.192.0/24', '172.253.193.0/25', '172.253.193.128/26', '172.253.193.192/26', '172.253.194.128/26', '172.253.194.192/26', '172.253.195.128/26', '172.253.195.192/26', '172.253.196.0/25', '172.253.196.128/26', '172.253.196.192/26', '172.253.197.0/25', '172.253.197.128/26', '172.253.197.192/26', '172.253.198.128/26', '172.253.198.192/26', '172.253.199.0/25', '172.253.199.128/26', '172.253.199.192/26', '172.253.200.128/26', '172.253.200.192/26', '172.253.201.0/25', '172.253.201.128/25', '172.253.202.0/24', '172.253.204.0/25', '172.253.204.128/25', '172.253.205.0/24', '172.253.206.0/24', '172.253.209.0/25', '172.253.209.128/25', '172.253.210.0/24', '172.253.211.0/25', '172.253.211.128/26', '172.253.211.192/26', '172.253.212.0/25', '172.253.212.128/26', '172.253.212.192/26', '172.253.213.0/25', '172.253.213.128/26', '172.253.213.192/26', '172.253.214.0/25', '172.253.214.128/26', '172.253.214.192/26', '172.253.215.0/25', '172.253.215.128/26', '172.253.215.192/26', '172.253.216.0/25', '172.253.216.128/26', '172.253.216.192/26', '172.253.217.0/25', '172.253.217.128/25', '172.253.218.0/25', '172.253.218.128/26', '172.253.218.192/26', '172.253.219.0/25', '172.253.219.128/26', '172.253.219.192/26', '172.253.220.0/25', '172.253.220.128/26', '172.253.220.192/26', '172.253.221.0/25', '172.253.221.128/26', '172.253.221.192/26', '172.253.222.0/25', '172.253.222.128/26', '172.253.222.192/26', '172.253.223.0/25', '172.253.223.128/26', '172.253.223.192/26', '172.253.224.0/24', '172.253.225.0/24', '172.253.226.0/24', '172.253.227.0/25', '172.253.227.128/26', '172.253.227.192/26', '172.253.228.0/25', '172.253.228.128/26', '172.253.228.192/26', '172.253.229.0/25', '172.253.229.128/26', '172.253.229.192/26', '172.253.230.0/25', '172.253.230.128/26', '172.253.230.192/26', '172.253.231.0/25', '172.253.231.128/26', '172.253.231.192/26', '172.253.232.0/25', '172.253.232.128/26', '172.253.232.192/26', '172.253.233.0/25', '172.253.233.128/25', '172.253.234.0/24', '172.253.235.0/25', '172.253.235.128/25', '172.253.236.0/25', '172.253.236.128/26', '172.253.236.192/26', '172.253.237.0/25', '172.253.237.128/25', '172.253.238.0/25', '172.253.238.128/25', '172.253.239.0/25', '172.253.239.128/26', '172.253.239.192/26', '172.253.240.0/24', '172.253.241.0/24', '172.253.242.0/24', '172.253.243.0/24', '172.253.244.0/25', '172.253.244.128/26', '172.253.244.192/26', '172.253.245.0/24', '172.253.247.0/24', '172.253.248.0/24', '172.253.249.0/25', '172.253.249.128/26', '172.253.249.192/26', '172.253.250.0/24', '172.253.251.0/24', '172.253.252.0/24', '172.253.253.0/24', '172.253.254.0/24', '172.253.255.0/24', '173.194.90.0/24', '173.194.91.0/24', '173.194.93.0/24', '173.194.94.0/24', '173.194.95.0/24', '173.194.96.0/25', '173.194.96.128/25', '173.194.97.0/24', '173.194.98.0/24', '173.194.99.0/25', '173.194.99.128/25', '173.194.100.0/24', '173.194.101.0/24', '173.194.102.0/24', '173.194.103.0/24', '173.194.168.0/25', '173.194.168.128/26', '173.194.168.192/26', '173.194.169.0/24', '173.194.170.0/24', '173.194.171.0/25', '173.194.171.128/26', '173.194.171.192/26', '192.178.36.0/25', '192.178.36.128/26', '192.178.36.192/26', '192.178.37.0/26', '192.178.37.64/26', '192.178.37.128/25', '192.178.38.0/26', '192.178.38.64/26', '192.178.38.128/26', '192.178.38.192/26', '192.178.39.0/26', '192.178.39.64/26', '192.178.39.128/25', '192.178.64.0/24', '192.178.65.0/26', '192.178.65.64/26', '192.178.65.128/25', '192.178.66.0/25', '192.178.66.128/25', '192.178.67.0/26', '192.178.67.64/26', '192.178.67.128/25', '192.178.92.0/26', '192.178.92.64/26', '192.178.92.128/26', '192.178.92.192/26', '192.178.93.0/26', '192.178.93.64/26', '192.178.93.128/26', '192.178.93.192/26', '192.178.94.0/26', '192.178.94.64/26', '192.178.94.128/26', '192.178.94.192/26', '192.178.95.0/26', '192.178.95.64/26', '192.178.95.128/25', '192.178.112.0/26', '192.178.112.64/26', '192.178.112.128/26', '192.178.112.192/26', '192.178.113.0/26', '192.178.113.64/26', '192.178.113.128/26', '192.178.113.192/26', '192.178.114.0/25', '192.178.114.128/25', '192.178.115.0/26', '192.178.115.64/26', '192.178.115.128/26', '192.178.115.192/26', '192.178.116.0/26', '192.178.116.64/26', '192.178.116.128/25', '192.178.117.0/25', '192.178.117.128/26', '192.178.117.192/26', '192.178.118.0/26', '192.178.118.64/26', '192.178.118.128/26', '192.178.118.192/26', '192.178.119.0/26', '192.178.119.64/26', '192.178.119.128/25'],
+                    v6: ['2404:6800:4000::/48', '2404:6800:4003::/48', '2404:6800:4005::/48', '2404:6800:4006::/48', '2404:6800:4008::/48', '2404:6800:400a:1000::/62', '2404:6800:400a:1004::/62', '2404:6800:400a:1008::/61', '2404:6800:400b:c000::/62', '2404:6800:400b:c004::/62', '2404:6800:400b:c008::/61', '2404:6800:400b:c010::/60', '2404:6800:4013::/53', '2404:6800:4013:800::/53', '2404:6800:4016::/48', '2404:f340:10:1400::/61', '2404:f340:10:1408::/62', '2404:f340:10:140c::/63', '2404:f340:10:140e::/63', '2404:f340:4010::/48', '2600:1900::/48', '2600:1900:4260::/54', '2600:1900:4260:400::/61', '2600:1900:4260:408::/61', '2607:f8b0:4001:c00::/59', '2607:f8b0:4001:c20::/61', '2607:f8b0:4001:c28::/62', '2607:f8b0:4001:c2e::/64', '2607:f8b0:4001:c2f::/64', '2607:f8b0:4001:c30::/62', '2607:f8b0:4001:c34::/62', '2607:f8b0:4001:c40::/60', '2607:f8b0:4001:c50::/61', '2607:f8b0:4001:c58::/63', '2607:f8b0:4001:c5a::/63', '2607:f8b0:4001:c5c::/62', '2607:f8b0:4001:c60::/63', '2607:f8b0:4001:c62::/63', '2607:f8b0:4001:c64::/62', '2607:f8b0:4001:c68::/63', '2607:f8b0:4001:c6a::/63', '2607:f8b0:4001:c6c::/63', '2607:f8b0:4001:c6e::/63', '2607:f8b0:4001:c70::/62', '2607:f8b0:4001:c74::/63', '2607:f8b0:4001:c76::/63', '2607:f8b0:4001:c78::/61', '2607:f8b0:4002::/48', '2607:f8b0:4003::/48', '2607:f8b0:4004::/52', '2607:f8b0:4004:1000::/52', '2607:f8b0:400c::/48', '2607:f8b0:400d::/48', '2607:f8b0:400e::/48', '2607:f8b0:4020::/48', '2607:f8b0:4023::/54', '2607:f8b0:4023:400::/54', '2607:f8b0:4023:800::/54', '2607:f8b0:4023:c00::/54', '2607:f8b0:4023:1000::/54', '2607:f8b0:4023:1400::/54', '2607:f8b0:4023:1800::/54', '2607:f8b0:4023:1c00::/54', '2607:f8b0:4023:2000::/54', '2607:f8b0:4023:2400::/62', '2607:f8b0:4023:2404::/63', '2607:f8b0:4023:2406::/63', '2607:f8b0:4023:2408::/61', '2607:f8b0:4023:2800::/54', '2607:f8b0:4023:2c00::/54', '2607:f8b0:4023:3000::/54', '2607:f8b0:4023:3400::/54', '2607:f8b0:4023:3800::/54', '2607:f8b0:4023:3c00::/54', '2607:f8b0:4023:4000::/50', '2607:f8b0:4024::/48', '2800:3f0:4001::/48', '2800:3f0:4003::/48', '2a00:1450:4001::/48', '2a00:1450:4008:c00::/62', '2a00:1450:4008:c04::/62', '2a00:1450:4009::/48', '2a00:1450:400a:1000::/62', '2a00:1450:400a:1004::/62', '2a00:1450:400a:1008::/61', '2a00:1450:400b::/48', '2a00:1450:400c::/48', '2a00:1450:4010::/48', '2a00:1450:4013::/48', '2a00:1450:4025::/53', '2a00:1450:4025:800::/54', '2a00:1450:4025:c00::/54', '2a00:1450:4025:1000::/54', '2a00:1450:4025:1400::/54', '2a00:1450:4025:1800::/54', '2a00:1450:4025:1c00::/54', '2a00:1450:4025:2007::/121', '2a00:1450:4025:2007::80/121', '2a00:1450:4025:2008::/61', '2a00:1450:4025:2400::/54', '2a00:1450:4025:3000::/52', '2a00:1450:4025:4000::/62', '2a00:1450:4025:4004::/62', '2a00:1450:4030::/48', '2c0f:fb50:4001::/48'],
+                },
+                'NextDNS': {
+                    v4: ['45.90.28.0/23', '45.90.30.0/23'],
+                    v6: ['2a07:a8c0::/29', '2a07:a8c1::/29'],
+                },
+                'Cisco OpenDNS': {
+                    v4: ['208.67.222.0/24','208.67.220.0/24','146.112.0.0/16','151.186.0.0/16','155.190.0.0/16','23.89.0.0/16','194.165.192.0/19','80.254.144.0/20','46.255.40.0/21','185.60.84.0/22'],
+                    v6: ['2620:119:35::/48','2620:119:53::/48'],
+                },
+            };
+
+            const ipv4ToInt = ip => ip.split('.').reduce((n, o) => (n << 8) + parseInt(o, 10), 0) >>> 0;
+            const inCIDR = (ip, cidr) => {
+                const [base, bits] = cidr.split('/');
+                const mask = bits === '0' ? 0 : (0xffffffff << (32 - +bits)) >>> 0;
+                return (ipv4ToInt(ip) & mask) === (ipv4ToInt(base) & mask);
+            };
+            const ipv6ToBinary = ipv6 => {
+                const parts = ipv6.split('::');
+                let left = parts[0].split(':').filter(x => x !== '');
+                let right = parts.length > 1 ? parts[1].split(':').filter(x => x !== '') : [];
+                const middle = Array(8 - left.length - right.length).fill('0000');
+                return left.concat(middle).concat(right).map(x => parseInt(x, 16).toString(2).padStart(16, '0')).join('');
+            };
+            const inCIDRv6 = (ip, cidr) => {
+                const [base, bits] = cidr.split('/');
+                const ipBin = ipv6ToBinary(ip);
+                const baseBin = ipv6ToBinary(base);
+                return ipBin.substring(0, +bits) === baseBin.substring(0, +bits);
+            };
+
+            const PROVIDER_NAME_MAP = [
+                { match: /nextdns|misaka|m1ns/i,                  name: 'NextDNS' },
+                { match: /\bquad9\b|i3d/i,                       name: 'Quad9 DNS' },
+                { match: /\bcloudflare\b/i,                      name: 'Cloudflare DNS' },
+                { match: /\bgoogle\b/i,                          name: 'Google DNS' },
+                { match: /\bopendns\b|cisco\b|strln\.net|umbrella\b/i, name: 'Cisco OpenDNS' },
+                { match: /\badguard\b/i,                         name: 'AdGuard DNS' },
+                { match: /\balidns\b|alibaba\b/i,                name: 'Ali DNS' },
+                { match: /\bcontrold\b|cloudns/i,                name: 'ControlD' },
+                { match: /\bmullvad\b|datapacket\.com|cdn77\.eu/i, name: 'Mullvad' },
+                { match: /\bcleanbrowsing\b|as20473|the constant company/i, name: 'CleanBrowsing' },
+                { match: /\blibredns\b/i,                        name: 'LibreDNS' },
+                { match: /\bonedns\b/i,                          name: 'OneDNS' },
+                { match: /\bopenbld\b/i,                         name: 'OpenBLD.net' },
+                { match: /\brethinkdns\b/i,                      name: 'RethinkDNS' },
+                { match: /\bdns\.sb|\bxtom\b/i,                  name: 'DNS.SB' },
+                { match: /\bdns\.pub|doh\.pub|dot\.pub|dnspod\.net/i, name: 'DNSPod Public DNS+' },
+                { match: /\bhagezi\b/i,                          name: 'HaGeZi DNS' },
+                { match: /\bbebasid\b/i,                         name: 'BebasDNS by BebasID' },
+                { match: /\bcaliph\b/i,                          name: 'Caliph DNS' },
+                { match: /\bcfiec\b/i,                           name: 'CFIEC Public DNS' },
+                { match: /\bdecloudus\b/i,                       name: 'DeCloudUs DNS' },
+                { match: /\bhe\.net|hurricane\b/i,               name: 'Hurricane Electric Public Recursor' },
+                { match: /\bnawala\b/i,                          name: 'Nawala Childprotection DNS' },
+                { match: /\bneustar\b|ultradns/i,                name: 'Neustar Recursive DNS' },
+                { match: /\bqis\.io\b/i,                         name: 'Quadrant Security' },
+                { match: /\brabbitdns\b/i,                       name: 'Rabbit DNS' },
+                { match: /\bdns\.yandex|yandex\.net/i,           name: 'Yandex DNS' },
+                { match: /\bsafesurfer\b/i,                      name: 'Safe Surfer' },
+                { match: /\bsurfshark\b/i,                       name: 'Surfshark DNS' },
+                { match: /\bv\.recipes\b/i,                       name: 'v.recipes DNS' },
+                { match: /\bwikimedia-dns\b/i,                   name: 'Wikimedia DNS' },
+                { match: /\bapplied-privacy\b/i,                 name: 'Applied Privacy DNS' },
+                { match: /\bbytedance\b|as4811|as23724|china telecommunications corporation/i, name: 'ByteDance Public DNS' },
+                { match: /\bcert\.ee\b/i,                         name: 'CERT-EE' },
+                { match: /\bcanadianshield\b|cira\.ca/i,          name: 'CIRA Canadian Shield DNS' },
+                { match: /\bcomss\.one\b/i,                       name: 'Comss.one DNS' },
+                { match: /\bnic\.cz\b|odvr\b/i,                  name: 'CZ.NIC ODVR' },
+                { match: /\bdigitale-gesellschaft\b/i,           name: 'Digitale Gesellschaft DNS' },
+                { match: /\bdnsforfamily\b/i,                    name: 'DNS for Family' },
+                { match: /\bjoindns4\.eu|dns4eu\b/i,              name: 'DNS4EU' },
+                { match: /\brestena\b/i,                         name: 'Fondation Restena DNS' },
+                { match: /\b114dns\b|zenecn\.net/i,               name: '114DNS' },
+                { match: /\biij\.jp\b/i,                         name: 'IIJ.JP DNS' },
+                { match: /\bjupitrdns\b/i,                       name: 'JupitrDNS' },
+                { match: /\bopennic\b/i,                         name: 'OpenNIC DNS' },
+                { match: /\bskydns\b/i,                          name: 'SkyDNS RU' },
+                { match: /\bswitch\.ch\b/i,                      name: 'SWITCH DNS' },
+                { match: /\bdnsprivacy\.org\.uk\b/i,             name: 'UK DNS Privacy Project' },
+                { match: /\bahadns\b/i,                          name: 'AhaDNS' },
+                { match: /\barapurayil\b/i,                      name: 'Arapurayil' },
+                { match: /\btechomespace\.com|blackmagicc\b/i,   name: 'BlackMagicc DNS' },
+                { match: /\bcaptnemo\b/i,                        name: 'Captnemo DNS' },
+                { match: /\bdnsguard\b/i,                        name: 'DNSGuard' },
+                { match: /\bdnsforge\b/i,                        name: 'DNS Forge' },
+                { match: /\bdnswarden\b/i,                       name: 'dnswarden' },
+                { match: /\bffmuc\b/i,                           name: 'FFMUC DNS' },
+                { match: /\blelux\.fi\b/i,                       name: 'Lelux DNS' },
+                { match: /\bmarbledfennec\b/i,                   name: 'Marbled Fennec' },
+                { match: /\bnwps\.fi\b/i,                        name: 'NWPS.fi DNS' },
+                { match: /\boszx\.co\b/i,                        name: 'OSZX DNS' },
+                { match: /\bpumplex\b/i,                         name: 'PumpleX' },
+                { match: /\btiar\.app|tiarap\.org/i,             name: 'Privacy-First DNS' },
+                { match: /\bseby\.io\b/i,                        name: 'Seby DNS' },
+                { match: /\bublock\.dns\b/i,                     name: 'uBlock DNS' },
+                { match: /\bcomodo\b|dnsbycomodo|vultrusercontent\.com|as20473|the constant company/i, name: 'Comodo Secure DNS' },
+                { match: /\bverisign\b/i,                        name: 'Verisign Public DNS' },
+                { match: /\bdnssb\b|dns\.sb|\bxtom\b/i,          name: 'DNS.SB' },
+                { match: /\b360\b.*\bdns\b|\bdns\b.*\b360\b/i,   name: '360 Secure DNS' },
+                // ── Vietnamese ISPs ──────────────────────────────────────────
+                { match: /\bvnpt\b|vnn\.vn|vnpt\.vn|Vietnam Posts and Telecommunications/i, name: 'VNPT' },
+                { match: /\bviettel\b/i,                         name: 'Viettel' },
+                { match: /\bfpt\b/i,                             name: 'FPT Telecom' },
+                { match: /\bcmc\b|cmctelecom/i,                  name: 'CMC Telecom' },
+                { match: /\bmobifone\b|vms\.com\.vn/i,           name: 'MobiFone' },
+                { match: /\bsctv\b|Saigontourist/i,              name: 'SCTV' },
+                { match: /\bnetnam\b/i,                          name: 'NetNam' },
+            ];
+            const getProvider = (ip, org) => {
+
+                const isV6 = ip.includes(':');
+                for (const [name, ranges] of Object.entries(RANGES)) {
+                    if (isV6) {
+                        if (ranges.v6.some(c => inCIDRv6(ip, c))) return name;
+                    } else {
+                        if (ranges.v4.some(c => inCIDR(ip, c))) return name;
+                    }
+                }
+                if (org === 'Unknown' || !org) return 'Unknown';
+                
+                // 1. Try Nice Names
+                for (const item of PROVIDER_NAME_MAP) {
+                    if (item.match.test(org)) return item.name;
+                }
+                
+                // 2. Fallback: Extract Domain (e.g. xsp-h15.int.controld.com -> Controld.com)
+                const firstPart = org.split(' ')[0].replace(/\.$/, '').toLowerCase();
+                const parts = firstPart.split('.');
+                if (parts.length >= 2) {
+                    const domain = parts.slice(-2).join('.');
+                    return domain.charAt(0).toUpperCase() + domain.slice(1);
+                }
+                
+                return org.charAt(0).toUpperCase() + org.slice(1); 
+            };
+            // Step 3: Analysis - ONLY use labeled entries (Ignore Delegation Walk)
+            const labeledEntries = [];
+            const discardedEntries = [];
+            for (const e of entries) {
+                if (e.label !== null) {
+                    labeledEntries.push(e);
+                } else {
+                    discardedEntries.push(e);
+                }
+            }
+            
+            if (discardedEntries.length > 0) {
+                console.log(`[DNS Check] --- FILTERED OUT ENTRIES ---`);
+                for (const e of discardedEntries) {
+                    console.log(`[DNS Check] Skipped: ${e.qname} | IP: ${e.ip} | Reason: Invalid label (Delegation Walk)`);
+                }
+            }
+            
+            const uniqueIps = [...new Set(labeledEntries.map(e => e.ip))];
+            const resolverMap = new Map();
+            const geoDataMap = new Map();
+
+            // Use the same batching logic as dnscheck (6 queries every 200ms)
+            const allIpPromises = [];
+            for (let i = 0; i < uniqueIps.length; i += 6) {
+                const batch = uniqueIps.slice(i, i + 6);
+                const batchPromises = batch.map(async (ip) => {
+                    const isV6 = ip.includes(':');
+                    let isKnown = false;
+                    for (const ranges of Object.values(RANGES)) {
+                        if (isV6 ? ranges.v6.some(c => inCIDRv6(ip, c)) : ranges.v4.some(c => inCIDR(ip, c))) {
+                            isKnown = true;
+                            break;
+                        }
+                    }
+                    if (isKnown) {
+                        geoDataMap.set(ip, { org: '' }); 
+                        return;
+                    }
+                    // Use Reverse DNS (PTR) for checkDnsStatus
+                    try {
+                        const ptrName = isV6 ? (() => {
+                            const parts = ip.split('::');
+                            const left = parts[0] ? parts[0].split(':') : [];
+                            const right = parts[1] ? parts[1].split(':') : [];
+                            const full = left.concat(Array(8 - left.length - right.length).fill('0')).concat(right);
+                            return full.map(p => p.padStart(4, '0')).join('').split('').reverse().join('.') + '.ip6.arpa';
+                        })() : ip.split('.').reverse().join('.') + '.in-addr.arpa';
+
+                        const endpoints = [
+                            `https://dns.google/resolve?name=${encodeURIComponent(ptrName)}&type=PTR`,
+                            `https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(ptrName)}&type=PTR`,
+                            `https://dns.sb/dns-query?name=${encodeURIComponent(ptrName)}&type=PTR`,
+                            `https://dns.nextdns.io/?name=${encodeURIComponent(ptrName)}&type=PTR`,
+                            `https://${window.location.host}/dns-query?name=${encodeURIComponent(ptrName)}&type=PTR`
+                        ];
+
+                        for (const url of endpoints) {
+                            try {
+                                const c = new AbortController(), t = setTimeout(() => c.abort(), 500);
+                                const r = await fetch(url, { headers: { 'Accept': 'application/dns-json' }, signal: c.signal }).then(res => res.json()).finally(() => clearTimeout(t));
+
+                                const answer = (r.Answer && r.Answer[0]) || (r.Authority && r.Authority[0]);
+                                if (answer && answer.data) {
+                                    console.log(`[DNS Check] PTR Result for ${ip}: ${answer.data}`);
+                                    geoDataMap.set(ip, { org: answer.data.replace(/\.$/, '') });
+                                    return;
+                                }
+                            } catch(e) {}
+                        }
+
+                        // Fallback to Geo-IP if all PTR lookups fail
+                        try {
+                            const c = new AbortController(), t = setTimeout(() => c.abort(), 500);
+                            const r1 = await fetch(`https://ipinfo.io/${ip}/json`, { signal: c.signal }).then(res => res.json()).finally(() => clearTimeout(t));
+                            if (r1.org) {
+                                console.log(`[DNS Check] Geo Fallback (ipinfo) for ${ip}: ${r1.org}`);
+                                geoDataMap.set(ip, { org: r1.org });
+                                return;
+                            }
+                        } catch(e) {}
+                        try {
+                            const c = new AbortController(), t = setTimeout(() => c.abort(), 500);
+                            const r2 = await fetch(`https://ipapi.co/${ip}/json/`, { signal: c.signal }).then(res => res.json()).finally(() => clearTimeout(t));
+                            if (r2.org || r2.asn) {
+                                const orgName = r2.org || r2.asn;
+                                console.log(`[DNS Check] Geo Fallback (ipapi) for ${ip}: ${orgName}`);
+                                geoDataMap.set(ip, { org: orgName });
+                                return;
+                            }
+                        } catch(e) {}
+                    } catch(e) {}
+                    
+                    geoDataMap.set(ip, { org: 'Unknown' });
+                });
+                allIpPromises.push(...batchPromises);
+                if (i + 6 < uniqueIps.length) await new Promise(r => setTimeout(r, 200));
+            }
+            await Promise.all(allIpPromises);
+
+            for (const ip of uniqueIps) {
+                const geo = geoDataMap.get(ip) || { org: 'Unknown' };
+                const provider = getProvider(ip, geo.org);
+                resolverMap.set(ip, {
+                    ip,
+                    prefixes: new Set(),
+                    org: geo.org,
+                    provider,
+                    isCF: provider === 'Cloudflare DNS',
+                    qnames: new Set()
+                });
+            }
+
+            for (const { qname, ip, subnetPrefix } of labeledEntries) {
+                const res = resolverMap.get(ip);
+                if (subnetPrefix !== null) {
+                    res.prefixes.add(subnetPrefix);
+                }
+                res.qnames.add(qname);
+            }
+
+            console.log(`[DNS Check] Total entries: ${entries.length}, Labeled entries: ${labeledEntries.length}`);
+            console.log(`[DNS Check] Unique IPs found: ${uniqueIps.length}`);
+
+            const leaks = new Set();
+            for (const res of resolverMap.values()) {
+                const prefixesArr = Array.from(res.prefixes);
+                const qnamesArr = Array.from(res.qnames);
+                let isSafe = true;
+                let reason = '';
+
+                if (res.isCF && res.prefixes.has(32)) {
+                    reason = 'Cloudflare Gateway (ECS /32)';
+                } else {
+                    isSafe = false;
+                    reason = res.isCF ? 'Cloudflare IP but not Gateway (no ECS /32)' : 'Not Cloudflare Gateway IP';
+                }
+
+                console.log(`[DNS Check] IP: ${res.ip} (${res.provider}) -> Safe: ${isSafe} | Reason: ${reason} | ECS: ${prefixesArr.length ? prefixesArr.join(', ') : 'None'} | Queries: ${qnamesArr.length}`);
+
+                if (!isSafe) {
+                    leaks.add(res.provider);
+                }
+            }
+
+            console.log('[DNS Check] Final leaks identified:', Array.from(leaks));
+
+            const leakList = Array.from(leaks).join(', ');
+            const host = window.location.host;
+
+            if (hasDoh) {
+                if (leaks.size === 0) {
+                    badge.className = 'status-badge';
+                    text.textContent = `Your DNS queries are secured by ${host}`;
+                } else {
+                    badge.className = 'status-badge not-using';
+                    text.textContent = `DNS Leak Detected — Using ${host} and ${leakList}`;
+                }
+            } else {
+                badge.className = 'status-badge not-using';
+                if (leaks.size > 0) {
+                    text.textContent = `Not using ${host} — Detected: ${leakList}`;
+                } else {
+                    text.textContent = `Your DNS is not routing through ${host}`;
+                }
+            }
+
+            const endTime = performance.now();
+            const finishTime = new Date().toLocaleTimeString();
+            const duration = (endTime - startTime).toFixed(0);
+            console.log(`[DNS Check] [${finishTime}] Check finished. Total time: ${duration}ms`);
+        }
+        setTimeout(checkDnsStatus, 800);
     </script>
 </body>
 </html>

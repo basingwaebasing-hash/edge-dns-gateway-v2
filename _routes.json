@@ -1,5 +1,5 @@
 {
   "version": 1,
-  "include": ["/dns-query", "/apple"],
+  "include": ["/dns-query", "/ecs/*", "/apple/*", "/check"],
   "exclude": []
 }

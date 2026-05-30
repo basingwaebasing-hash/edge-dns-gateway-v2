@@ -1,3 +1,13 @@
+/**
+ * DNS Query Processing Order:
+ * 1. QTYPE Block (ANY, AAAA, etc.) - Save upstream requests early (NODATA).
+ * 2. Mullvad Upstream - Direct bypass to Mullvad for specific domains.
+ * 3. Private TLDs - Block internal/router domains with NXDOMAIN.
+ * 4. Ad/Tracker Block - Allowlist checked first, then Blocklist (NXDOMAIN).
+ * 5. DNS Redirect - CNAME rewrite for local domain overrides.
+ * 6. Primary/Fallback Upstream - Final resolution with ECS injection.
+ */
+
 // CONFIG_START
 const UPSTREAM_PRIMARY = 'https://bu0eg1tdzu.cloudflare-gateway.com/dns-query';
 const UPSTREAM_FALLBACK = 'https://rhpcv957tj.cloudflare-gateway.com/dns-query';
@@ -8,8 +18,8 @@ const UPSTREAM_TIMEOUT = 5000;
 const ALL_LISTS_REFRESH_INTERVAL = 3600000; // 1 hour
 
 const AD_BLOCK_ENABLED = true;
-const BLOCKLIST_URL = '/rules/blocklists.txt';
-const ALLOWLIST_URL = '/rules/allowlists.txt';
+const BLOCKLIST_URL = 'https://admin.doh.bibica.net/rules/blocklists.txt';
+const ALLOWLIST_URL = 'https://admin.doh.bibica.net/rules/allowlists.txt';
 
 const ECS_INJECTION_ENABLED = true;
 const ECS_PREFIX_V4 = 24;
@@ -23,17 +33,167 @@ const BLOCK_HTTPS = false;  // TYPE 65  — HTTPS record queries
 
 // Block private/internal TLDs and router domains
 const BLOCK_PRIVATE_TLD = true;
-const PRIVATE_TLD_URL = '/rules/private_tlds.txt';
+const PRIVATE_TLD_URL = 'https://admin.doh.bibica.net/rules/private_tlds.txt';
 
 // DNS redirect/rewrite (local CNAME overrides)
 const DNS_REDIRECT_ENABLED = true;
-const REDIRECT_RULES_URL = '/rules/redirect_rules.txt';
+const REDIRECT_RULES_URL = 'https://admin.doh.bibica.net/rules/redirect_rules.txt';
 
 // Dedicated Mullvad Upstream Domains
 const MULLVAD_UPSTREAM_ENABLED = true;
-const MULLVAD_UPSTREAM_URL = '/rules/mullvad_upstream.txt';
+const MULLVAD_UPSTREAM_URL = 'https://admin.doh.bibica.net/rules/mullvad_upstream.txt';
 
 // CONFIG_END
+
+// ==================== ECS COUNTRY MAP ====================
+// Representative IP per country/ISP — just needs to belong to the correct ASN/range.
+// A /24 prefix is sufficient. Update IPs to accurate values as needed.
+const CC_TO_ECS_IP = {
+    // ── Vietnam — by ISP & region ──────────────────────────────────────────────
+    'vn-vnpt-hcm':      '113.173.60.0',     // VNPT Ho Chi Minh City
+    'vn-vnpt-hn':       '14.160.0.0',       // VNPT Hanoi
+    'vn-vnpt-dn':       '123.25.100.0',     // VNPT Da Nang
+    'vn-fpt-hcm':       '1.52.0.0',         // FPT Ho Chi Minh City
+    'vn-fpt-hn':        '42.116.101.0',     // FPT Hanoi
+    'vn-fpt-dn':        '1.52.225.0',       // FPT Da Nang
+    'vn-viettel-hcm':   '27.64.0.0',        // Viettel Ho Chi Minh City
+    'vn-viettel-hn':    '103.1.208.0',      // Viettel Hanoi
+    'vn-viettel-dn':    '210.211.127.0',    // Viettel Da Nang
+    'vn-mb-hcm':        '103.199.79.0',     // MobiFone Ho Chi Minh City
+    'vn-mb-hn':         '45.121.24.0',      // MobiFone Hanoi
+    'vn-sctv':          '27.2.0.0',         // SCTV
+    'vn-cmc':           '42.96.63.255',     // CMC Telecom
+    'vn-netnam':        '101.53.0.0',       // NetNam
+
+    // ── Southeast Asia ──────────────────────────────────────────────────────────
+    'sg':               '212.165.2.0',      // Singapore
+    'th':               '3.2.88.0',         // Thailand
+    'my':               '1.9.0.0',          // Malaysia
+    'id':               '1.178.19.0',       // Indonesia
+    'ph':               '1.37.0.0',         // Philippines
+    'mm':               '5.62.63.36',       // Myanmar
+    'kh':               '1.32.252.0',       // Cambodia
+    'la':               '5.62.16.0',        // Laos
+    'bn':               '5.62.60.49',       // Brunei
+    'tl':               '43.243.176.0',     // Timor-Leste
+
+    // ── East Asia ───────────────────────────────────────────────────────────────
+    'jp':               '1.32.226.0',       // Japan
+    'kr':               '1.11.0.0',         // South Korea
+    'tw':               '1.32.208.0',       // Taiwan
+    'hk':               '2.20.40.0',        // Hong Kong
+    'cn':               '1.0.1.0',          // China
+    'mo':               '5.62.60.241',      // Macau
+    'mn':               '5.62.63.20',       // Mongolia
+
+    // ── South Asia ──────────────────────────────────────────────────────────────
+    'in':               '1.6.0.0',          // India
+    'pk':               '5.62.35.8',        // Pakistan
+    'bd':               '5.62.60.25',       // Bangladesh
+    'lk':               '5.62.63.132',      // Sri Lanka
+    'np':               '5.62.63.44',       // Nepal
+    'mv':               '5.62.62.248',      // Maldives
+
+    // ── Middle East ─────────────────────────────────────────────────────────────
+    'ae':               '1.178.20.0',       // UAE
+    'sa':               '2.59.52.0',        // Saudi Arabia
+    'qa':               '2.23.168.0',       // Qatar
+    'kw':               '5.62.60.201',      // Kuwait
+    'bh':               '1.178.16.0',       // Bahrain
+    'om':               '2.56.253.0',       // Oman
+    'il':               '1.178.25.0',       // Israel
+    'tr':               '2.16.150.0',       // Turkey
+    'ir':               '2.57.3.0',         // Iran
+    'iq':               '2.56.36.0',        // Iraq
+    'jo':               '2.17.24.0',        // Jordan
+    'lb':               '5.8.128.0',        // Lebanon
+
+    // ── Europe ──────────────────────────────────────────────────────────────────
+    'gb':               '1.178.94.0',       // United Kingdom
+    'de':               '1.178.10.0',       // Germany
+    'fr':               '1.178.90.0',       // France
+    'nl':               '1.118.32.0',       // Netherlands
+    'se':               '1.178.93.0',       // Sweden
+    'no':               '13.104.170.0',     // Norway
+    'dk':               '2.16.63.0',        // Denmark
+    'fi':               '2.16.171.0',       // Finland
+    'ch':               '1.178.21.0',       // Switzerland
+    'at':               '2.16.16.0',        // Austria
+    'be':               '2.17.107.0',       // Belgium
+    'es':               '1.178.22.0',       // Spain
+    'pt':               '2.16.65.0',        // Portugal
+    'it':               '1.178.17.0',       // Italy
+    'pl':               '2.16.172.0',       // Poland
+    'cz':               '2.16.2.0',         // Czech Republic
+    'sk':               '2.57.64.0',        // Slovakia
+    'hu':               '2.59.196.0',       // Hungary
+    'ro':               '2.17.116.0',       // Romania
+    'bg':               '2.20.45.0',        // Bulgaria
+    'gr':               '2.16.19.0',        // Greece
+    'ua':               '2.21.89.0',        // Ukraine
+    'ru':               '2.16.20.0',        // Russia
+    'ie':               '1.178.7.0',        // Ireland
+    'is':               '2.56.174.0',       // Iceland
+    'lt':               '130.41.215.0',     // Lithuania
+    'lv':               '104.252.132.0',    // Latvia
+    'ee':               '138.124.4.0',      // Estonia
+    'hr':               '2.56.175.0',       // Croatia
+    'si':               '109.202.120.0',    // Slovenia
+    'rs':               '2.56.172.0',       // Serbia
+    'ba':               '5.43.64.0',        // Bosnia
+    'al':               '5.62.63.236',      // Albania
+    'mk':               '5.32.176.0',       // North Macedonia
+    'me':               '5.62.63.24',       // Montenegro
+    'by':               '5.44.44.0',        // Belarus
+    'md':               '5.10.208.0',       // Moldova
+    'cy':               '5.42.205.0',       // Cyprus
+    'mt':               '2.59.131.0',       // Malta
+    'lu':               '2.18.250.0',       // Luxembourg
+
+    // ── North America ───────────────────────────────────────────────────────────
+    'us':               '1.32.239.0',       // United States
+    'ca':               '1.178.26.0',       // Canada
+    'mx':               '1.178.29.0',       // Mexico
+
+    // ── South America & Caribbean ───────────────────────────────────────────────
+    'br':               '1.178.32.0',       // Brazil
+    'ar':               '1.178.48.0',       // Argentina
+    'cl':               '2.18.21.0',        // Chile
+    'co':               '2.19.32.0',        // Colombia
+    'pe':               '2.23.232.0',       // Peru
+    've':               '143.255.84.0',     // Venezuela
+    'ec':               '2.57.225.28',      // Ecuador
+    'bo':               '5.62.56.40',       // Bolivia
+    'py':               '5.62.56.176',      // Paraguay
+    'uy':               '5.62.56.244',      // Uruguay
+    'cu':               '5.62.56.72',       // Cuba
+
+    // ── Africa ──────────────────────────────────────────────────────────────────
+    'za':               '1.178.18.0',       // South Africa
+    'ng':               '3.175.217.0',      // Nigeria
+    'ke':               '2.17.161.0',       // Kenya
+    'eg':               '2.21.128.0',       // Egypt
+    'gh':               '2.16.77.0',        // Ghana
+    'et':               '5.62.60.129',      // Ethiopia
+    'tz':               '2.17.250.0',       // Tanzania
+    'ug':               '2.17.248.0',       // Uganda
+    'ma':               '5.62.63.28',       // Morocco
+    'dz':               '5.62.63.240',      // Algeria
+    'tn':               '5.62.63.164',      // Tunisia
+    'sd':               '5.62.63.136',      // Sudan
+    'ao':               '5.62.60.9',        // Angola
+    'zw':               '5.62.63.212',      // Zimbabwe
+    'mz':               '5.62.63.32',       // Mozambique
+    'cm':               '2.16.134.0',       // Cameroon
+    'ci':               '5.62.60.105',      // Cote d'Ivoire
+    'sn':               '5.62.63.108',      // Senegal
+
+    // ── Oceania ─────────────────────────────────────────────────────────────────
+    'au':               '1.0.0.0',          // Australia
+    'nz':               '1.178.27.0',       // New Zealand
+    'pg':               '5.62.56.172',      // Papua New Guinea
+    'fj':               '5.62.56.96',       // Fiji
+};
 
 // Pre-compiled regex patterns for performance
 const IPV4_MAPPED_REGEX = /^::ffff:(\d+\.\d+\.\d+\.\d+)$/i;
@@ -539,7 +699,7 @@ function buildNxdomain(query) {
     const v = new Uint8Array(query);
     if (v.length < 12) {
         const sf = new Uint8Array(12);
-        sf[2] = 0x84; sf[3] = 0x82;
+        sf[2] = 0x84; sf[3] = 0x83;
         return sf.buffer;
     }
     let qEnd = 12;
@@ -761,6 +921,96 @@ function ipv6ToBytes(ip) {
     } catch { return null; }
 }
 
+// Extract ECS (EDNS Client Subnet, option code 8, RFC 7871) from an incoming DNS query.
+// Used to honour client-supplied ECS when ECS_INJECTION_ENABLED is true,
+// e.g. when the user configures edns-addr in dnsproxy / AdGuard Home.
+// Returns { ip: string, prefix: number } or null if no valid ECS found.
+function extractECSFromQuery(buf) {
+    try {
+        const v = new Uint8Array(buf);
+        if (v.length < 12) return null;
+
+        // Skip question section
+        let off = 12;
+        const qd = (v[4] << 8) | v[5];
+        for (let i = 0; i < qd && off < v.length; i++) {
+            while (off < v.length) {
+                const l = v[off];
+                if (l === 0) { off++; break; }
+                if ((l & 0xC0) === 0xC0) { off += 2; break; }
+                off += l + 1;
+            }
+            off += 4; // QTYPE + QCLASS
+        }
+
+        // Skip AN + NS sections
+        const an = (v[6] << 8) | v[7];
+        const ns = (v[8] << 8) | v[9];
+        for (let i = 0; i < an + ns && off < v.length; i++) {
+            while (off < v.length) {
+                const l = v[off];
+                if (l === 0) { off++; break; }
+                if ((l & 0xC0) === 0xC0) { off += 2; break; }
+                off += l + 1;
+            }
+            if (off + 10 > v.length) return null;
+            const rdlen = (v[off + 8] << 8) | v[off + 9];
+            off += 10 + rdlen;
+        }
+
+        // Scan Additional section for OPT record (type 41)
+        const ar = (v[10] << 8) | v[11];
+        for (let i = 0; i < ar && off < v.length; i++) {
+            // Parse record name (OPT name is always 0x00)
+            while (off < v.length) {
+                const l = v[off];
+                if (l === 0) { off++; break; }
+                if ((l & 0xC0) === 0xC0) { off += 2; break; }
+                off += l + 1;
+            }
+            if (off + 10 > v.length) break;
+            const type  = (v[off] << 8) | v[off + 1];
+            const rdlen = (v[off + 8] << 8) | v[off + 9];
+            off += 10;
+            if (type === 41) {
+                // Walk OPT RDATA option list
+                let optOff = off;
+                const optEnd = off + rdlen;
+                while (optOff + 4 <= optEnd) {
+                    const optCode = (v[optOff] << 8) | v[optOff + 1];
+                    const optLen  = (v[optOff + 2] << 8) | v[optOff + 3];
+                    optOff += 4;
+                    if (optCode === 8 && optLen >= 4) {
+                        // ECS: FAMILY(2) + SOURCE_PREFIX(1) + SCOPE_PREFIX(1) + ADDRESS(variable)
+                        const family       = (v[optOff] << 8) | v[optOff + 1];
+                        const sourcePrefix = v[optOff + 2];
+                        // scope prefix (v[optOff+3]) is a server field — ignore in client queries
+                        const addrBytes = v.slice(optOff + 4, optOff + optLen);
+                        if (family === 1) {
+                            // IPv4 — pad to 4 bytes
+                            const parts = [0, 0, 0, 0];
+                            for (let j = 0; j < Math.min(addrBytes.length, 4); j++) parts[j] = addrBytes[j];
+                            return { ip: parts.join('.'), prefix: sourcePrefix };
+                        } else if (family === 2) {
+                            // IPv6 — pad to 16 bytes, format as groups
+                            const fullBytes = new Uint8Array(16);
+                            fullBytes.set(addrBytes.slice(0, Math.min(addrBytes.length, 16)));
+                            const groups = [];
+                            for (let j = 0; j < 8; j++) {
+                                groups.push(((fullBytes[j * 2] << 8) | fullBytes[j * 2 + 1]).toString(16));
+                            }
+                            return { ip: groups.join(':'), prefix: sourcePrefix };
+                        }
+                    }
+                    optOff += optLen;
+                }
+            }
+            off += rdlen;
+        }
+    } catch { }
+    return null;
+}
+
 // ==================== DNS REDIRECT ====================
 function encodeDomainName(domain) {
     if (!domain || domain === '.') return new Uint8Array([0]);
@@ -953,22 +1203,20 @@ async function resolveQuery(query, clientIP, prefixOverride = null) {
 }
 
 // ==================== HELPERS ====================
+// Ensure blocklists are loaded (await on first load, background refresh after)
 async function ensureBlocklistsLoaded(url, context) {
-    // Always kick off refresh in the background (waitUntil) without blocking DNS resolution.
-    // refreshBlocklists() has its own TTL guard, so it's a no-op when the list is fresh.
-    // Trade-off: on cold start or during a refresh window, a small number of requests may
-    // resolve without adblock — acceptable given the low probability of hitting a blocked
-    // domain in that narrow window.
-    if (context) {
-        context.waitUntil(refreshBlocklists(url));
-    } else {
-        await refreshBlocklists(url);
-    }
+  if (!blocklistsFetched) {
+    // First time: await to ensure lists are loaded
+    await refreshBlocklists(url);
+  } else if (context) {
+    // Already fetched: background refresh only
+    context.waitUntil(refreshBlocklists(url));
+  }
 }
 
 // ==================== HANDLERS ====================
-async function handleDNSQuery(request, context) {
-    const clientIP = request.headers.get('CF-Connecting-IP') || 'unknown';
+async function handleDNSQuery(request, context, forceEcsIP = null) {
+    const clientIP = forceEcsIP || request.headers.get('CF-Connecting-IP') || 'unknown';
     const cors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Accept' };
     const url = new URL(request.url);
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
@@ -1036,6 +1284,40 @@ async function handleDNSQuery(request, context) {
         query = Uint8Array.from(atob(padded), c => c.charCodeAt(0)).buffer;
     } else {
         return new Response('Method not allowed', { status: 405, headers: cors });
+    }
+
+    // If ECS injection is enabled and the client already embedded an ECS option
+    // (e.g. via dnsproxy edns-addr / AdGuard Home edns-addr config), honour it
+    // instead of using the server-side CF-Connecting-IP.
+    // Skip this when forceEcsIP is set (i.e. /ecs/<cc> path) — the country IP takes priority.
+    // NOTE: Firefox TRR (Trusted Recursive Resolver) sends ECS ::/56 or ::/0 as a
+    // privacy signal — an all-zeros IPv6 that means "don't geo-target me".
+    // We must detect and ignore these, falling back to CF-Connecting-IP.
+    if (ECS_INJECTION_ENABLED && !forceEcsIP) {
+        const clientECS = extractECSFromQuery(query);
+        if (clientECS) {
+            // Reject all-zeros IPs (privacy signals from Firefox TRR, etc.)
+            const isAllZeros = clientECS.ip.includes(':')
+                ? clientECS.ip.replace(/[:\s]/g, '').split('').every(c => c === '0')  // IPv6 :: or 0:0:0:...:0
+                : clientECS.ip === '0.0.0.0';                                          // IPv4
+            if (!isAllZeros) {
+                ecsIP     = clientECS.ip;
+                ecsPrefix = clientECS.prefix;
+            }
+        }
+    }
+
+    // [DOH VERIFICATION] Intercept token-encoded queries
+    const queryDomains = extractAllDomains(query);
+    for (const d of queryDomains) {
+        // Query đi qua DoH Worker → cache domain để /check WS có thể xác nhận
+        if (d && d.endsWith('.dnscheck.tools')) {
+            const cache = caches.default;
+            context.waitUntil(cache.put(
+                `https://doh-verify.internal/dnscheck/${d}`,
+                new Response('1', { headers: { 'Cache-Control': 'max-age=120' } })
+            ));
+        }
     }
 
     // Block unwanted query types early to save upstream requests
@@ -1108,15 +1390,153 @@ async function handleDNSQuery(request, context) {
     }
 }
 
+// ==================== DOH VERIFICATION PAGE (WEBSOCKET) ====================
+async function handleCheckWS(request, webSocket, context) {
+    webSocket.accept();
+
+    const CF_RANGES_V4 = ['173.245.48.0/20','103.21.244.0/22','103.22.200.0/22','103.31.4.0/22','141.101.64.0/18','108.162.192.0/18','190.93.240.0/20','188.114.96.0/20','197.234.240.0/22','198.41.128.0/17','162.158.0.0/15','104.16.0.0/13','104.24.0.0/14','172.64.0.0/13','131.0.72.0/22'];
+    const CF_RANGES_V6 = ['2400:cb00::/32','2606:4700::/32','2803:f800::/32','2405:b500::/32','2405:8100::/32','2a06:98c0::/29','2c0f:f248::/32'];
+
+    function ipInCidr(ip, cidr) {
+        try {
+            const [range, bits] = cidr.split('/');
+            const mask = ~((1 << (32 - parseInt(bits))) - 1);
+            const toInt = s => s.split('.').reduce((a,b) => (a<<8)|+b, 0);
+            return (toInt(ip) & mask) === (toInt(range) & mask);
+        } catch { return false; }
+    }
+
+    function isCloudflareIP(ip) {
+        if (ip.includes(':')) {
+            return CF_RANGES_V6.some(r => {
+                const [range, bits] = r.split('/');
+                const prefixLen = parseInt(bits, 10);
+                const rangeBytes = ipv6ToBytes(range);
+                const ipBytes = ipv6ToBytes(ip);
+                if (!rangeBytes || !ipBytes) return false;
+                const byteLen = Math.floor(prefixLen / 8);
+                const bitLen = prefixLen % 8;
+                for (let i = 0; i < byteLen; i++) if (rangeBytes[i] !== ipBytes[i]) return false;
+                if (bitLen > 0) {
+                    const mask = (0xFF << (8 - bitLen)) & 0xFF;
+                    if ((rangeBytes[byteLen] & mask) !== (ipBytes[byteLen] & mask)) return false;
+                }
+                return true;
+            });
+        }
+        return CF_RANGES_V4.some(r => ipInCidr(ip, r));
+    }
+
+    webSocket.addEventListener('message', async ({ data }) => {
+        try {
+            const msg = JSON.parse(data);
+            if (msg.type !== 'entries') return;
+
+            const cache = caches.default;
+            const entries = msg.entries; // [{qname, ip}]
+
+            // Deduplicate qnames to reduce the number of subrequests
+            const uniqueQnames = [...new Set(entries.map(e => e.qname.toLowerCase().replace(/\.$/, '')))];
+            const cacheResults = new Map();
+            
+            // Chunk into batches of up to 20 to avoid Cloudflare's 50 concurrent subrequests limit
+            for (let i = 0; i < uniqueQnames.length; i += 20) {
+                const chunk = uniqueQnames.slice(i, i + 20);
+                await Promise.all(chunk.map(async qname => {
+                    const inCache = !!(await cache.match(`https://doh-verify.internal/dnscheck/${qname}`));
+                    cacheResults.set(qname, inCache);
+                }));
+            }
+
+            // Map the cache results back to the original entries
+            const checkedEntries = entries.map(e => {
+                const qname = e.qname.toLowerCase().replace(/\.$/, '');
+                return { ...e, qname, inCache: cacheResults.get(qname) };
+            });
+
+            const hasDoh = checkedEntries.some(e => e.inCache);
+
+            // Entries not passing through DoH — this is the user's alternate DNS
+            const nonDohEntries = checkedEntries.filter(e => !e.inCache);
+            const leakProviders = new Set();
+            for (const e of nonDohEntries) {
+                if (isCloudflareIP(e.ip)) leakProviders.add('Cloudflare');
+                // Other providers are self-classified by the client using existing RANGES
+            }
+
+            webSocket.send(JSON.stringify({
+                type: 'result',
+                hasDoh,
+                // Return cached qnames so the client can filter IPs for provider detection
+                dohQnames: checkedEntries.filter(e => e.inCache).map(e => e.qname),
+                cfLeak: leakProviders.has('Cloudflare'),
+            }));
+            safeCloseWebSocket(webSocket);
+        } catch { safeCloseWebSocket(webSocket); }
+    });
+}
+
+const WS_READY_STATE_OPEN = 1;
+const WS_READY_STATE_CLOSING = 2;
+
+function safeCloseWebSocket(ws) {
+    try {
+        if (ws.readyState === WS_READY_STATE_OPEN || ws.readyState === WS_READY_STATE_CLOSING) {
+            ws.close(1000);
+        }
+    } catch { }
+}
+
 // ==================== ROUTING ====================
 async function handleRequest(request, context) {
-    const path = new URL(request.url).pathname;
+    const url = new URL(request.url);
+    const path = url.pathname.replace(/\/$/, ''); // Remove trailing slash
+    const upgradeHeader = request.headers.get('Upgrade')?.toLowerCase();
+
+    // Route to Verification Check
+    if (path === '/check' && upgradeHeader === 'websocket') {
+        const [client, server] = Object.values(new WebSocketPair());
+        handleCheckWS(request, server, context).catch(() => safeCloseWebSocket(server));
+        return new Response(null, { status: 101, webSocket: client });
+    }
 
     if (path === '/dns-query') return handleDNSQuery(request, context);
 
-    if (path === '/apple') {
+    if (path.startsWith('/ecs/')) {
+        const cc = path.slice(5).toLowerCase(); // e.g. 'vn', 'vn-fpt-hcm', 'sg'
+        const ecsIP = CC_TO_ECS_IP[cc];
+        if (!ecsIP) {
+            const validKeys = Object.keys(CC_TO_ECS_IP).sort().join('\n');
+            return new Response(`Unknown country/ISP code: "${cc}"\n\nValid codes:\n${validKeys}`, {
+                status: 404,
+                headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+            });
+        }
+        // Forward DNS query using the representative ECS IP for the selected country/ISP
+        return handleDNSQuery(request, context, ecsIP);
+    }
+
+    if (path.startsWith('/apple')) {
         const host = new URL(request.url).hostname;
-        const dohUrl = `https://${host}/dns-query`;
+        
+        let dohUrl = `https://${host}/dns-query`;
+        let displayName = `${host} DoH`;
+        let identifierSuffix = '';
+        let filename = `${host}.mobileconfig`;
+
+        // Check if it's a variant (e.g. /apple/vn-vnpt-hcm)
+        if (path.length > 7 && path.charAt(6) === '/') {
+            const vid = path.slice(7).toLowerCase();
+            if (CC_TO_ECS_IP[vid]) {
+                dohUrl = `https://${host}/ecs/${vid}`;
+                displayName = `${host} DoH - ${vid.toUpperCase()}`;
+                identifierSuffix = `.${vid}`;
+                filename = `${host}-${vid}.mobileconfig`;
+            } else {
+                return new Response("Unknown variant code", { status: 404 });
+            }
+        }
+
         const uuid1 = crypto.randomUUID();
         const uuid2 = crypto.randomUUID();
         const uuid3 = crypto.randomUUID();
@@ -1137,9 +1557,9 @@ async function handleRequest(request, context) {
             <key>PayloadDescription</key>
             <string>Private DNS Resolution by ${host}</string>
             <key>PayloadDisplayName</key>
-            <string>${host} DoH</string>
+            <string>${displayName}</string>
             <key>PayloadIdentifier</key>
-            <string>com.cloudflare.${uuid1}.dnsSettings.managed</string>
+            <string>com.cloudflare.${uuid1}.dnsSettings.managed${identifierSuffix}</string>
             <key>PayloadType</key>
             <string>com.apple.dnsSettings.managed</string>
             <key>PayloadUUID</key>
@@ -1156,9 +1576,9 @@ async function handleRequest(request, context) {
     - Global Anycast Network
     - Smart Ad Blocking</string>
     <key>PayloadDisplayName</key>
-    <string>${host} DoH</string>
+    <string>${displayName}</string>
     <key>PayloadIdentifier</key>
-    <string>com.cloudflare.${uuid2}</string>
+    <string>com.cloudflare.${uuid2}${identifierSuffix}</string>
     <key>PayloadRemovalDisallowed</key>
     <false/>
     <key>PayloadType</key>
@@ -1172,7 +1592,7 @@ async function handleRequest(request, context) {
         return new Response(profile, {
             headers: {
                 'Content-Type': 'application/x-apple-aspen-config',
-                'Content-Disposition': `attachment; filename="${host}.mobileconfig"`
+                'Content-Disposition': `attachment; filename="${filename}"`
             }
         });
     }
