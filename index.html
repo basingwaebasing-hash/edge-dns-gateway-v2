@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>doh.bibica.net — Private DNS-over-HTTPS</title>
-    <meta name="description" content="Fast, private, and secure DNS-over-HTTPS with zero logs, ECS optimization, global anycast, and built-in ad blocking.">
+    <meta name="description"
+        content="Fast, private, and secure DNS-over-HTTPS with zero logs, ECS optimization, global anycast, and built-in ad blocking.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://doh.bibica.net/">
     <meta property="og:title" content="doh.bibica.net — Private DNS-over-HTTPS">
-    <meta property="og:description" content="Fast, private, and secure DNS-over-HTTPS with zero logs, ECS optimization, global anycast, and built-in ad blocking.">
+    <meta property="og:description"
+        content="Fast, private, and secure DNS-over-HTTPS with zero logs, ECS optimization, global anycast, and built-in ad blocking.">
     <meta property="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAIr0lEQVR4AZxWCVhTxxY+c28WRBKSQBSbsFQQlU0BaV1oi0tbsUq1D9BqtVZxwaKogIBrXBEBdxG3+lprq+KT566PZ6utWmvqho0rT8SE1QAJIZKQ5N53JzUpikZ0vpw75575zzn/zJw7EwLesI0fn9oxNTMnP3lu1ob09NWubxgG3ohA/ISMIYSTc+3uPacS9xaemfWoWvtoTnrOiDch8ToE0GfxKe8nzcm6JZcrio+fvOhM07TFYqEsxT/J+UVHfjkycaqsJCU9N1omk7U7rkNgXFwc+dGIpLenzVy+elLi0ieXr90+t6/wTE9No96sVpXur6+4x2uodOOqlbe+bWzUU8dOng/ef+jMifIq0M+Zl7tmytcy/6goGQscNDsBnCwqOkE6Im7mB1OTli/IXLJJwXHxb3lQpnpwsOhc+pGjvzrpdE8MatX9fQ0VZX0AHo4BUDUDFFoAKifWV5R1VStv7m3SG0xHT5x3+u6HU2k/nbt2t4u30TgnPe9KSvraxYmzV0aPHp3mG9WKlJ2A5O2I67fuPFJe+v322X8dPrtix67DAaeKfyfq6hvNdRXVN9WqW8u01Q+7AJR/DlB2A9q0snKAmi80lXcFaqViUV1l1T2NpolitofYs/dk2D/3Hl968NDPJ85evlEa+q7LPQAa4RB2AoAIrtlEAU0D6PUGrVr1v9N1qrtJDZX1YqD/DGFmuQTgoQY7OZbKJwBVK4BSdK9TaTqrlQ/mqlXlvxlbTM04ttlMgYWiuTLZ0mcJMMVkwoGb9M1aQ/0FATPLoQDKLQDX25EUe75IrqgBHqwDuN+/qfYX52aDUY9RphaLUaEIeJaA2UKZsMXQ2FSDQe0RZkbYpT1QK8ZgMDZhB5OpxRgYeAur9nMAUZSFKSYGZzaZmecrf41F8wzaHXHtwtqCUczaY51ZbbufrQaYT5qZDx4FZGVmVR086AcXuai6xObvAPnCIXsOewCCIFhM/QGwSIffLQ6nyQoWglYFyGwA9QKpBNvaI4hpGIdIgsQ9FgI/sDg7dxDiHnE4HXHvUNz8spF1wRCw+R6pDrGtBplJkviVJKwEKKzbCZCAjNjA7MVftYBfngqTC2m/+5LSrHuf+cQACIHnJFooBUrkBUjSO+EpDDTbRxk0O2MpjLfZWvfk09XlsNn2VbYTMD2uTY4IkKx/ywXGtnbCev2Wj+Og9BwiGso7aLJDY+lHchJ5RdCkRzBNPb7/94pV3uSiR38g7faYNOz3vDB5OdjmxGXj3bbmJpQ7JySUbY6dPc73XnDmBybdzgRp3//MHTzt6vzIScr5wdG1q96ZzOK67AMXMYDYHxDJLYTGKrBUKtJogjiFNCqEgzYs7T4QUUxxOwuAsJizG/KHfaWShQ0qSX33qwNxAZyo3lECNovFEEDgzX4s7OduWnJjU9I/CL6lcYdb7eV1/k/k2WHGi4sGsK/n9HUpLfBjKXcJSN0JJ0PNTqS8gigEi2lntwKkrcT5QFBv2mBSXpoGTFJdpp+Y9Ao/SAu9gELEJKhSAFmt+IZP1Z3xca75Jnri5yU9pE69CQKR2Lln9SFBv5o9C32cqg4StCRoFwobd5roM/4C0S/hKuo75QoKjTuNgmIOQ/cPfwSfAdspZ/FoYZp8OZ9nSQK3rgC8zhSSnTW7pciVwEzKzHdZQFUqRKRnuEaYfnW3mSt4z9yxSwbl6plhdu+ebaiWR1SrdZ0Q01gsAqo9Bh9rEITIaK4wjxAMX5HAG5k1lBezIvL4fc5vm381VRTKm+fz4jeN5H2xYyx/0g/TBBnyA5g5ii+0mAk03EKyR+J3qwi9aUSwkonmBqDqy/OwTbTwxnlR+qVsQcr5bNGs0xniyUd0/750JwyYnffv5gUKnWitd8qxpYIJO1OthYCdmDF0s8F5Yt6eCzFT1l/cj20vEtGsn4+L5p4/ahsjOvc0kLoaoDrwoVlbypz7tpHne2EMPuP6hPbUUBzeFduonQBTSbQr32UlIhAIRCJf4AT3sIEc9ZRJv41ZAiA8Q80eaSXWy6Yt3k8qknh3R0y2Oo1245o16TobhjHZVICy+w93D+gbTDNbhaBFn/X3yMu1looLixnyQLcYD74cpV3LFCDR750g+oneuKc17hkC+fmy6uDArvk4oEjiEwPQ1b81+EW6OP2ujpaEZ/EnH2hzfmC8n180NzQiUhTaqxstfct9e+H3q0ux3SbPEMDGumbdok+i+1tIgiCAzbPvNTho/OmH5iOES6wtqLT0pPGavGiIoIOanb9hwfTnEW0IbF2d2eDh0Smuk1gIYg/m5AHp5uedXuddncy7rV0otewIUTQrM8L8nvdtQwADVi9LKooeOmArh8MCsWePrwGEmdj+OqKcCBkamb+RyxP2IBBBkC16Nl8ivlcrC3BpHeeFBDAgd9XsGWNHDy0mSQLcPcNXAQg3MnZcHkzn+Kf8EsYJpF5ZpNnAsSJpAOxI1N5BTtCiUy8PGwRP20sJ4PGcVckfjx8XXczlsjGJmQDdSgB8HH6ef07p2NvV0+t77I8FIZwamD+7tJUEspjAqf+EYtuN6ZAAAKJzVs75KG7UoNwuHm7MdngHuUl8FQCdtgFI3OBp83DxE7Odev4R6R8yo9TszaWd+PhOAAsQjCBGJ61iYQ4CSiAFViffmwwvGru/ggCGAKzPSUsb0L/XiGFD+5tJkiTcPUOmCjz8mFtJ/COAa6GBL61wFUvCK0jvzd8qupRWcAM+RCGjUlHvT5OJoOGJRGD0dCJw2Awy5LO5LP9BidzbzeF/RQaGok17RV+wYf4xsYQniR31QUFIkB+w2WyO2LPXGHfPiFjmfwY7ONAXPv3kvSNFl8/UB6Qd+C8/bl2ea+yGjbzRmwt4Y/K38cZs2eoSm7eu44jlBSg+3mJL164VsIFzZWm1zLec6NfNxzsysteywQP7mIcMjKAGRUVs6Sx2jVifOw9fUtaltfm8qv8/AAAA//+XM2QVAAAABklEQVQDAJGYUfq+VnPwAAAAAElFTkSuQmCC">    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="icon" type="image/x-icon"
+        href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAIr0lEQVR4AZxWCVhTxxY+c28WRBKSQBSbsFQQlU0BaV1oi0tbsUq1D9BqtVZxwaKogIBrXBEBdxG3+lprq+KT566PZ6utWmvqho0rT8SE1QAJIZKQ5N53JzUpikZ0vpw75575zzn/zJw7EwLesI0fn9oxNTMnP3lu1ob09NWubxgG3ohA/ISMIYSTc+3uPacS9xaemfWoWvtoTnrOiDch8ToE0GfxKe8nzcm6JZcrio+fvOhM07TFYqEsxT/J+UVHfjkycaqsJCU9N1omk7U7rkNgXFwc+dGIpLenzVy+elLi0ieXr90+t6/wTE9No96sVpXur6+4x2uodOOqlbe+bWzUU8dOng/ef+jMifIq0M+Zl7tmytcy/6goGQscNDsBnCwqOkE6Im7mB1OTli/IXLJJwXHxb3lQpnpwsOhc+pGjvzrpdE8MatX9fQ0VZX0AHo4BUDUDFFoAKifWV5R1VStv7m3SG0xHT5x3+u6HU2k/nbt2t4u30TgnPe9KSvraxYmzV0aPHp3mG9WKlJ2A5O2I67fuPFJe+v322X8dPrtix67DAaeKfyfq6hvNdRXVN9WqW8u01Q+7AJR/DlB2A9q0snKAmi80lXcFaqViUV1l1T2NpolitofYs/dk2D/3Hl968NDPJ85evlEa+q7LPQAa4RB2AoAIrtlEAU0D6PUGrVr1v9N1qrtJDZX1YqD/DGFmuQTgoQY7OZbKJwBVK4BSdK9TaTqrlQ/mqlXlvxlbTM04ttlMgYWiuTLZ0mcJMMVkwoGb9M1aQ/0FATPLoQDKLQDX25EUe75IrqgBHqwDuN+/qfYX52aDUY9RphaLUaEIeJaA2UKZsMXQ2FSDQe0RZkbYpT1QK8ZgMDZhB5OpxRgYeAur9nMAUZSFKSYGZzaZmecrf41F8wzaHXHtwtqCUczaY51ZbbufrQaYT5qZDx4FZGVmVR086AcXuai6xObvAPnCIXsOewCCIFhM/QGwSIffLQ6nyQoWglYFyGwA9QKpBNvaI4hpGIdIgsQ9FgI/sDg7dxDiHnE4HXHvUNz8spF1wRCw+R6pDrGtBplJkviVJKwEKKzbCZCAjNjA7MVftYBfngqTC2m/+5LSrHuf+cQACIHnJFooBUrkBUjSO+EpDDTbRxk0O2MpjLfZWvfk09XlsNn2VbYTMD2uTY4IkKx/ywXGtnbCev2Wj+Og9BwiGso7aLJDY+lHchJ5RdCkRzBNPb7/94pV3uSiR38g7faYNOz3vDB5OdjmxGXj3bbmJpQ7JySUbY6dPc73XnDmBybdzgRp3//MHTzt6vzIScr5wdG1q96ZzOK67AMXMYDYHxDJLYTGKrBUKtJogjiFNCqEgzYs7T4QUUxxOwuAsJizG/KHfaWShQ0qSX33qwNxAZyo3lECNovFEEDgzX4s7OduWnJjU9I/CL6lcYdb7eV1/k/k2WHGi4sGsK/n9HUpLfBjKXcJSN0JJ0PNTqS8gigEi2lntwKkrcT5QFBv2mBSXpoGTFJdpp+Y9Ao/SAu9gELEJKhSAFmt+IZP1Z3xca75Jnri5yU9pE69CQKR2Lln9SFBv5o9C32cqg4StCRoFwobd5roM/4C0S/hKuo75QoKjTuNgmIOQ/cPfwSfAdspZ/FoYZp8OZ9nSQK3rgC8zhSSnTW7pciVwEzKzHdZQFUqRKRnuEaYfnW3mSt4z9yxSwbl6plhdu+ebaiWR1SrdZ0Q01gsAqo9Bh9rEITIaK4wjxAMX5HAG5k1lBezIvL4fc5vm381VRTKm+fz4jeN5H2xYyx/0g/TBBnyA5g5ii+0mAk03EKyR+J3qwi9aUSwkonmBqDqy/OwTbTwxnlR+qVsQcr5bNGs0xniyUd0/750JwyYnffv5gUKnWitd8qxpYIJO1OthYCdmDF0s8F5Yt6eCzFT1l/cj20vEtGsn4+L5p4/ahsjOvc0kLoaoDrwoVlbypz7tpHne2EMPuP6hPbUUBzeFduonQBTSbQr32UlIhAIRCJf4AT3sIEc9ZRJv41ZAiA8Q80eaSXWy6Yt3k8qknh3R0y2Oo1245o16TobhjHZVICy+w93D+gbTDNbhaBFn/X3yMu1looLixnyQLcYD74cpV3LFCDR750g+oneuKc17hkC+fmy6uDArvk4oEjiEwPQ1b81+EW6OP2ujpaEZ/EnH2hzfmC8n180NzQiUhTaqxstfct9e+H3q0ux3SbPEMDGumbdok+i+1tIgiCAzbPvNTho/OmH5iOES6wtqLT0pPGavGiIoIOanb9hwfTnEW0IbF2d2eDh0Smuk1gIYg/m5AHp5uedXuddncy7rV0otewIUTQrM8L8nvdtQwADVi9LKooeOmArh8MCsWePrwGEmdj+OqKcCBkamb+RyxP2IBBBkC16Nl8ivlcrC3BpHeeFBDAgd9XsGWNHDy0mSQLcPcNXAQg3MnZcHkzn+Kf8EsYJpF5ZpNnAsSJpAOxI1N5BTtCiUy8PGwRP20sJ4PGcVckfjx8XXczlsjGJmQDdSgB8HH6ef07p2NvV0+t77I8FIZwamD+7tJUEspjAqf+EYtuN6ZAAAKJzVs75KG7UoNwuHm7MdngHuUl8FQCdtgFI3OBp83DxE7Odev4R6R8yo9TszaWd+PhOAAsQjCBGJ61iYQ4CSiAFViffmwwvGru/ggCGAKzPSUsb0L/XiGFD+5tJkiTcPUOmCjz8mFtJ/COAa6GBL61wFUvCK0jvzd8qupRWcAM+RCGjUlHvT5OJoOGJRGD0dCJw2Awy5LO5LP9BidzbzeF/RQaGok17RV+wYf4xsYQniR31QUFIkB+w2WyO2LPXGHfPiFjmfwY7ONAXPv3kvSNFl8/UB6Qd+C8/bl2ea+yGjbzRmwt4Y/K38cZs2eoSm7eu44jlBSg+3mJL164VsIFzZWm1zLec6NfNxzsysteywQP7mIcMjKAGRUVs6Sx2jVifOw9fUtaltfm8qv8/AAAA//+XM2QVAAAABklEQVQDAJGYUfq+VnPwAAAAAElFTkSuQmCC">
     <style>
         :root {
             --bg: #ffffff;
@@ -39,7 +45,14 @@
             --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
             --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
         }
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
             font-family: var(--font-body);
@@ -51,91 +64,183 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        .container { max-width: 860px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
 
         /* ─── LOAD ANIMATIONS ─── */
         /* ─── REMOVED ANIMATIONS ─── */
-        .fade-up { opacity: 1; transform: none; }
-        .delay-1, .delay-2, .delay-3, .delay-4, .delay-5 { animation: none; }
+        .fade-up {
+            opacity: 1;
+            transform: none;
+        }
+
+        .delay-1,
+        .delay-2,
+        .delay-3,
+        .delay-4,
+        .delay-5 {
+            animation: none;
+        }
 
         /* ─── NAV ─── */
         nav {
-            position: sticky; top: 0; z-index: 100;
+            position: sticky;
+            top: 0;
+            z-index: 100;
             padding: 14px 0;
             border-bottom: 1px solid var(--border);
             background: #ffffff;
             backdrop-filter: blur(16px) saturate(1.5);
             -webkit-backdrop-filter: blur(16px) saturate(1.5);
         }
-        nav .container { display: flex; align-items: center; justify-content: space-between; }
+
+        nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
         .logo {
             font-family: var(--font-display);
-            font-size: 17px; font-weight: 700;
-            color: var(--text); text-decoration: none;
-            display: flex; align-items: center; gap: 10px;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
             letter-spacing: -0.2px;
         }
+
         .logo-icon {
-            width: 32px; height: 32px;
+            width: 32px;
+            height: 32px;
             background: var(--bg-2);
             border: 1px solid var(--border);
             border-radius: 6px;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: var(--accent);
         }
-        .nav-right { display: flex; align-items: center; gap: 10px; }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
         .nav-btn {
-            display: flex; align-items: center; justify-content: center;
-            width: 34px; height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
             border: 1px solid var(--border);
             border-radius: var(--radius-sm);
-            color: var(--text-2); text-decoration: none;
+            color: var(--text-2);
+            text-decoration: none;
             transition: all .2s;
         }
-        .nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
-        .nav-btn svg { color: var(--text-3); transition: color .2s; }
-        .nav-btn:hover svg { color: var(--accent); }
+
+        .nav-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
+
+        .nav-btn svg {
+            color: var(--text-3);
+            transition: color .2s;
+        }
+
+        .nav-btn:hover svg {
+            color: var(--accent);
+        }
 
         .gh-link {
-            display: flex; align-items: center; justify-content: center;
-            width: 34px; height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px;
+            height: 34px;
             border: 1px solid var(--border);
             border-radius: var(--radius-sm);
-            color: var(--text-2); text-decoration: none;
+            color: var(--text-2);
+            text-decoration: none;
             transition: border-color .2s, color .2s, background .2s;
         }
-        .gh-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-glow); }
+
+        .gh-link:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-glow);
+        }
 
         /* ─── HERO ─── */
         .hero {
             padding: 72px 0 48px;
             text-align: center;
         }
+
         .hero-badge {
-            display: inline-flex; align-items: center; gap: 7px;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
             background: var(--success-bg);
-            border: 1px solid rgba(52,211,153,0.25);
+            border: 1px solid rgba(52, 211, 153, 0.25);
             color: var(--success);
-            font-size: 12px; font-weight: 600;
-            padding: 5px 14px; border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 5px 14px;
+            border-radius: 100px;
             margin-bottom: 24px;
             letter-spacing: 0.3px;
         }
-        .hero-badge .dot { width: 6px; height: 6px; background: var(--success); border-radius: 50%; animation: blink 2s infinite; }
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+
+        .hero-badge .dot {
+            width: 6px;
+            height: 6px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                opacity: 1
+            }
+
+            50% {
+                opacity: .3
+            }
+        }
 
         .hero h1 {
             font-family: var(--font-display);
-            font-size: 52px; font-weight: 800;
-            line-height: 1.1; letter-spacing: -1.2px;
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.2px;
             margin-bottom: 18px;
         }
+
         .hero h1 .gradient {
             color: var(--accent);
         }
+
         .hero p {
-            font-size: 18px; color: var(--text-2);
-            max-width: 520px; margin: 0 auto;
+            font-size: 18px;
+            color: var(--text-2);
+            max-width: 520px;
+            margin: 0 auto;
             line-height: 1.7;
         }
 
@@ -153,53 +258,111 @@
             box-shadow: var(--shadow);
             transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .routing-item { display: flex; flex-direction: column; gap: 2px; }
+
+        .routing-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
         .routing-label {
-            font-size: 10px; font-weight: 700;
-            color: var(--text-3); text-transform: uppercase;
-            letter-spacing: 0.8px; margin-bottom: 2px;
+            font-size: 10px;
+            font-weight: 700;
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 2px;
         }
+
         .routing-value {
-            font-size: 14px; font-weight: 600;
-            color: var(--text); display: flex; align-items: center; gap: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 6px;
         }
-        .routing-item.right { text-align: right; align-items: flex-end; }
-        .routing-value.right { justify-content: flex-end; }
+
+        .routing-item.right {
+            text-align: right;
+            align-items: flex-end;
+        }
+
+        .routing-value.right {
+            justify-content: flex-end;
+        }
 
         .routing-center {
-            display: flex; flex-direction: column; align-items: center;
-            gap: 4px; min-width: 100px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            min-width: 100px;
         }
+
         .ping-badge {
             font-family: var(--font-mono);
-            font-size: 12px; font-weight: 700;
-            padding: 2px 10px; border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 100px;
             background: transparent;
             border: 1px solid var(--border);
             transition: all .2s cubic-bezier(0.4, 0, 0.2, 1);
             display: none;
             cursor: pointer;
         }
+
         .ping-badge:hover {
             transform: scale(1.08);
             background: var(--bg-2) !important;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
-        .route-line { stroke: var(--border); stroke-width: 1.5; stroke-dasharray: 4 4; opacity: 0.4; }
-        .route-packet { fill: var(--accent); }
-        
+
+        .route-line {
+            stroke: var(--border);
+            stroke-width: 1.5;
+            stroke-dasharray: 4 4;
+            opacity: 0.4;
+        }
+
+        .route-packet {
+            fill: var(--accent);
+        }
+
         .badge {
-            font-size: 10px; font-weight: 700; font-family: var(--font-mono);
-            padding: 1px 6px; border-radius: 4px; border: 1px solid transparent;
+            font-size: 10px;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            padding: 1px 6px;
+            border-radius: 4px;
+            border: 1px solid transparent;
         }
-        .badge-green { background: var(--success-bg); color: var(--success); border-color: rgba(26, 127, 55, 0.1); }
+
+        .badge-green {
+            background: var(--success-bg);
+            color: var(--success);
+            border-color: rgba(26, 127, 55, 0.1);
+        }
+
         .routing-skeleton {
             background: linear-gradient(90deg, var(--bg-2) 25%, var(--border) 50%, var(--bg-2) 75%);
             background-size: 200% 100%;
             animation: shimmer 1.8s infinite;
-            border-radius: 4px; height: 16px; width: 120px;
+            border-radius: 4px;
+            height: 16px;
+            width: 120px;
         }
-        @keyframes shimmer { 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+        @keyframes shimmer {
+            0% {
+                background-position: 200% 0
+            }
+
+            100% {
+                background-position: -200% 0
+            }
+        }
 
         /* ─── ENDPOINT ─── */
         .endpoint-card {
@@ -211,9 +374,11 @@
             box-shadow: var(--shadow);
             transition: border-color .3s, box-shadow .3s;
         }
+
         .endpoint-card:hover {
             border-color: var(--accent);
         }
+
         .geo-badge {
             background: rgba(99, 102, 241, 0.1);
             color: var(--primary);
@@ -223,6 +388,7 @@
             font-size: 11px;
             text-transform: uppercase;
         }
+
         .btn-primary-lg {
             background: var(--primary);
             color: white;
@@ -238,103 +404,225 @@
             transition: all 0.2s;
             box-shadow: var(--shadow);
         }
+
         .btn-primary-lg:hover {
             background: #0860ca;
         }
+
         .btn-primary-lg:disabled {
             opacity: 0.7;
             cursor: not-allowed;
             transform: none;
         }
+
         .endpoint-header {
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 14px;
         }
+
         .status-badge {
-            display: flex; align-items: center; gap: 8px;
-            font-size: 12.5px; font-weight: 600; color: var(--success);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12.5px;
+            font-weight: 600;
+            color: var(--success);
         }
+
         .status-dot {
-            width: 7px; height: 7px; background: var(--success); border-radius: 50%;
-            box-shadow: 0 0 0 0 rgba(52,211,153,0.4);
+            width: 7px;
+            height: 7px;
+            background: var(--success);
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.4);
             animation: ping-ring 2.5s infinite;
         }
+
         @keyframes ping-ring {
-            0%   { box-shadow: 0 0 0 0 rgba(52,211,153,0.5); }
-            60%  { box-shadow: 0 0 0 7px rgba(52,211,153,0); }
-            100% { box-shadow: 0 0 0 0 rgba(52,211,153,0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.5);
+            }
+
+            60% {
+                box-shadow: 0 0 0 7px rgba(52, 211, 153, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+            }
         }
+
         @keyframes ping-ring-orange {
-            0%   { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.55); }
-            60%  { box-shadow: 0 0 0 7px rgba(245, 158, 11, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+            0% {
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.55);
+            }
+
+            60% {
+                box-shadow: 0 0 0 7px rgba(245, 158, 11, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+            }
         }
+
         /* DNS status variants */
-        #dns-status-badge.checking { color: var(--text-3); }
+        #dns-status-badge.checking {
+            color: var(--text-3);
+        }
+
         #dns-status-badge.checking .status-dot {
             background: #94a3b8 !important;
             animation: pulse-gray 1.5s infinite ease-in-out !important;
             box-shadow: none !important;
         }
+
         #dns-status-badge.checking #dns-status-text {
             animation: pulse-text 1.5s infinite ease-in-out;
         }
 
         @keyframes pulse-text {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
         }
+
         @keyframes pulse-gray {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.4; transform: scale(0.85); }
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.4;
+                transform: scale(0.85);
+            }
         }
-        #dns-status-badge.not-using { color: #d97706; }
+
+        #dns-status-badge.not-using {
+            color: #d97706;
+        }
+
         #dns-status-badge.not-using .status-dot {
             background: #f59e0b !important;
             animation: ping-ring-orange 2.5s infinite !important;
             box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.55) !important;
         }
+
         .proto-switch {
-            display: flex; background: var(--bg-2);
-            padding: 3px; border-radius: 7px; border: 1px solid var(--border); gap: 2px;
+            display: flex;
+            background: var(--bg-2);
+            padding: 3px;
+            border-radius: 7px;
+            border: 1px solid var(--border);
+            gap: 2px;
         }
+
         .proto-btn {
-            padding: 3px 11px; font-size: 11px; font-weight: 700;
+            padding: 3px 11px;
+            font-size: 11px;
+            font-weight: 700;
             font-family: var(--font-mono);
-            border-radius: 5px; cursor: pointer;
-            color: var(--text-3); transition: all .2s; user-select: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: var(--text-3);
+            transition: all .2s;
+            user-select: none;
         }
-        .proto-btn.active { background: var(--accent-glow); color: var(--accent); }
+
+        .proto-btn.active {
+            background: var(--accent-glow);
+            color: var(--accent);
+        }
+
+        .perf-proto-btn {
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            font-family: var(--font-mono);
+            border-radius: 5px;
+            cursor: pointer;
+            color: var(--text-3);
+            background: transparent;
+            border: 1px solid transparent;
+            transition: all .2s;
+            user-select: none;
+        }
+        .perf-proto-btn.active {
+            background: var(--accent-glow);
+            color: var(--accent);
+        }
+        .perf-proto-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
         .url-box {
             background: var(--bg);
             border: 1px solid var(--border);
             border-radius: var(--radius-sm);
             padding: 13px 16px;
-            display: flex; align-items: center; gap: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
+
         .url-text {
             font-family: var(--font-mono);
-            font-size: 14.5px; flex: 1; word-break: break-all; color: var(--text);
+            font-size: 14.5px;
+            flex: 1;
+            word-break: break-all;
+            color: var(--text);
         }
+
         .copy-btn {
-            background: none; border: none; color: var(--text-3);
-            cursor: pointer; padding: 6px; border-radius: 6px;
-            display: flex; transition: color .2s, background .2s;
+            background: none;
+            border: none;
+            color: var(--text-3);
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 6px;
+            display: flex;
+            transition: color .2s, background .2s;
             flex-shrink: 0;
         }
-        .copy-btn:hover { color: var(--accent); background: var(--accent-dim); }
-        .copy-btn.copied { color: var(--success); }
+
+        .copy-btn:hover {
+            color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        .copy-btn.copied {
+            color: var(--success);
+        }
 
         /* ─── FEATURES ─── */
         .section-label {
-            font-size: 11px; font-weight: 700; color: var(--text-3);
-            text-transform: uppercase; letter-spacing: 1.5px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
             margin-bottom: 14px;
         }
+
         .features {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            gap: 14px; margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 20px;
         }
+
         .feature {
             background: var(--card);
             border: 1px solid var(--border);
@@ -343,37 +631,62 @@
             cursor: pointer;
             transition: border-color .2s;
             box-shadow: var(--shadow);
-            position: relative; overflow: hidden;
+            position: relative;
+            overflow: hidden;
         }
+
         .feature:hover {
             border-color: var(--accent);
         }
+
         .feature-header {
-            display: flex; align-items: center; gap: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             margin-bottom: 12px;
         }
+
         .feature-icon {
-            width: 32px; height: 32px;
+            width: 32px;
+            height: 32px;
             background: var(--accent-dim);
             border: 1px solid var(--border-hover);
             border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 15px; flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
         }
+
         .feature h3 {
-            font-size: 16px; font-weight: 600;
-            color: var(--text); margin-bottom: 0;
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 0;
         }
+
         .feature p {
-            font-size: 14.5px; color: var(--text-2); line-height: 1.6;
+            font-size: 14.5px;
+            color: var(--text-2);
+            line-height: 1.6;
         }
+
         .feature-cta {
-            display: block; margin-top: 12px;
-            font-size: 11px; font-weight: 700; font-family: var(--font-mono);
-            color: #000000; opacity: 0.5;
-            letter-spacing: 0.5px; transition: opacity .2s;
+            display: block;
+            margin-top: 12px;
+            font-size: 11px;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            color: #000000;
+            opacity: 0.5;
+            letter-spacing: 0.5px;
+            transition: opacity .2s;
         }
-        .feature:hover .feature-cta { opacity: 1; }
+
+        .feature:hover .feature-cta {
+            opacity: 1;
+        }
 
         /* ─── SETUP ─── */
         .setup-section {
@@ -385,56 +698,131 @@
             box-shadow: var(--shadow);
             transition: border-color .2s;
         }
-        .setup-section:hover { border-color: var(--accent); }
+
+        .setup-section:hover {
+            border-color: var(--accent);
+        }
+
         .setup-header {
             padding: 18px 24px;
-            font-weight: 600; font-size: 15px;
+            font-weight: 600;
+            font-size: 15px;
             color: var(--text-2);
-            display: flex; align-items: center; gap: 12px;
-            cursor: pointer; user-select: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            user-select: none;
             transition: color .2s, border-color .2s;
         }
-        .setup-header:hover { color: var(--accent); }
-        .setup-header.open { color: var(--text); border-bottom: 1px solid var(--border); }
+
+        .setup-header:hover {
+            color: var(--accent);
+        }
+
+        .setup-header.open {
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
+        }
+
         .setup-header .arrow {
-            margin-left: auto; font-size: 11px; color: var(--text-3);
+            margin-left: auto;
+            font-size: 11px;
+            color: var(--text-3);
             transition: transform .3s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .setup-header.open .arrow { transform: rotate(90deg); color: var(--accent); }
-        .setup-header svg { color: var(--text-3); flex-shrink: 0; }
-        .setup-header.open svg { color: var(--accent); }
+
+        .setup-header.open .arrow {
+            transform: rotate(90deg);
+            color: var(--accent);
+        }
+
+        .setup-header svg {
+            color: var(--text-3);
+            flex-shrink: 0;
+        }
+
+        .setup-header.open svg {
+            color: var(--accent);
+        }
+
         .setup-body {
             padding: 24px;
             background: #ffffff;
             border-top: 1px solid var(--border);
             animation: expandDown .3s cubic-bezier(0.22, 1, 0.36, 1);
         }
+
         @keyframes expandDown {
-            from { opacity: 0; transform: translateY(-8px); }
-            to   { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
-        .setup-body.collapsed { display: none; }
-        .setup-list { list-style: none; }
-        .setup-list li { margin-bottom: 16px; font-size: 14.5px; line-height: 1.65; color: var(--text-2); }
-        .setup-list li:last-child { margin-bottom: 0; }
+
+        .setup-body.collapsed {
+            display: none;
+        }
+
+        .setup-list {
+            list-style: none;
+        }
+
+        .setup-list li {
+            margin-bottom: 16px;
+            font-size: 14.5px;
+            line-height: 1.65;
+            color: var(--text-2);
+        }
+
+        .setup-list li:last-child {
+            margin-bottom: 0;
+        }
+
         .step-num {
-            display: inline-flex; align-items: center; justify-content: center;
-            width: 20px; height: 20px;
-            border: 1.5px solid rgba(96,165,250,0.35);
-            color: var(--accent); border-radius: 50%;
-            font-size: 10px; font-weight: 700; margin-right: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border: 1.5px solid rgba(96, 165, 250, 0.35);
+            color: var(--accent);
+            border-radius: 50%;
+            font-size: 10px;
+            font-weight: 700;
+            margin-right: 10px;
             font-family: var(--font-mono);
         }
-        .setup-list a { color: var(--accent); text-decoration: none; font-weight: 500; border-bottom: 1px solid transparent; transition: border-color .2s; }
-        .setup-list a:hover { border-bottom-color: var(--accent); }
+
+        .setup-list a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color .2s;
+        }
+
+        .setup-list a:hover {
+            border-bottom-color: var(--accent);
+        }
+
         .inner-url-box {
             background: var(--bg);
             border: 1px solid var(--border);
             border-radius: 7px;
             padding: 10px 14px;
-            display: flex; align-items: center; gap: 10px;
-            margin-top: 10px; margin-left: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            margin-left: 30px;
         }
+
         .code-block {
             background: #0d1117;
             color: #e6edf3;
@@ -449,28 +837,55 @@
             white-space: pre;
             position: relative;
         }
+
         .code-block .copy-btn {
             position: absolute;
-            top: 8px; right: 8px;
+            top: 8px;
+            right: 8px;
             opacity: 0;
             transition: opacity .2s;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .code-block:hover .copy-btn { opacity: 1; }
-        .code-comment { color: #8b949e; }
-        .code-key { color: #7ee787; }
-        .code-val { color: #a5d6ff; }
+
+        .code-block:hover .copy-btn {
+            opacity: 1;
+        }
+
+        .code-comment {
+            color: #8b949e;
+        }
+
+        .code-key {
+            color: #7ee787;
+        }
+
+        .code-val {
+            color: #a5d6ff;
+        }
+
         .setup-sub-title {
-            font-size: 13px; font-weight: 700; color: var(--text);
-            margin: 20px 0 8px 30px; display: flex; align-items: center; gap: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--text);
+            margin: 20px 0 8px 30px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .setup-sub-title::before { content: ''; width: 4px; height: 14px; background: var(--accent); border-radius: 2px; }
+
+        .setup-sub-title::before {
+            content: '';
+            width: 4px;
+            height: 14px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
 
         code {
             padding: 2px 5px;
             font-size: 13px;
-            background-color: rgba(175,184,193,0.2);
+            background-color: rgba(175, 184, 193, 0.2);
             border-radius: 5px;
             font-family: var(--font-mono);
             font-weight: 500;
@@ -479,117 +894,306 @@
 
         /* ─── MODAL ─── */
         .modal-overlay {
-            position: fixed; inset: 0;
+            position: fixed;
+            inset: 0;
             background: rgba(31, 35, 40, 0.03);
             backdrop-filter: blur(3px);
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 1000;
-            opacity: 0; pointer-events: none;
+            opacity: 0;
+            pointer-events: none;
             transition: opacity .3s;
         }
-        .modal-overlay.show { opacity: 1; pointer-events: auto; }
+
+        .modal-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
         .modal-content {
             background: var(--card);
             border: 1px solid var(--border);
-            width: 92%; max-width: 780px;
-            padding: 40px; border-radius: 20px;
+            width: 92%;
+            max-width: 780px;
+            padding: 40px;
+            border-radius: 20px;
             position: relative;
             box-shadow: 0 8px 24px rgba(31, 35, 40, 0.1);
             transform: translateY(16px) scale(0.98);
             transition: transform .35s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .modal-overlay.show .modal-content { transform: translateY(0) scale(1); }
+
+        .modal-overlay.show .modal-content {
+            transform: translateY(0) scale(1);
+        }
+
         .modal-close {
-            position: absolute; top: 18px; right: 18px;
-            background: var(--bg-2); border: 1px solid var(--border);
-            font-size: 18px; width: 34px; height: 34px;
-            border-radius: 8px; cursor: pointer; color: var(--text-2);
-            display: flex; align-items: center; justify-content: center;
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: var(--bg-2);
+            border: 1px solid var(--border);
+            font-size: 18px;
+            width: 34px;
+            height: 34px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: var(--text-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: background .2s, color .2s;
         }
-        .modal-close:hover { background: #ffebe9; color: var(--danger); border-color: rgba(207, 34, 46, 0.3); }
+
+        .modal-close:hover {
+            background: #ffebe9;
+            color: var(--danger);
+            border-color: rgba(207, 34, 46, 0.3);
+        }
+
         .modal-content h2 {
             font-family: var(--font-display);
-            font-size: 22px; font-weight: 700;
-            text-align: center; margin-bottom: 28px;
+            font-size: 22px;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 28px;
             color: var(--text);
         }
-        .illustration-container { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-        .ill-side { text-align: center; }
+
+        .illustration-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+
+        .ill-side {
+            text-align: center;
+        }
+
         .ill-side h4 {
-            font-size: 11px; font-weight: 700; font-family: var(--font-mono);
-            color: var(--text-3); text-transform: uppercase; letter-spacing: 1px;
+            font-size: 11px;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            color: var(--text-3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 16px;
         }
+
         .ill-svg-wrapper {
-            background: var(--bg-2); border-radius: 12px; height: 220px;
-            margin-bottom: 14px; border: 1px solid var(--border);
-            position: relative; overflow: hidden;
+            background: var(--bg-2);
+            border-radius: 12px;
+            height: 220px;
+            margin-bottom: 14px;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
         }
-        .ill-side p { font-size: 13px; color: var(--text-2); line-height: 1.55; }
-        .modal-list { list-style: none; margin-top: 12px; }
+
+        .ill-side p {
+            font-size: 13px;
+            color: var(--text-2);
+            line-height: 1.55;
+        }
+
+        .modal-list {
+            list-style: none;
+            margin-top: 12px;
+        }
+
         .modal-list li {
-            font-size: 13px; color: var(--accent); padding: 4px 0;
-            display: flex; align-items: center; gap: 8px;
+            font-size: 13px;
+            color: var(--accent);
+            padding: 4px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .modal-list li::before { content: '✓'; }
+
+        .modal-list li::before {
+            content: '✓';
+        }
 
         /* ─── FOOTER ─── */
         footer {
-            margin-top: 56px; padding: 28px 0;
+            margin-top: 56px;
+            padding: 28px 0;
             border-top: 1px solid var(--border);
             text-align: center;
-            color: var(--text-3); font-size: 13px;
+            color: var(--text-3);
+            font-size: 13px;
         }
-        footer a { color: var(--text-2); text-decoration: none; font-weight: 500; transition: color .2s; }
-        footer a:hover { color: var(--accent); }
+
+        footer a {
+            color: var(--text-2);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color .2s;
+        }
+
+        footer a:hover {
+            color: var(--accent);
+        }
 
         /* ─── TOAST ─── */
         .toast {
-            position: fixed; bottom: 28px; left: 50%;
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
             transform: translateX(-50%) translateY(80px);
             background: var(--card);
             border: 1px solid var(--accent);
-            color: var(--text); padding: 10px 22px;
-            border-radius: 100px; font-size: 13px; font-weight: 500;
+            color: var(--text);
+            padding: 10px 22px;
+            border-radius: 100px;
+            font-size: 13px;
+            font-weight: 500;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
             transition: transform .4s cubic-bezier(0.22, 1, 0.36, 1);
-            z-index: 9999; display: flex; align-items: center; gap: 8px;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
-        .toast.show { transform: translateX(-50%) translateY(0); }
-        .toast-icon { color: var(--success); }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .toast-icon {
+            color: var(--success);
+        }
 
         /* ─── RESPONSIVE ─── */
         @media (max-width: 640px) {
-            .hero h1 { font-size: 34px; letter-spacing: -0.8px; }
-            .hero { padding: 48px 0 36px; }
-            .routing-card { grid-template-columns: 1fr; gap: 20px; padding: 20px; text-align: center; }
-            .routing-center { order: -1; }
-            .routing-item, .routing-item.right { text-align: center; align-items: center; }
-            .routing-value, .routing-value.right { justify-content: center; }
-            .features { grid-template-columns: 1fr; }
-            .illustration-container { grid-template-columns: 1fr; }
-            .modal-content { padding: 28px 20px; max-height: 90vh; overflow-y: auto; }
-            nav .container { gap: 10px; }
-            
+            .hero h1 {
+                font-size: 34px;
+                letter-spacing: -0.8px;
+            }
+
+            .hero {
+                padding: 48px 0 36px;
+            }
+
+            .routing-card {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px;
+                text-align: center;
+            }
+
+            .routing-center {
+                order: -1;
+            }
+
+            .routing-item,
+            .routing-item.right {
+                text-align: center;
+                align-items: center;
+            }
+
+            .routing-value,
+            .routing-value.right {
+                justify-content: center;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .illustration-container {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 28px 20px;
+                max-height: 90vh;
+                overflow-y: auto;
+            }
+
+            nav .container {
+                gap: 10px;
+            }
+
             /* Modals Mobile Tweaks */
-            .variant-row { grid-template-columns: 1fr; gap: 10px; padding: 14px 20px; }
-            .variant-row-url-wrapper { padding: 6px 10px; min-width: 0; }
-            
-            .perf-table, .perf-table tbody, .perf-table tr, .perf-table td { display: block; width: 100%; box-sizing: border-box; }
-            .perf-table thead { display: none; }
-            .perf-table tr { padding: 14px 0; border-bottom: 1px solid var(--border); }
-            .perf-table tr:last-child { border-bottom: none; }
-            .perf-table td { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; border: none; }
-            .perf-table td::before { font-weight: 700; color: var(--text-3); font-size: 11px; text-transform: uppercase; }
-            .perf-table td:nth-child(1)::before { content: "Target"; }
-            .perf-table td:nth-child(2)::before { content: "Gateway"; }
-            .perf-table td:nth-child(3)::before { content: "Google DNS"; }
-            .perf-table td > div { text-align: right; align-items: flex-end; }
-            
-            .domain-name { font-size: 13px; }
-            .location-info { font-size: 11px; }
-            .location-city { font-size: 13px; }
+            .variant-row {
+                grid-template-columns: 1fr;
+                gap: 10px;
+                padding: 14px 20px;
+            }
+
+            .variant-row-url-wrapper {
+                padding: 6px 10px;
+                min-width: 0;
+            }
+
+            .perf-table,
+            .perf-table tbody,
+            .perf-table tr,
+            .perf-table td {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .perf-table thead {
+                display: none;
+            }
+
+            .perf-table tr {
+                padding: 14px 0;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .perf-table tr:last-child {
+                border-bottom: none;
+            }
+
+            .perf-table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 6px 0;
+                border: none;
+            }
+
+            .perf-table td::before {
+                font-weight: 700;
+                color: var(--text-3);
+                font-size: 11px;
+                text-transform: uppercase;
+            }
+
+            .perf-table td:nth-child(1)::before {
+                content: "Target";
+            }
+
+            .perf-table td:nth-child(2)::before {
+                content: "Gateway";
+            }
+
+            .perf-table td:nth-child(3)::before {
+                content: "Google DNS";
+            }
+
+            .perf-table td>div {
+                text-align: right;
+                align-items: flex-end;
+            }
+
+            .domain-name {
+                font-size: 13px;
+            }
+
+            .location-info {
+                font-size: 11px;
+            }
+
+            .location-city {
+                font-size: 13px;
+            }
         }
 
         /* ─── PERFORMANCE ─── */
@@ -602,65 +1206,163 @@
             transition: border-color 0.2s;
             overflow: hidden;
         }
-        .perf-card:hover { border-color: var(--accent); }
+
+        .perf-card:hover {
+            border-color: var(--accent);
+        }
 
         .perf-header-wrapper {
             padding: 18px 24px;
-            font-weight: 600; font-size: 15px;
+            font-weight: 600;
+            font-size: 15px;
             color: var(--text-2);
-            display: flex; align-items: center; justify-content: space-between;
-            cursor: pointer; user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
             transition: color .2s;
         }
-        .perf-header-wrapper:hover { color: var(--accent); }
-        .perf-header-wrapper.open { color: var(--text); border-bottom: 1px solid var(--border); }
-        
-        .perf-title-group { display: flex; align-items: center; gap: 12px; }
+
+        .perf-header-wrapper:hover {
+            color: var(--accent);
+        }
+
+        .perf-header-wrapper.open {
+            color: var(--text);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .perf-title-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
         .perf-icon-circle {
-            width: 32px; height: 32px;
+            width: 32px;
+            height: 32px;
             background: var(--accent-glow);
             color: var(--accent);
             border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             flex-shrink: 0;
         }
-        .perf-icon-circle svg { color: var(--text-3); transition: color 0.2s; }
-        .perf-header-wrapper.open .perf-icon-circle svg { color: var(--accent); }
 
-        .perf-title { font-size: 15px; font-weight: 600; }
-        .perf-actions { display: flex; align-items: center; gap: 12px; }
+        .perf-icon-circle svg {
+            color: var(--text-3);
+            transition: color 0.2s;
+        }
+
+        .perf-header-wrapper.open .perf-icon-circle svg {
+            color: var(--accent);
+        }
+
+        .perf-title {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .perf-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
         .arrow {
-            margin-left: auto; font-size: 11px; color: var(--text-3);
+            margin-left: auto;
+            font-size: 11px;
+            color: var(--text-3);
             transition: transform .3s cubic-bezier(0.22, 1, 0.36, 1);
         }
-        .perf-header-wrapper.open .arrow { transform: rotate(90deg); color: var(--accent); }
-        
+
+        .perf-header-wrapper.open .arrow {
+            transform: rotate(90deg);
+            color: var(--accent);
+        }
+
         .perf-body {
             background: #ffffff;
             border-top: 1px solid var(--border);
             animation: expandDown .3s cubic-bezier(0.22, 1, 0.36, 1);
             overflow: hidden;
         }
-        .perf-body.collapsed { display: none; }
-        .perf-content { padding: 22px; }
 
-        .perf-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-        .perf-table th { text-align: left; padding: 12px 10px; color: var(--text-3); font-weight: 700; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; border-bottom: 1px solid var(--border); }
-        .perf-table td { padding: 12px 10px; border-bottom: 1px solid var(--border); }
-        .domain-name { font-weight: 600; color: var(--text); }
-        .location-info { font-size: 13px; color: var(--text-2); display: flex; flex-direction: column; gap: 2px; }
-        .location-city { color: var(--text); font-weight: 500; }
+        .perf-body.collapsed {
+            display: none;
+        }
+
+        .perf-content {
+            padding: 22px;
+        }
+
+        .perf-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .perf-table th {
+            text-align: left;
+            padding: 12px 10px;
+            color: var(--text-3);
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .perf-table td {
+            padding: 12px 10px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .domain-name {
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .location-info {
+            font-size: 13px;
+            color: var(--text-2);
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .location-city {
+            color: var(--text);
+            font-weight: 500;
+        }
 
         .shimmer-cell {
-            height: 14px; background: rgba(96,165,250,0.05); border-radius: 4px;
-            position: relative; overflow: hidden;
+            height: 14px;
+            background: rgba(96, 165, 250, 0.05);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
         }
+
         .shimmer-cell::after {
-            content: ''; position: absolute; inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
             animation: shimmer 1.5s infinite;
         }
-        @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
 
         .btn-primary-sm {
             background: #ffffff;
@@ -678,16 +1380,29 @@
             user-select: none;
             box-shadow: var(--shadow);
         }
-        .btn-primary-sm:hover { 
+
+        .btn-primary-sm:hover {
             border-color: var(--success);
             background: #f8f9fa;
         }
+
         .btn-primary-sm:active {
             transform: translateY(0);
         }
-        .btn-primary-sm:disabled { color: var(--text-3); cursor: not-allowed; opacity: 0.7; }
-        .btn-primary-sm .status-dot { margin-right: 0; }
-        .btn-primary-sm .status-dot { margin-right: 0; }
+
+        .btn-primary-sm:disabled {
+            color: var(--text-3);
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        .btn-primary-sm .status-dot {
+            margin-right: 0;
+        }
+
+        .btn-primary-sm .status-dot {
+            margin-right: 0;
+        }
 
         /* ─── VARIANTS ─── */
         .variant-group-title {
@@ -700,6 +1415,7 @@
             background: var(--bg-2);
             border-bottom: 1px solid var(--border);
         }
+
         .variant-row {
             display: grid;
             grid-template-columns: 180px 1fr;
@@ -709,21 +1425,31 @@
             transition: background 0.2s;
             gap: 20px;
         }
-        .variant-row:last-child { border-bottom: none; }
-        .variant-row:hover { background: var(--accent-dim); }
+
+        .variant-row:last-child {
+            border-bottom: none;
+        }
+
+        .variant-row:hover {
+            background: var(--accent-dim);
+        }
+
         .variant-row-info {
             display: flex;
             align-items: center;
             gap: 10px;
             overflow: hidden;
         }
+
         .variant-row-icon {
-            width: 24px; height: 16px;
+            width: 24px;
+            height: 16px;
             border-radius: 2px;
             object-fit: cover;
             border: 1px solid var(--border);
             flex-shrink: 0;
         }
+
         .variant-row-name {
             font-size: 13.5px;
             font-weight: 600;
@@ -732,6 +1458,7 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
         .variant-row-url-wrapper {
             background: var(--bg);
             border: 1px solid var(--border);
@@ -742,7 +1469,11 @@
             gap: 12px;
             transition: border-color 0.2s;
         }
-        .variant-row:hover .variant-row-url-wrapper { border-color: var(--border-hover); }
+
+        .variant-row:hover .variant-row-url-wrapper {
+            border-color: var(--border-hover);
+        }
+
         .variant-row-url {
             font-family: var(--font-mono);
             font-size: 12px;
@@ -752,29 +1483,58 @@
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+
         .variant-row-copy {
-            background: none; border: none; color: var(--text-3);
-            cursor: pointer; padding: 4px; border-radius: 6px;
-            display: flex; transition: color .2s, background .2s;
+            background: none;
+            border: none;
+            color: var(--text-3);
+            cursor: pointer;
+            padding: 4px;
+            border-radius: 6px;
+            display: flex;
+            transition: color .2s, background .2s;
             flex-shrink: 0;
         }
-        .variant-row-copy:hover { color: var(--accent); background: var(--accent-dim); }
-        .variant-row-copy.copied { color: var(--success); }
+
+        .variant-row-copy:hover {
+            color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        .variant-row-copy.copied {
+            color: var(--success);
+        }
 
         .variant-tabs-inner {
-            display: flex; background: var(--bg-2);
-            padding: 3px; border-radius: 7px; border: 1px solid var(--border); gap: 2px;
-            margin: 20px 24px 10px; width: fit-content;
+            display: flex;
+            background: var(--bg-2);
+            padding: 3px;
+            border-radius: 7px;
+            border: 1px solid var(--border);
+            gap: 2px;
+            margin: 20px 24px 10px;
+            width: fit-content;
         }
+
         .variant-tab-btn {
-            padding: 3px 11px; font-size: 11px; font-weight: 700;
+            padding: 3px 11px;
+            font-size: 11px;
+            font-weight: 700;
             font-family: var(--font-mono);
-            border-radius: 5px; cursor: pointer;
-            color: var(--text-3); transition: all .2s; user-select: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: var(--text-3);
+            transition: all .2s;
+            user-select: none;
         }
-        .variant-tab-btn.active { background: var(--accent-glow); color: var(--accent); }
+
+        .variant-tab-btn.active {
+            background: var(--accent-glow);
+            color: var(--accent);
+        }
     </style>
 </head>
+
 <body>
 
     <!-- NAV -->
@@ -782,19 +1542,26 @@
         <div class="container">
             <a href="/" class="logo">
                 <div class="logo-icon">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
                     </svg>
                 </div>
                 doh.bibica.net
             </a>
             <div class="nav-right">
                 <a href="/resolver.html" class="nav-btn" title="Resolver Tool" aria-label="Resolver Tool">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8" />
+                        <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
                 </a>
-                <a href="https://github.com/bibicadotnet/serverless-edge-dns-gateway-v2" class="gh-link" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub">
+                <a href="https://github.com/bibicadotnet/serverless-edge-dns-gateway-v2" class="gh-link" target="_blank"
+                    rel="noopener" title="GitHub" aria-label="GitHub">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z" />
                     </svg>
                 </a>
             </div>
@@ -823,7 +1590,8 @@
                 <svg width="80" height="16" viewBox="0 0 80 16">
                     <path id="hPing" d="M0,8 L80,8" fill="none" class="route-line" />
                     <circle r="2.5" class="route-packet">
-                        <animateMotion dur="1.2s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear">
+                        <animateMotion dur="1.2s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1"
+                            calcMode="linear">
                             <mpath href="#hPing" />
                         </animateMotion>
                     </circle>
@@ -846,14 +1614,20 @@
                 <div class="proto-switch">
                     <div class="proto-btn active" onclick="setProto('https', this)">DoH</div>
                     <div class="proto-btn" onclick="setProto('h3', this)">DoH3</div>
-                    <div style="width: 1px; height: 12px; background: var(--border); margin: 0 4px; align-self: center;"></div>
+                    <div
+                        style="width: 1px; height: 12px; background: var(--border); margin: 0 4px; align-self: center;">
+                    </div>
                     <div class="proto-btn" onclick="showModal('variants-modal')">Variants</div>
                 </div>
             </div>
             <div class="url-box">
                 <div class="url-text" id="endpoint">Loading…</div>
                 <button class="copy-btn" onclick="copyValue('endpoint', this)" aria-label="Copy URL">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                        <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                    </svg>
                 </button>
             </div>
         </div>
@@ -883,7 +1657,8 @@
                     <div class="feature-icon">🚫</div>
                     <h3>Ad &amp; Tracker Blocking</h3>
                 </div>
-                <p>Blocks ads, trackers, and malware at the DNS level using curated AdGuard, ABPVN, and 1Hosts lists.</p>
+                <p>Blocks ads, trackers, and malware at the DNS level using curated AdGuard, ABPVN, and 1Hosts lists.
+                </p>
                 <span class="feature-cta">SEE HOW →</span>
             </div>
         </div>
@@ -893,21 +1668,31 @@
         <div class="fade-up delay-4">
             <div class="setup-section">
                 <div class="setup-header" onclick="toggleSetup(this)">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M0 3.449L9.75 2.1V11.7H0V3.449zm0 9.151h9.75v9.6L0 20.851V12.6zm10.55-10.55L24 0v11.7h-13.45V2.05zM24 12.6v11.4L10.55 22.05V12.6H24z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M0 3.449L9.75 2.1V11.7H0V3.449zm0 9.151h9.75v9.6L0 20.851V12.6zm10.55-10.55L24 0v11.7h-13.45V2.05zM24 12.6v11.4L10.55 22.05V12.6H24z" />
+                    </svg>
                     Windows 10 / 11
                     <span class="arrow">▶</span>
                 </div>
                 <div class="setup-body collapsed">
                     <ul class="setup-list">
-                        <li><span class="step-num">1</span>Run the <strong>PowerShell (Admin)</strong> command below:</li>
+                        <li><span class="step-num">1</span>Run the <strong>PowerShell (Admin)</strong> command below:
+                        </li>
                         <div class="inner-url-box">
                             <div class="url-text" id="win-cmd">irm https://go.bibica.net/doh-bibica-net | iex</div>
                             <button class="copy-btn" onclick="copyValue('win-cmd', this)" aria-label="Copy">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <rect x="9" y="9" width="13" height="13" rx="2" />
+                                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                                </svg>
                             </button>
                         </div>
                         <div style="margin: 14px 0 0 30px;">
-                            <button class="feature-cta" style="background: none; border: none; padding: 0; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--accent); opacity: 1;" onclick="showModal('ecs-modal')">
+                            <button class="feature-cta"
+                                style="background: none; border: none; padding: 0; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--accent); opacity: 1;"
+                                onclick="showModal('ecs-modal')">
                                 Advanced: Customize your ECS configuration →
                             </button>
                         </div>
@@ -917,7 +1702,13 @@
 
             <div class="setup-section">
                 <div class="setup-header" onclick="toggleSetup(this)">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="2" y1="12" x2="22" y2="12" />
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                    </svg>
                     Browser (Chrome / Firefox / Edge)
                     <span class="arrow">▶</span>
                 </div>
@@ -928,8 +1719,13 @@
                         <li><span class="step-num">3</span>Select <strong>Custom</strong> and paste this URL:
                             <div class="inner-url-box">
                                 <div class="url-text" id="endpoint-browser">https://…</div>
-                                <button class="copy-btn" onclick="copyValue('endpoint-browser', this)" aria-label="Copy">
-                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                                <button class="copy-btn" onclick="copyValue('endpoint-browser', this)"
+                                    aria-label="Copy">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" />
+                                        <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                                    </svg>
                                 </button>
                             </div>
                         </li>
@@ -939,14 +1735,17 @@
 
             <div class="setup-section">
                 <div class="setup-header" onclick="toggleSetup(this)">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.96.95-2.04 1.74-3.23 1.74-1.18 0-1.57-.73-2.95-.73-1.39 0-1.81.71-2.93.73-1.15.02-2.18-.75-3.14-1.74-1.95-1.98-3.44-5.61-3.44-8.77 0-3.14 1.6-4.81 3.13-4.81 1.55 0 2.44 1.05 3.39 1.05.94 0 1.93-1.05 3.51-1.05 1.33 0 2.45.69 3.09 1.63-2.5 1.5-2.1 4.75.43 5.8-1.02 2.25-2.3 4.67-3.88 6.14zM12.03 5.25c-.01-1.93 1.58-3.5 3.4-3.5.01 1.92-1.59 3.51-3.4 3.5z"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M17.05 20.28c-.96.95-2.04 1.74-3.23 1.74-1.18 0-1.57-.73-2.95-.73-1.39 0-1.81.71-2.93.73-1.15.02-2.18-.75-3.14-1.74-1.95-1.98-3.44-5.61-3.44-8.77 0-3.14 1.6-4.81 3.13-4.81 1.55 0 2.44 1.05 3.39 1.05.94 0 1.93-1.05 3.51-1.05 1.33 0 2.45.69 3.09 1.63-2.5 1.5-2.1 4.75.43 5.8-1.02 2.25-2.3 4.67-3.88 6.14zM12.03 5.25c-.01-1.93 1.58-3.5 3.4-3.5.01 1.92-1.59 3.51-3.4 3.5z" />
+                    </svg>
                     Apple — iOS &amp; macOS
                     <span class="arrow">▶</span>
                 </div>
                 <div class="setup-body collapsed">
                     <ul class="setup-list">
                         <!-- APPLE_CONFIG_START -->
-                        <li><span class="step-num">1</span>Download and install <a href="/mobileconfig/doh.bibica.net.mobileconfig">this configuration profile</a> (Expires: 08/23/2026) (iOS 14+ / macOS Big Sur+)</li>
+                        <li><span class="step-num">1</span>Download and install <a href="/mobileconfig/doh.bibica.net.mobileconfig">this configuration profile</a> (Expires: 08/30/2026) (iOS 14+ / macOS Big Sur+)</li>
                         <div style="margin: -8px 0 16px 30px;">
                             <button class="feature-cta" style="background: none; border: none; padding: 0; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 6px; font-size: 12.5px; opacity: 0.7;" onclick="showModal('verified-modal')">
                                 <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--success);"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
@@ -954,22 +1753,36 @@
                             </button>
                         </div>
                         <!-- APPLE_CONFIG_END -->
-                        <li><span class="step-num">2</span>Go to <strong>Settings</strong> → VPN &amp; Device Management → DNS and activate it</li>
-                        <li><span class="step-num">3</span>Or use a third-party app: <a href="https://apps.apple.com/app/id1452162351" target="_blank">DNSCloak</a>, <a href="https://apps.apple.com/app/id1126386264" target="_blank">AdGuard Pro</a>, or <a href="https://apps.apple.com/us/app/dnsecure/id1533413232" target="_blank">DNSecure</a></li>
+                        <li><span class="step-num">2</span>Go to <strong>Settings</strong> → VPN &amp; Device Management
+                            → DNS and activate it</li>
+                        <li><span class="step-num">3</span>Or use a third-party app: <a
+                                href="https://apps.apple.com/app/id1452162351" target="_blank">DNSCloak</a>, <a
+                                href="https://apps.apple.com/app/id1126386264" target="_blank">AdGuard Pro</a>, or <a
+                                href="https://apps.apple.com/us/app/dnsecure/id1533413232" target="_blank">DNSecure</a>
+                        </li>
                     </ul>
                 </div>
             </div>
 
             <div class="setup-section">
                 <div class="setup-header" onclick="toggleSetup(this)">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+                        <line x1="12" y1="18" x2="12.01" y2="18" />
+                    </svg>
                     Android
                     <span class="arrow">▶</span>
                 </div>
                 <div class="setup-body collapsed">
                     <ul class="setup-list">
-                        <li><span class="step-num">1</span><strong>Intra (by Google):</strong> Protects against DNS interception. Download from <a href="https://play.google.com/store/apps/details?id=app.intra" target="_blank">Google Play</a> or <a href="https://github.com/google/intra" target="_blank">GitHub</a>.</li>
-                        <li><span class="step-num">2</span><strong>AdGuard for Android:</strong> Full-featured, no root required. <a href="https://adguard.com/en/adguard-android/overview.html" target="_blank">Download here</a>.</li>
+                        <li><span class="step-num">1</span><strong>Intra (by Google):</strong> Protects against DNS
+                            interception. Download from <a
+                                href="https://play.google.com/store/apps/details?id=app.intra" target="_blank">Google
+                                Play</a> or <a href="https://github.com/google/intra" target="_blank">GitHub</a>.</li>
+                        <li><span class="step-num">2</span><strong>AdGuard for Android:</strong> Full-featured, no root
+                            required. <a href="https://adguard.com/en/adguard-android/overview.html"
+                                target="_blank">Download here</a>.</li>
                     </ul>
                 </div>
             </div>
@@ -998,21 +1811,30 @@
                     <h4>Traditional DNS</h4>
                     <div class="ill-svg-wrapper">
                         <svg width="100%" height="100%" viewBox="0 0 200 200">
-                            <circle cx="100" cy="90" r="40" fill="none" stroke="rgba(248,113,113,0.3)" stroke-width="2" />
-                            <circle cx="100" cy="90" r="12" fill="#f87171" opacity="0.8"/>
-                            <text x="100" y="148" text-anchor="middle" font-size="10" fill="#f87171" font-family="sans-serif">Logging your activity</text>
-                            <circle r="4" fill="#f87171" opacity="0.9"><animateMotion dur="2s" repeatCount="indefinite" path="M20,90 L88,90" /></circle>
+                            <circle cx="100" cy="90" r="40" fill="none" stroke="rgba(248,113,113,0.3)"
+                                stroke-width="2" />
+                            <circle cx="100" cy="90" r="12" fill="#f87171" opacity="0.8" />
+                            <text x="100" y="148" text-anchor="middle" font-size="10" fill="#f87171"
+                                font-family="sans-serif">Logging your activity</text>
+                            <circle r="4" fill="#f87171" opacity="0.9">
+                                <animateMotion dur="2s" repeatCount="indefinite" path="M20,90 L88,90" />
+                            </circle>
                         </svg>
                     </div>
-                    <p>Traditional providers log your IP, timestamps, and every domain you visit — often for advertising.</p>
+                    <p>Traditional providers log your IP, timestamps, and every domain you visit — often for
+                        advertising.</p>
                 </div>
                 <div class="ill-side">
                     <h4>This DNS Gateway</h4>
                     <div class="ill-svg-wrapper">
                         <svg width="100%" height="100%" viewBox="0 0 200 200">
-                            <path d="M70,90 L130,90" stroke="#34d399" stroke-width="20" stroke-linecap="round" opacity="0.07" />
-                            <text x="100" y="148" text-anchor="middle" font-size="10" fill="#34d399" font-weight="700" font-family="sans-serif">Zero Logs Policy</text>
-                            <circle r="4" fill="#34d399"><animateMotion dur="0.9s" repeatCount="indefinite" path="M30,90 L170,90" /></circle>
+                            <path d="M70,90 L130,90" stroke="#34d399" stroke-width="20" stroke-linecap="round"
+                                opacity="0.07" />
+                            <text x="100" y="148" text-anchor="middle" font-size="10" fill="#34d399" font-weight="700"
+                                font-family="sans-serif">Zero Logs Policy</text>
+                            <circle r="4" fill="#34d399">
+                                <animateMotion dur="0.9s" repeatCount="indefinite" path="M30,90 L170,90" />
+                            </circle>
                         </svg>
                     </div>
                     <p>We operate a strict zero-knowledge policy. Nothing is written to disk or held in memory.</p>
@@ -1031,20 +1853,42 @@
                     <h4>Unicast — Single Server</h4>
                     <div class="ill-svg-wrapper">
                         <svg width="100%" height="100%" viewBox="0 0 220 200">
-                            <text x="50" y="40" text-anchor="middle" font-size="8" fill="#94a3b8" font-weight="600" font-family="sans-serif">USA</text>
-                            <text x="50" y="90" text-anchor="middle" font-size="8" fill="#94a3b8" font-weight="600" font-family="sans-serif">Europe</text>
-                            <text x="50" y="140" text-anchor="middle" font-size="8" fill="#94a3b8" font-weight="600" font-family="sans-serif">Asia</text>
+                            <text x="50" y="40" text-anchor="middle" font-size="8" fill="#94a3b8" font-weight="600"
+                                font-family="sans-serif">USA</text>
+                            <text x="50" y="90" text-anchor="middle" font-size="8" fill="#94a3b8" font-weight="600"
+                                font-family="sans-serif">Europe</text>
+                            <text x="50" y="140" text-anchor="middle" font-size="8" fill="#94a3b8" font-weight="600"
+                                font-family="sans-serif">Asia</text>
                             <circle cx="50" cy="55" r="4" fill="#475569" />
                             <circle cx="50" cy="105" r="4" fill="#475569" />
                             <circle cx="50" cy="155" r="4" fill="#475569" />
                             <circle cx="180" cy="155" r="8" fill="#f87171" />
-                            <text x="180" y="174" text-anchor="middle" font-size="8" fill="#f87171" font-weight="700" font-family="sans-serif">Asia</text>
-                            <path id="path-u1" d="M54,55 Q120,55 172,155" fill="none" stroke="#334155" stroke-dasharray="4 4" />
-                            <path id="path-u2" d="M54,105 Q120,105 172,155" fill="none" stroke="#334155" stroke-dasharray="4 4" />
-                            <path id="path-u3" d="M54,155 L172,155" fill="none" stroke="#334155" stroke-dasharray="4 4" />
-                            <circle r="3" fill="#f87171"><animateMotion dur="4s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#path-u1" /></animateMotion></circle>
-                            <circle r="3" fill="#f87171"><animateMotion dur="2.5s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#path-u2" /></animateMotion></circle>
-                            <circle r="3" fill="#f87171"><animateMotion dur="1s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#path-u3" /></animateMotion></circle>
+                            <text x="180" y="174" text-anchor="middle" font-size="8" fill="#f87171" font-weight="700"
+                                font-family="sans-serif">Asia</text>
+                            <path id="path-u1" d="M54,55 Q120,55 172,155" fill="none" stroke="#334155"
+                                stroke-dasharray="4 4" />
+                            <path id="path-u2" d="M54,105 Q120,105 172,155" fill="none" stroke="#334155"
+                                stroke-dasharray="4 4" />
+                            <path id="path-u3" d="M54,155 L172,155" fill="none" stroke="#334155"
+                                stroke-dasharray="4 4" />
+                            <circle r="3" fill="#f87171">
+                                <animateMotion dur="4s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1"
+                                    calcMode="linear">
+                                    <mpath href="#path-u1" />
+                                </animateMotion>
+                            </circle>
+                            <circle r="3" fill="#f87171">
+                                <animateMotion dur="2.5s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1"
+                                    calcMode="linear">
+                                    <mpath href="#path-u2" />
+                                </animateMotion>
+                            </circle>
+                            <circle r="3" fill="#f87171">
+                                <animateMotion dur="1s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1"
+                                    calcMode="linear">
+                                    <mpath href="#path-u3" />
+                                </animateMotion>
+                            </circle>
                         </svg>
                     </div>
                     <p>Users far from the server experience high latency — data travels around the globe and back.</p>
@@ -1053,21 +1897,45 @@
                     <h4>Anycast — Nearest Edge</h4>
                     <div class="ill-svg-wrapper">
                         <svg width="100%" height="100%" viewBox="0 0 220 200">
-                            <text x="50" y="40" text-anchor="middle" font-size="8" fill="#94a3b8" font-weight="600" font-family="sans-serif">USA</text>
-                            <text x="50" y="90" text-anchor="middle" font-size="8" fill="#94a3b8" font-weight="600" font-family="sans-serif">Vietnam</text>
-                            <text x="50" y="140" text-anchor="middle" font-size="8" fill="#94a3b8" font-weight="600" font-family="sans-serif">Singapore</text>
+                            <text x="50" y="40" text-anchor="middle" font-size="8" fill="#94a3b8" font-weight="600"
+                                font-family="sans-serif">USA</text>
+                            <text x="50" y="90" text-anchor="middle" font-size="8" fill="#94a3b8" font-weight="600"
+                                font-family="sans-serif">Vietnam</text>
+                            <text x="50" y="140" text-anchor="middle" font-size="8" fill="#94a3b8" font-weight="600"
+                                font-family="sans-serif">Singapore</text>
                             <circle cx="50" cy="55" r="4" fill="#475569" />
                             <circle cx="50" cy="105" r="4" fill="#475569" />
                             <circle cx="50" cy="155" r="4" fill="#475569" />
-                            <circle cx="160" cy="55" r="6" fill="#34d399" /><text x="160" y="44" text-anchor="middle" font-size="8" fill="#34d399" font-weight="600" font-family="sans-serif">USA</text>
-                            <circle cx="160" cy="105" r="6" fill="#34d399" /><text x="160" y="94" text-anchor="middle" font-size="8" fill="#34d399" font-weight="600" font-family="sans-serif">HKG</text>
-                            <circle cx="160" cy="155" r="6" fill="#34d399" /><text x="160" y="144" text-anchor="middle" font-size="8" fill="#34d399" font-weight="600" font-family="sans-serif">SIN</text>
-                            <path id="path-a1" d="M54,55 L154,55" stroke="#34d399" stroke-width="1.2" stroke-dasharray="4 4" fill="none" />
-                            <path id="path-a2" d="M54,105 L154,105" stroke="#34d399" stroke-width="1.2" stroke-dasharray="4 4" fill="none" />
-                            <path id="path-a3" d="M54,155 L154,155" stroke="#34d399" stroke-width="1.2" stroke-dasharray="4 4" fill="none" />
-                            <circle r="3" fill="#34d399"><animateMotion dur="1s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#path-a1" /></animateMotion></circle>
-                            <circle r="3" fill="#34d399"><animateMotion dur="1s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#path-a2" /></animateMotion></circle>
-                            <circle r="3" fill="#34d399"><animateMotion dur="1s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1" calcMode="linear"><mpath href="#path-a3" /></animateMotion></circle>
+                            <circle cx="160" cy="55" r="6" fill="#34d399" /><text x="160" y="44" text-anchor="middle"
+                                font-size="8" fill="#34d399" font-weight="600" font-family="sans-serif">USA</text>
+                            <circle cx="160" cy="105" r="6" fill="#34d399" /><text x="160" y="94" text-anchor="middle"
+                                font-size="8" fill="#34d399" font-weight="600" font-family="sans-serif">HKG</text>
+                            <circle cx="160" cy="155" r="6" fill="#34d399" /><text x="160" y="144" text-anchor="middle"
+                                font-size="8" fill="#34d399" font-weight="600" font-family="sans-serif">SIN</text>
+                            <path id="path-a1" d="M54,55 L154,55" stroke="#34d399" stroke-width="1.2"
+                                stroke-dasharray="4 4" fill="none" />
+                            <path id="path-a2" d="M54,105 L154,105" stroke="#34d399" stroke-width="1.2"
+                                stroke-dasharray="4 4" fill="none" />
+                            <path id="path-a3" d="M54,155 L154,155" stroke="#34d399" stroke-width="1.2"
+                                stroke-dasharray="4 4" fill="none" />
+                            <circle r="3" fill="#34d399">
+                                <animateMotion dur="1s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1"
+                                    calcMode="linear">
+                                    <mpath href="#path-a1" />
+                                </animateMotion>
+                            </circle>
+                            <circle r="3" fill="#34d399">
+                                <animateMotion dur="1s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1"
+                                    calcMode="linear">
+                                    <mpath href="#path-a2" />
+                                </animateMotion>
+                            </circle>
+                            <circle r="3" fill="#34d399">
+                                <animateMotion dur="1s" repeatCount="indefinite" keyPoints="0;1;0" keyTimes="0;0.5;1"
+                                    calcMode="linear">
+                                    <mpath href="#path-a3" />
+                                </animateMotion>
+                            </circle>
                         </svg>
                     </div>
                     <p>Every user reaches the nearest edge node — near-instant responses regardless of location.</p>
@@ -1087,7 +1955,9 @@
                     <div class="ill-svg-wrapper">
                         <svg width="100%" height="100%" viewBox="0 0 200 200">
                             <rect x="95" y="40" width="10" height="120" rx="5" fill="#1e293b" />
-                            <circle r="3" fill="#34d399"><animateMotion dur="1.8s" repeatCount="indefinite" path="M30,70 L170,70" /></circle>
+                            <circle r="3" fill="#34d399">
+                                <animateMotion dur="1.8s" repeatCount="indefinite" path="M30,70 L170,70" />
+                            </circle>
                             <circle r="3" fill="#f87171">
                                 <animate attributeName="cx" from="30" to="100" dur="1s" repeatCount="indefinite" />
                                 <animate attributeName="cy" values="130;130" dur="1s" repeatCount="indefinite" />
@@ -1097,15 +1967,21 @@
                             <text x="30" y="127" font-size="8" fill="#f87171" font-family="sans-serif">Ad ✕</text>
                         </svg>
                     </div>
-                    <p>Ad and tracker requests are intercepted at the DNS level and returned as null — never reaching your device.</p>
+                    <p>Ad and tracker requests are intercepted at the DNS level and returned as null — never reaching
+                        your device.</p>
                 </div>
                 <div class="ill-side">
                     <h4>Filter Lists Used</h4>
                     <div class="ill-svg-wrapper" style="display:flex;align-items:center;justify-content:center;">
                         <ul class="modal-list" style="text-align:left;">
-                            <li><a href="https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt" target="_blank" style="color:inherit;text-decoration:none;">AdGuard DNS Filter</a></li>
-                            <li><a href="https://adguardteam.github.io/HostlistsRegistry/assets/filter_16.txt" target="_blank" style="color:inherit;text-decoration:none;">ABPVN (Vietnam optimized)</a></li>
-                            <li><a href="https://badmojr.github.io/1Hosts/Lite/adblock.txt" target="_blank" style="color:inherit;text-decoration:none;">1Hosts (Lite)</a></li>
+                            <li><a href="https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt"
+                                    target="_blank" style="color:inherit;text-decoration:none;">AdGuard DNS Filter</a>
+                            </li>
+                            <li><a href="https://adguardteam.github.io/HostlistsRegistry/assets/filter_16.txt"
+                                    target="_blank" style="color:inherit;text-decoration:none;">ABPVN (Vietnam
+                                    optimized)</a></li>
+                            <li><a href="https://badmojr.github.io/1Hosts/Lite/adblock.txt" target="_blank"
+                                    style="color:inherit;text-decoration:none;">1Hosts (Lite)</a></li>
                         </ul>
                     </div>
                     <p>Multiple premium blocklists are combined and updated regularly for comprehensive coverage.</p>
@@ -1117,37 +1993,57 @@
 
     <!-- ECS Customization Modal -->
     <div class="modal-overlay" id="ecs-modal" onclick="hideModals()">
-        <div class="modal-content" style="max-width: 820px; padding: 0; overflow: hidden; display: flex; flex-direction: column; max-height: 85vh;" onclick="event.stopPropagation()">
-            <div style="padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--bg-2);">
+        <div class="modal-content"
+            style="max-width: 820px; padding: 0; overflow: hidden; display: flex; flex-direction: column; max-height: 85vh;"
+            onclick="event.stopPropagation()">
+            <div
+                style="padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--bg-2);">
                 <h2 style="margin: 0; text-align: left; font-size: 18px;">Advanced: ECS Customization</h2>
                 <button class="modal-close" style="position: static;" onclick="hideModals()">✕</button>
             </div>
-            
+
             <div style="overflow-y: auto; flex: 1; background: #fff; padding: 24px;">
                 <ul class="setup-list">
-                    <li><span class="step-num">1</span>Open <code>C:\dns-bibica-net-doh\dnsproxy\config.yaml</code> to see 5 pre-configured ECS lines:</li>
-                    <div class="code-block" style="margin-left: 0;" id="code-ecs-1"><button class="copy-btn" onclick="copyCode('code-ecs-1', this)" title="Copy Code"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button><span class="code-comment">#edns: true
-#edns-addr: "1.32.226.0"    # Japan
-#edns-addr: "212.165.2.0"   # Sing
-#edns-addr: "2.20.40.0"     # Hong Kong
-#edns-addr: "3.2.88.0"      # Thai Lan</span></div>
+                    <li><span class="step-num">1</span>Open <code>C:\dns-bibica-net-doh\dnsproxy\config.yaml</code> to
+                        see 5 pre-configured ECS lines:</li>
+                    <div class="code-block" style="margin-left: 0;" id="code-ecs-1"><button class="copy-btn"
+                            onclick="copyCode('code-ecs-1', this)" title="Copy Code"><svg width="14" height="14"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" />
+                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                            </svg></button><span class="code-comment">#edns: true
+                            #edns-addr: "1.32.226.0" # Japan
+                            #edns-addr: "212.165.2.0" # Sing
+                            #edns-addr: "2.20.40.0" # Hong Kong
+                            #edns-addr: "3.2.88.0" # Thai Lan</span></div>
 
-                    <li style="margin-top: 24px;"><span class="step-num">2</span>Uncomment (remove <code>#</code>) to select your preferred ECS. The final configuration will look like this:</li>
-                    <div class="code-block" style="margin-left: 0;" id="code-ecs-2"><button class="copy-btn" onclick="copyCode('code-ecs-2', this)" title="Copy Code"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button><span class="code-key">listen-addrs:</span>
-  - <span class="code-val">127.0.0.1</span>
-<span class="code-key">listen-ports:</span>
-  - <span class="code-val">53</span>
-<span class="code-key">upstream:</span>
-  - <span class="code-val">h3://doh.bibica.net/dns-query</span>
-  - <span class="code-val">https://doh.bibica.net/dns-query</span>
-<span class="code-key">bootstrap:</span> 
-  - <span class="code-val">1.1.1.1:53</span>
-  - <span class="code-val">8.8.8.8:53</span>
-<span class="code-key">cache:</span> <span class="code-val">false</span>
-<span class="code-key">edns:</span> <span class="code-val">true</span>
-<span class="code-key">edns-addr:</span> <span class="code-val">"1.32.226.255"</span></div>
-                    
-                    <li style="margin-top: 24px;"><span class="step-num">3</span>Run <code>C:\dns-bibica-net-doh\dns-bibica-net-restart.bat</code> to apply changes.</li>
+                    <li style="margin-top: 24px;"><span class="step-num">2</span>Uncomment (remove <code>#</code>) to
+                        select your preferred ECS. The final configuration will look like this:</li>
+                    <div class="code-block" style="margin-left: 0;" id="code-ecs-2"><button class="copy-btn"
+                            onclick="copyCode('code-ecs-2', this)" title="Copy Code"><svg width="14" height="14"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" />
+                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                            </svg></button><span class="code-key">listen-addrs:</span>
+                        - <span class="code-val">127.0.0.1</span>
+                        <span class="code-key">listen-ports:</span>
+                        - <span class="code-val">53</span>
+                        <span class="code-key">upstream:</span>
+                        - <span class="code-val">h3://doh.bibica.net/dns-query</span>
+                        - <span class="code-val">https://doh.bibica.net/dns-query</span>
+                        <span class="code-key">bootstrap:</span>
+                        - <span class="code-val">1.1.1.1:53</span>
+                        - <span class="code-val">8.8.8.8:53</span>
+                        <span class="code-key">cache:</span> <span class="code-val">false</span>
+                        <span class="code-key">edns:</span> <span class="code-val">true</span>
+                        <span class="code-key">edns-addr:</span> <span class="code-val">"1.32.226.255"</span>
+                    </div>
+
+                    <li style="margin-top: 24px;"><span class="step-num">3</span>Run
+                        <code>C:\dns-bibica-net-doh\dns-bibica-net-restart.bat</code> to apply changes.
+                    </li>
                 </ul>
             </div>
         </div>
@@ -1155,12 +2051,15 @@
 
     <!-- Perf Modal -->
     <div class="modal-overlay" id="perf-modal" onclick="hideModals()">
-        <div class="modal-content" style="max-width: 820px; padding: 0; overflow: hidden; display: flex; flex-direction: column; max-height: 85vh; margin-top: 8vh; margin-bottom: auto;" onclick="event.stopPropagation()">
-            <div style="padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--bg-2);">
+        <div class="modal-content"
+            style="max-width: 820px; padding: 0; overflow: hidden; display: flex; flex-direction: column; max-height: 85vh; margin-top: 8vh; margin-bottom: auto;"
+            onclick="event.stopPropagation()">
+            <div
+                style="padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--bg-2);">
                 <h2 style="margin: 0; text-align: left; font-size: 18px;">Analyze ECS Routing</h2>
                 <button class="modal-close" style="position: static;" onclick="hideModals()">✕</button>
             </div>
-            
+
             <div style="overflow-y: auto; flex: 1; background: #fff; padding: 24px;">
                 <table class="perf-table">
                     <thead>
@@ -1175,23 +2074,31 @@
                     </tbody>
                 </table>
             </div>
-            
-            <div style="padding: 14px 24px; border-top: 1px solid var(--border); background: var(--bg-2); display: flex; justify-content: flex-end;">
-                 <button onclick="runPerformanceTest()" id="run-test-btn" class="btn-primary-sm" style="margin: 0;">
+
+            <div
+                style="padding: 14px 24px; border-top: 1px solid var(--border); background: var(--bg-2); display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; gap: 4px; background: var(--bg); padding: 4px; border-radius: 8px; border: 1px solid var(--border);">
+                    <button id="perf-proto-ipv4" onclick="setPerfProto('A')" class="perf-proto-btn active">IPv4</button>
+                    <button id="perf-proto-ipv6" onclick="setPerfProto('AAAA')" class="perf-proto-btn" title="IPv6">IPv6</button>
+                </div>
+                <button onclick="runPerformanceTest()" id="run-test-btn" class="btn-primary-sm" style="margin: 0;">
                     <span class="status-dot"></span> Re-analyze
-                 </button>
+                </button>
             </div>
         </div>
     </div>
 
     <!-- Variants Modal -->
     <div class="modal-overlay" id="variants-modal" onclick="hideModals()">
-        <div class="modal-content" style="max-width: 820px; padding: 0; overflow: hidden; display: flex; flex-direction: column; max-height: 85vh; margin-top: 8vh; margin-bottom: auto;" onclick="event.stopPropagation()">
-            <div style="padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--bg-2);">
+        <div class="modal-content"
+            style="max-width: 820px; padding: 0; overflow: hidden; display: flex; flex-direction: column; max-height: 85vh; margin-top: 8vh; margin-bottom: auto;"
+            onclick="event.stopPropagation()">
+            <div
+                style="padding: 20px 24px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; background: var(--bg-2);">
                 <h2 style="margin: 0; text-align: left; font-size: 18px;">DNS Variants</h2>
                 <button class="modal-close" style="position: static;" onclick="hideModals()">✕</button>
             </div>
-            
+
             <div class="variant-tabs-inner">
                 <div class="variant-tab-btn active" onclick="switchVariantTab('vn', this)">Vietnam ISPs</div>
                 <div class="variant-tab-btn" onclick="switchVariantTab('global', this)">Global Regions</div>
@@ -1200,8 +2107,9 @@
             <div id="variants-list-container" style="overflow-y: auto; flex: 1; background: #fff;">
                 <!-- Variants will be injected here -->
             </div>
-            
-            <div style="padding: 14px 24px; border-top: 1px solid var(--border); background: var(--bg-2); font-size: 12px; color: var(--text-3);">
+
+            <div
+                style="padding: 14px 24px; border-top: 1px solid var(--border); background: var(--bg-2); font-size: 12px; color: var(--text-3);">
                 Tip: These endpoints use ECS to ensure the best routing for specific networks.
             </div>
         </div>
@@ -1212,18 +2120,28 @@
         <div class="modal-content" onclick="event.stopPropagation()">
             <button class="modal-close" onclick="hideModals()">✕</button>
             <h2 style="display: flex; align-items: center; justify-content: center; gap: 10px;">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="color: var(--success);"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"
+                    stroke-linecap="round" stroke-linejoin="round" style="color: var(--success);">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                    <polyline points="22 4 12 14.01 9 11.01" />
+                </svg>
                 Verified Status & Expiry
             </h2>
             <div style="font-size: 14.5px; color: var(--text-2); line-height: 1.6;">
-                <p style="margin-bottom: 16px;">This configuration profile is digitally signed using a Let's Encrypt certificate. This ensures your device displays a green <strong>'Verified'</strong> status, guaranteeing the profile's authenticity.</p>
-                
+                <p style="margin-bottom: 16px;">This configuration profile is digitally signed using a Let's Encrypt
+                    certificate. This ensures your device displays a green <strong>'Verified'</strong> status,
+                    guaranteeing the profile's authenticity.</p>
+
                 <ul class="setup-list" style="margin-bottom: 16px;">
-                    <li style="margin-bottom: 10px;"><span class="step-num">1</span><!-- MODAL_EXPIRY_START -->Current profile "Verified" status expires on: <strong>08/23/2026</strong><!-- MODAL_EXPIRY_END --></li>
-                    <li style="margin-bottom: 10px;"><span class="step-num">2</span>Expired profiles show an "Unverified" warning (standard system behavior).</li>
-                    <li style="margin-bottom: 10px;"><span class="step-num">3</span>Active users are <strong>NOT</strong> affected; the profile continues to work indefinitely.</li>
+                    <li style="margin-bottom: 10px;"><span class="step-num">1</span><!-- MODAL_EXPIRY_START -->Current profile "Verified" status expires on: <strong>08/30/2026</strong><!-- MODAL_EXPIRY_END --></li>
+                    <li style="margin-bottom: 10px;"><span class="step-num">2</span>Expired profiles show an
+                        "Unverified" warning (standard system behavior).</li>
+                    <li style="margin-bottom: 10px;"><span class="step-num">3</span>Active users are
+                        <strong>NOT</strong> affected; the profile continues to work indefinitely.
+                    </li>
                 </ul>
-                <p style="font-size: 13.5px; opacity: 0.8; margin-top: 16px;">Download the latest version from this page to maintain the <strong>'Verified'</strong> status.</p>
+                <p style="font-size: 13.5px; opacity: 0.8; margin-top: 16px;">Download the latest version from this page
+                    to maintain the <strong>'Verified'</strong> status.</p>
             </div>
         </div>
     </div>
@@ -1247,9 +2165,9 @@
                     ALL_LOCATIONS[l.iata] = { city: l.city, cc: l.cca2 };
                 });
                 return ALL_LOCATIONS;
-            } catch(e) { 
-                ALL_LOCATIONS = {}; 
-                return {}; 
+            } catch (e) {
+                ALL_LOCATIONS = {};
+                return {};
             }
         }
 
@@ -1266,10 +2184,67 @@
         }
 
         // ── Geo/ISP detection ──
+        window.hasIPv4 = true;
+        window.hasIPv6 = false;
+        window.perfProto = 'A';
+        function setPerfProto(p) {
+            if (p === 'AAAA' && !window.hasIPv6) return;
+            if (p === 'A' && !window.hasIPv4) return;
+            if (window.perfProto === p) return;
+            window.perfProto = p;
+            document.getElementById('perf-proto-ipv4').classList.toggle('active', p === 'A');
+            document.getElementById('perf-proto-ipv6').classList.toggle('active', p === 'AAAA');
+            const btn = document.getElementById('run-test-btn');
+            if (btn && !btn.disabled && document.getElementById('perf-modal').classList.contains('show')) {
+                runPerformanceTest();
+            }
+        }
+
+        // ── IPv4/IPv6 connectivity check ──
+        let connectivityChecked = false;
+        const checkConnectivity = async (url) => {
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 3000);
+            try {
+                await fetch(url, { mode: 'no-cors', cache: 'no-store', signal: controller.signal });
+                return true;
+            } catch (e) {
+                return false;
+            } finally {
+                clearTimeout(timeout);
+            }
+        };
+        async function detectConnectivity() {
+            if (connectivityChecked) return;
+            connectivityChecked = true;
+            const [hasV4, hasV6] = await Promise.all([
+                checkConnectivity('https://1.1.1.1/cdn-cgi/trace'),
+                checkConnectivity('https://[2606:4700:4700::1111]/cdn-cgi/trace')
+            ]);
+            window.hasIPv4 = hasV4;
+            window.hasIPv6 = hasV6;
+            const ipv4Btn = document.getElementById('perf-proto-ipv4');
+            const ipv6Btn = document.getElementById('perf-proto-ipv6');
+            if (ipv4Btn) {
+                ipv4Btn.disabled = !window.hasIPv4;
+                ipv4Btn.title = window.hasIPv4 ? 'Test with IPv4 (A)' : 'Your network does not support IPv4';
+            }
+            if (ipv6Btn) {
+                ipv6Btn.disabled = !window.hasIPv6;
+                ipv6Btn.title = window.hasIPv6 ? 'Test with IPv6 (AAAA)' : 'Your network does not support IPv6';
+            }
+            // Auto-select: default IPv4, fallback to IPv6 if IPv4 unavailable
+            if (!window.hasIPv4 && window.hasIPv6) {
+                window.perfProto = 'AAAA';
+                if (ipv4Btn) ipv4Btn.classList.remove('active');
+                if (ipv6Btn) ipv6Btn.classList.add('active');
+            }
+        }
+
         const getGeo = async () => {
             const cacheKey = 'doh_geo_data';
 
-            // 1. Fetch Cloudflare trace to get colo, ip, loc
+            // 1. Fetch Cloudflare trace only — không block bởi IPv4/IPv6 check
             let colo = '???', currentIp = '', countryCode = '??';
             try {
                 const traceRes = await fetch('/cdn-cgi/trace', { cache: 'no-store' });
@@ -1277,7 +2252,7 @@
                 colo = (traceData.colo || '???').toUpperCase();
                 currentIp = traceData.ip || '';
                 countryCode = traceData.loc || '??';
-            } catch(e) {}
+            } catch (e) { }
 
             const locs = await fetchLocations();
             const nodeInfo = locs[colo] || { city: colo, cc: null };
@@ -1285,7 +2260,7 @@
 
             const updateUI = (data) => {
                 // Left side
-                const userFlag = (data.countryCode && data.countryCode !== '??') 
+                const userFlag = (data.countryCode && data.countryCode !== '??')
                     ? `<img src="frontend/svg/${data.countryCode.toLowerCase()}.svg" style="height: 14px; border-radius: 2px; display: block;" alt="${data.countryCode}">`
                     : '';
                 document.getElementById('user-isp-container').innerHTML = `<span>${data.isp}${data.city ? ', ' + data.city : ''}</span>${userFlag}`;
@@ -1307,7 +2282,7 @@
                         data.colo = colo; data.nodeLocation = nodeLocation; data.countryCode = countryCode;
                         updateUI(data); startLivePing(); return;
                     }
-                } catch(e) { sessionStorage.removeItem(cacheKey); }
+                } catch (e) { sessionStorage.removeItem(cacheKey); }
             }
 
             // 4. Get ISP info
@@ -1316,11 +2291,11 @@
                 const geoRes = await fetch('https://api.ip.sb/geoip').then(r => r.json());
                 isp = geoRes.asn_organization || geoRes.isp || 'Unknown ISP';
                 city = geoRes.city || '';
-            } catch(e) {
+            } catch (e) {
                 try {
                     const geoRes = await fetch('https://ipinfo.io/json').then(r => r.json());
                     isp = geoRes.org || 'Unknown ISP'; city = geoRes.city || '';
-                } catch(e2) { isp = 'Unknown ISP'; }
+                } catch (e2) { isp = 'Unknown ISP'; }
             }
 
             const finalData = { ip: currentIp, isp, city, countryCode, colo, nodeLocation };
@@ -1336,7 +2311,7 @@
             const card = document.getElementById('routing-card');
             const value = document.getElementById('ping-value-live');
             badge.style.display = 'block';
-            
+
             const runPing = async () => {
                 try {
                     const start = performance.now();
@@ -1354,7 +2329,7 @@
                         badge.style.color = 'var(--danger)';
                         badge.style.borderColor = 'var(--danger)';
                     }
-                } catch(e) {}
+                } catch (e) { }
             };
             runPing();
             setInterval(runPing, 1500);
@@ -1373,7 +2348,7 @@
 
         // ── Variants ──
         // <!-- JS_EXPIRY_START -->
-        const PROFILE_EXPIRY = "08/23/2026";
+        const PROFILE_EXPIRY = "08/30/2026";
         // <!-- JS_EXPIRY_END -->
         // <!-- JS_IS_SIGNED_START -->
         const IS_PROFILE_SIGNED = true;
@@ -1383,19 +2358,19 @@
                 group: 'Vietnam — by ISP & region',
                 items: [
                     { id: 'vn-vnpt-hcm', name: 'VNPT Ho Chi Minh', icon: 'vn' },
-                    { id: 'vn-vnpt-hn',  name: 'VNPT Hanoi', icon: 'vn' },
-                    { id: 'vn-vnpt-dn',  name: 'VNPT Da Nang', icon: 'vn' },
-                    { id: 'vn-fpt-hcm',  name: 'FPT Ho Chi Minh', icon: 'vn' },
-                    { id: 'vn-fpt-hn',   name: 'FPT Hanoi', icon: 'vn' },
-                    { id: 'vn-fpt-dn',   name: 'FPT Da Nang', icon: 'vn' },
+                    { id: 'vn-vnpt-hn', name: 'VNPT Hanoi', icon: 'vn' },
+                    { id: 'vn-vnpt-dn', name: 'VNPT Da Nang', icon: 'vn' },
+                    { id: 'vn-fpt-hcm', name: 'FPT Ho Chi Minh', icon: 'vn' },
+                    { id: 'vn-fpt-hn', name: 'FPT Hanoi', icon: 'vn' },
+                    { id: 'vn-fpt-dn', name: 'FPT Da Nang', icon: 'vn' },
                     { id: 'vn-viettel-hcm', name: 'Viettel Ho Chi Minh', icon: 'vn' },
-                    { id: 'vn-viettel-hn',  name: 'Viettel Hanoi', icon: 'vn' },
-                    { id: 'vn-viettel-dn',  name: 'Viettel Da Nang', icon: 'vn' },
-                    { id: 'vn-mb-hcm',   name: 'MobiFone Ho Chi Minh', icon: 'vn' },
-                    { id: 'vn-mb-hn',    name: 'MobiFone Hanoi', icon: 'vn' },
-                    { id: 'vn-sctv',     name: 'SCTV', icon: 'vn' },
-                    { id: 'vn-cmc',      name: 'CMC Telecom', icon: 'vn' },
-                    { id: 'vn-netnam',   name: 'NetNam', icon: 'vn' }
+                    { id: 'vn-viettel-hn', name: 'Viettel Hanoi', icon: 'vn' },
+                    { id: 'vn-viettel-dn', name: 'Viettel Da Nang', icon: 'vn' },
+                    { id: 'vn-mb-hcm', name: 'MobiFone Ho Chi Minh', icon: 'vn' },
+                    { id: 'vn-mb-hn', name: 'MobiFone Hanoi', icon: 'vn' },
+                    { id: 'vn-sctv', name: 'SCTV', icon: 'vn' },
+                    { id: 'vn-cmc', name: 'CMC Telecom', icon: 'vn' },
+                    { id: 'vn-netnam', name: 'NetNam', icon: 'vn' }
                 ]
             },
             {
@@ -1567,9 +2542,9 @@
         function renderVariants() {
             const container = document.getElementById('variants-list-container');
             container.innerHTML = '';
-            
-            const dataToRender = activeEcsTab === 'vn' 
-                ? [ECS_DATA[0]] 
+
+            const dataToRender = activeEcsTab === 'vn'
+                ? [ECS_DATA[0]]
                 : ECS_DATA.slice(1);
 
             dataToRender.forEach(group => {
@@ -1579,7 +2554,7 @@
                     title.textContent = group.group;
                     container.appendChild(title);
                 }
-                
+
                 group.items.forEach(v => {
                     const url = `https://${host}/ecs/${v.id}`;
                     const appleUrl = IS_PROFILE_SIGNED ? `/mobileconfig/variants/${v.id}.mobileconfig` : `/apple/${v.id}`;
@@ -1626,7 +2601,7 @@
             const clone = el.cloneNode(true);
             const btnInClone = clone.querySelector('.copy-btn');
             if (btnInClone) btnInClone.remove();
-            
+
             navigator.clipboard.writeText(clone.innerText.trim()).then(() => {
                 const toast = document.getElementById('toast');
                 toast.classList.add('show');
@@ -1640,15 +2615,15 @@
 
         // ── Performance Check ──
         const PERF_TARGETS = [
-            { name: "Tiktok.com",    domain: "v16-webapp-prime.tiktok.com" },
-            { name: "Bilibili.com",  domain: "upos-hz-mirrorakam.akamaized.net" },
-            { name: "Apple.com",     domain: "www.apple.com" },
-            { name: "Amazon.com",    domain: "www.amazon.com" },
-            { name: "Ebay.com",      domain: "www.ebay.com" },
-            { name: "Douyin.com",    domain: "v3-dy-o.zjcdn.com" },
-            { name: "Bilibili.tv",   domain: "www.bilibili.tv" },
-            { name: "Shopee.vn",     domain: "deo.shopeemobile.com" },
-            { name: "Lazada.vn",     domain: "img.lazcdn.com" }
+            { name: "Tiktok.com", domain: "v16-webapp-prime.tiktok.com" },
+            { name: "Bilibili.com", domain: "upos-hz-mirrorakam.akamaized.net" },
+            { name: "Apple.com", domain: "www.apple.com" },
+            { name: "Amazon.com", domain: "www.amazon.com" },
+            { name: "Ebay.com", domain: "www.ebay.com" },
+            { name: "Douyin.com", domain: "v3-dy-o.zjcdn.com" },
+            { name: "Bilibili.tv", domain: "www.bilibili.tv" },
+            { name: "Shopee.vn", domain: "deo.shopeemobile.com" },
+            { name: "Lazada.vn", domain: "img.lazcdn.com" }
         ];
 
         const PERF_ROUNDS = 3; // Number of rounds per domain for median calculation
@@ -1658,7 +2633,7 @@
             if (!ip || ip === '0.0.0.0') return { org: 'Unknown' };
             const cached = sessionStorage.getItem(`geo_${ip}`);
             if (cached) return JSON.parse(cached);
-            
+
             try {
                 const res = await fetch(`https://ipinfo.io/${ip}/json`);
                 if (res.ok) {
@@ -1668,7 +2643,7 @@
                         return r;
                     }
                 }
-            } catch(e) {}
+            } catch (e) { }
             try {
                 const res = await fetch(`https://ipapi.co/${ip}/json/`);
                 if (res.ok) {
@@ -1678,7 +2653,7 @@
                         return r;
                     }
                 }
-            } catch(e) {}
+            } catch (e) { }
             return { org: 'Unknown' };
         }
 
@@ -1693,13 +2668,13 @@
                 let ip = null;
                 if (json.Answer && json.Answer[0]) ip = json.Answer[0].data;
                 return { time: Math.round(end - start), ip };
-            } catch(e) {
+            } catch (e) {
                 return { time: 999, ip: null };
             }
         }
 
         const median = arr => {
-            const s = [...arr].sort((a,b) => a - b);
+            const s = [...arr].sort((a, b) => a - b);
             const mid = Math.floor(s.length / 2);
             return s.length % 2 !== 0 ? s[mid] : Math.round((s[mid - 1] + s[mid]) / 2);
         };
@@ -1722,11 +2697,11 @@
             `;
         }
 
-        function openPerfModal() {
-
+        async function openPerfModal() {
             showModal('perf-modal');
             const body = document.getElementById('perf-body');
             if (body.children.length === 0) {
+                await detectConnectivity();
                 runPerformanceTest();
             }
         }
@@ -1757,7 +2732,7 @@
                 const res = await fetch(url + cacheBuster(), { cache: 'no-store' });
                 const data = await res.json();
                 const time = Math.round(performance.now() - start);
-                const ip = data.Answer ? (data.Answer.find(r => r.type === 1)?.data ?? null) : null;
+                const ip = data.Answer ? (data.Answer.find(r => r.type === 1 || r.type === 28)?.data ?? null) : null;
                 return { time, ip };
             };
 
@@ -1768,7 +2743,7 @@
                     const diff = otherTime - dnsTime;
                     const max = Math.max(dnsTime, otherTime) || 1;
                     const pct = Math.abs((diff / max) * 100).toFixed(0);
-                    if (diff > 0)      badge = `<span style="color:var(--success); font-weight:700; margin-left:4px">-${pct}%</span>`;
+                    if (diff > 0) badge = `<span style="color:var(--success); font-weight:700; margin-left:4px">-${pct}%</span>`;
                     else if (diff < 0) badge = `<span style="color:var(--danger); font-weight:700; margin-left:4px">+${pct}%</span>`;
                 }
                 row.cells[cellIndex].innerHTML = `
@@ -1779,15 +2754,20 @@
                 `;
             };
 
+            const queryType = window.perfProto === 'AAAA' ? 28 : 1;
             try {
                 await Promise.all([
-                    fetch(`/dns-query?domain=example.com${cacheBuster()}`, { cache: 'no-store' }).catch(() => {}),
-                    fetch(`https://dns.google/resolve?name=example.com&type=A${cacheBuster()}`, { cache: 'no-store' }).catch(() => {})
+                    fetch(`/dns-query?domain=example.com&type=${queryType}${cacheBuster()}`, { cache: 'no-store' }).catch(() => { }),
+                    fetch(`https://dns.google/resolve?name=example.com&type=${queryType}${cacheBuster()}`, { cache: 'no-store' }).catch(() => { })
                 ]);
-            } catch(e) {}
+            } catch (e) { }
             btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation: spin 1s linear infinite;"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Analyzing...`;
 
-            for (const t of PERF_TARGETS) {
+            const targets = queryType === 28
+                ? PERF_TARGETS.filter(t => !["Tiktok.com", "Ebay.com", "Douyin.com", "Bilibili.tv", "Lazada.vn"].includes(t.name))
+                : PERF_TARGETS;
+
+            for (const t of targets) {
                 const row = document.createElement('tr');
                 row.innerHTML = `
                     <td><div class="domain-name">${t.name}</div><div style="font-size:10px; opacity:0.5">${t.domain}</div></td>
@@ -1802,24 +2782,24 @@
                 for (let round = 0; round < PERF_ROUNDS; round++) {
                     try {
                         const [gwResult, glResult] = await Promise.all([
-                            measureOnce(`/dns-query?domain=${t.domain}`),
-                            measureOnce(`https://dns.google/resolve?name=${t.domain}&type=A`)
+                            measureOnce(`/dns-query?domain=${t.domain}&type=${queryType}`),
+                            measureOnce(`https://dns.google/resolve?name=${t.domain}&type=${queryType}`)
                         ]);
                         gwTimes.push(gwResult.time);
                         glTimes.push(glResult.time);
                         if (!gwIp && gwResult.ip) gwIp = gwResult.ip;
                         if (!glIp && glResult.ip) glIp = glResult.ip;
-                    } catch(e) {}
+                    } catch (e) { }
                 }
 
                 const gwMedian = gwTimes.length ? median(gwTimes) : null;
                 const glMedian = glTimes.length ? median(glTimes) : null;
 
                 row.gatewayDnsTime = gwMedian;
-                row.googleDnsTime  = glMedian;
+                row.googleDnsTime = glMedian;
 
                 if (gwMedian !== null) totalTimeGateway += gwMedian;
-                if (glMedian !== null) totalTimeGoogle  += glMedian;
+                if (glMedian !== null) totalTimeGoogle += glMedian;
 
                 renderCell(row, 1, gwIp, gwMedian, null);
                 renderCell(row, 2, glIp, glMedian, null);
@@ -1830,23 +2810,23 @@
             }
 
             const headerGateway = document.getElementById('perf-header-gateway');
-            const headerGoogle  = document.getElementById('perf-header-google');
-            const diff    = totalTimeGoogle - totalTimeGateway;
+            const headerGoogle = document.getElementById('perf-header-google');
+            const diff = totalTimeGoogle - totalTimeGateway;
             const maxTime = Math.max(totalTimeGateway, totalTimeGoogle) || 1;
-            const pct     = Math.abs((diff / maxTime) * 100).toFixed(1);
+            const pct = Math.abs((diff / maxTime) * 100).toFixed(1);
 
             let gatewayBadge = '', googleBadge = '';
             if (diff > 0) {
                 gatewayBadge = `<span class="badge badge-green" style="margin-left:4px; font-size:9px">-${pct}%</span>`;
-                googleBadge  = `<span class="badge" style="margin-left:4px; font-size:9px; color:var(--danger); border-color:rgba(207,34,46,0.2); background:rgba(207,34,46,0.05)">+${pct}%</span>`;
+                googleBadge = `<span class="badge" style="margin-left:4px; font-size:9px; color:var(--danger); border-color:rgba(207,34,46,0.2); background:rgba(207,34,46,0.05)">+${pct}%</span>`;
             } else if (diff < 0) {
                 gatewayBadge = `<span class="badge" style="margin-left:4px; font-size:9px; color:var(--danger); border-color:rgba(207,34,46,0.2); background:rgba(207,34,46,0.05)">+${pct}%</span>`;
-                googleBadge  = `<span class="badge badge-green" style="margin-left:4px; font-size:9px">-${pct}%</span>`;
+                googleBadge = `<span class="badge badge-green" style="margin-left:4px; font-size:9px">-${pct}%</span>`;
             }
 
             const roundNote = `<span style="color:var(--text-3); font-size:10px; margin-left:2px">(median of ${PERF_ROUNDS})</span>`;
             headerGateway.innerHTML = `${host} <div style="font-size:11px; font-weight:500; color:var(--text-2); margin-top:4px; display:flex; align-items:center;">Total: <span style="color:var(--text); font-weight:700; margin-left:3px">${totalTimeGateway}ms</span> ${gatewayBadge} <span style="margin-left:4px">${roundNote}</span></div>`;
-            headerGoogle.innerHTML  = `Google DNS <div style="font-size:11px; font-weight:500; color:var(--text-2); margin-top:4px; display:flex; align-items:center;">Total: <span style="color:var(--text); font-weight:700; margin-left:3px">${totalTimeGoogle}ms</span> ${googleBadge} <span style="margin-left:4px">${roundNote}</span></div>`;
+            headerGoogle.innerHTML = `Google DNS <div style="font-size:11px; font-weight:500; color:var(--text-2); margin-top:4px; display:flex; align-items:center;">Total: <span style="color:var(--text); font-weight:700; margin-left:3px">${totalTimeGoogle}ms</span> ${googleBadge} <span style="margin-left:4px">${roundNote}</span></div>`;
 
             btn.disabled = false;
             btn.innerHTML = `<span class="status-dot"></span> Re-analyze`;
@@ -1874,7 +2854,7 @@
 
         async function checkDnsStatus() {
             const badge = document.getElementById('dns-status-badge');
-            const text  = document.getElementById('dns-status-text');
+            const text = document.getElementById('dns-status-text');
             badge.className = 'status-badge checking';
             text.textContent = 'Checking connection…';
 
@@ -1896,12 +2876,12 @@
                 // 3000ms is more robust for slow networks to ensure DNS query is sent
                 const timeoutId = setTimeout(() => controller.abort(), 3000);
                 try {
-                    await fetch(`https://${subdomain}.dnscheck.tools/`, { 
-                        signal: controller.signal, 
-                        mode: 'no-cors', 
-                        cache: 'no-store' 
+                    await fetch(`https://${subdomain}.dnscheck.tools/`, {
+                        signal: controller.signal,
+                        mode: 'no-cors',
+                        cache: 'no-store'
                     });
-                } catch (_) {} finally { clearTimeout(timeoutId); }
+                } catch (_) { } finally { clearTimeout(timeoutId); }
             };
 
             // Step 1: Collect entries from dnscheck WS
@@ -1914,13 +2894,13 @@
                 const fallback = setTimeout(() => { ws.close(); done(); }, 8000);
                 ws.onopen = async () => {
                     const subdomains = [];
-                    for (let i = 0; i < 4; i++) subdomains.push(`${String.fromCharCode(97+i)}.nullip-${clientId}.test`);
+                    for (let i = 0; i < 4; i++) subdomains.push(`${String.fromCharCode(97 + i)}.nullip-${clientId}.test`);
                     subdomains.push(`nullip-${clientId}.test-ipv6`);
                     subdomains.push(`truncate-${clientId}.test`);
-                    for (const alg of ['alg13','alg14','alg15'])
-                        for (const sig of ['','badsig-','expiredsig-','nosig-'])
+                    for (const alg of ['alg13', 'alg14', 'alg15'])
+                        for (const sig of ['', 'badsig-', 'expiredsig-', 'nosig-'])
                             subdomains.push(`${sig}${clientId}.test-${alg}`);
-                    
+
                     // Fire queries in batches (6 queries every 200ms) to balance speed and server load
                     (async () => {
                         for (let i = 0; i < subdomains.length; i += 6) {
@@ -1931,7 +2911,7 @@
 
                     const queryStart = Date.now();
                     console.log('[DNS Check] Queries fired (batched), monitoring results...');
-                    
+
                     // Smart wait loop: 2s minimum to 4s maximum
                     while (Date.now() - queryStart < 4000) {
                         const now = Date.now();
@@ -1950,7 +2930,7 @@
                         }
                         await new Promise(r => setTimeout(r, 100));
                     }
-                    
+
                     clearTimeout(fallback);
                     ws.close();
                     done();
@@ -1960,24 +2940,24 @@
                         const req = JSON.parse(data);
                         if (!req.remoteIp || !pat.test(req.qname)) return;
                         const qname = req.qname.toLowerCase().replace(/\.$/, '');
-                        
+
                         // Extract label to filter out Delegation Walk records
                         const parts = qname.replace('.dnscheck.tools', '').split('.');
                         let label = null;
                         if (parts[0].includes('truncate')) label = 'truncate';
                         else if (parts.length > 1 && parts[1].includes('test-ipv6')) label = 'ipv6';
-                        else if (['a','b','c','d'].includes(parts[0])) label = parts[0];
+                        else if (['a', 'b', 'c', 'd'].includes(parts[0])) label = parts[0];
                         else if (parts.length > 1 && parts[1].includes('test-alg')) label = parts[1];
-                        
+
                         let subnetPrefix = null;
                         if (req.clientSubnet && !req.clientSubnet.endsWith('/0')) {
                             subnetPrefix = parseInt(req.clientSubnet.split('/')[1], 10);
                         }
-                        
+
                         entries.push({ qname, ip: req.remoteIp, label, subnetPrefix });
                         lastEntryTime = Date.now();
                         console.log(`[DNS Check] Initial read: qname=${qname} | ip=${req.remoteIp} | label=${label} | ecs=${subnetPrefix}`);
-                    } catch (_) {}
+                    } catch (_) { }
                 };
                 ws.onerror = () => { clearTimeout(fallback); done(); };
             });
@@ -2006,7 +2986,7 @@
                             ws.close();
                             done();
                         }
-                    } catch (_) {}
+                    } catch (_) { }
                 };
                 ws.onerror = () => { clearTimeout(fallback); done(); };
             });
@@ -2018,12 +2998,12 @@
             const RANGES = {
 
                 'Cloudflare DNS': {
-                    v4: ['173.245.48.0/20','103.21.244.0/22','103.22.200.0/22','103.31.4.0/22','141.101.64.0/18','108.162.192.0/18','190.93.240.0/20','188.114.96.0/20','197.234.240.0/22','198.41.128.0/17','162.158.0.0/15','104.16.0.0/13','104.24.0.0/14','172.64.0.0/13','131.0.72.0/22'],
-                    v6: ['2400:cb00::/32','2606:4700::/32','2803:f800::/32','2405:b500::/32','2405:8100::/32','2a06:98c0::/29','2c0f:f248::/32']
+                    v4: ['173.245.48.0/20', '103.21.244.0/22', '103.22.200.0/22', '103.31.4.0/22', '141.101.64.0/18', '108.162.192.0/18', '190.93.240.0/20', '188.114.96.0/20', '197.234.240.0/22', '198.41.128.0/17', '162.158.0.0/15', '104.16.0.0/13', '104.24.0.0/14', '172.64.0.0/13', '131.0.72.0/22'],
+                    v6: ['2400:cb00::/32', '2606:4700::/32', '2803:f800::/32', '2405:b500::/32', '2405:8100::/32', '2a06:98c0::/29', '2c0f:f248::/32']
                 },
                 'Quad9 DNS': {
-                    v4: ["102.217.157.128/28","102.217.157.144/28","103.142.152.112/28","103.175.186.195/32","103.191.77.195/32","103.194.167.224/28","103.227.66.240/28","103.23.18.113/32","103.245.97.203/32","103.248.210.99/32","103.94.94.3/32","109.200.195.192/28","109.200.199.192/28","109.200.209.192/28","113.23.196.123/32","113.23.196.139/32","119.31.179.35/32","121.78.35.51/32","125.20.237.115/32","125.20.246.123/32","125.254.84.240/28","134.195.207.13/32","138.121.98.179/32","138.128.139.128/28","138.128.140.224/28","147.72.242.0/28","154.113.24.11/32","158.38.58.179/32","158.38.58.187/32","160.0.104.240/28","160.0.105.240/28","160.0.108.240/28","160.0.97.240/28","160.0.98.240/28","160.0.99.240/28","161.53.251.21/32","162.244.53.192/28","162.244.55.16/28","164.113.205.224/28","166.70.78.3/32","170.75.247.123/32","177.101.25.155/32","177.93.141.224/28","178.132.70.15/32","179.0.200.40/32","185.211.231.155/32","185.33.111.67/32","185.40.106.224/28","185.44.108.99/32","185.70.1.160/28","188.122.68.208/28","188.122.78.192/28","188.122.80.224/28","188.93.173.251/32","192.115.209.68/32","192.40.40.3/32","192.43.217.224/28","192.75.191.32/32","193.136.252.224/28","193.148.250.92/32","193.167.245.112/28","193.188.15.195/32","193.4.59.50/32","193.46.232.192/28","193.46.232.224/28","193.46.232.240/28","194.116.81.227/32","194.149.135.211/32","194.54.137.35/32","195.140.195.213/32","196.10.54.180/32","196.10.55.181/32","196.216.149.43/32","196.216.216.43/32","196.43.240.43/32","196.49.10.187/32","196.49.100.181/32","196.49.14.21/32","196.49.19.202/32","196.49.5.131/32","196.49.7.61/32","196.49.88.167/32","197.230.227.227/32","200.107.82.206/32","200.115.95.147/32","200.12.251.67/32","200.25.1.192/28","200.25.17.208/28","200.25.22.176/28","200.25.38.240/28","200.25.43.176/28","200.25.46.192/28","200.25.48.240/28","200.25.52.208/28","200.25.56.96/28","200.25.70.192/28","200.25.72.0/28","200.25.78.32/28","200.25.81.144/28","200.25.91.176/28","200.25.97.160/28","202.152.129.91/32","202.153.128.44/32","202.160.5.147/32","202.59.208.41/32","202.76.225.74/32","202.8.10.208/28","203.159.70.147/32","205.215.193.195/32","206.1.36.91/32","206.126.112.186/32","206.126.244.184/32","208.118.224.144/28","212.0.192.187/32","212.20.230.109/32","213.128.135.26/32","213.163.69.192/28","213.179.203.128/27","213.179.217.0/28","23.136.248.67/32","23.137.40.66/32","23.138.113.67/32","23.171.112.251/32","23.189.49.96/28","31.204.133.192/28","43.225.27.91/32","43.226.5.169/32","45.136.139.193/32","45.183.45.243/32","45.68.21.5/32","45.68.27.224/28","45.68.35.195/32","45.68.6.3/32","45.94.14.200/32","46.19.95.208/28","5.1.97.80/28","5.200.12.224/28","51.162.33.58/32","58.96.159.224/28","62.72.179.131/32","63.254.161.16/28","63.254.168.32/28","64.71.188.19/32","66.102.40.112/28","66.102.43.240/28","66.185.112.240/28","66.185.113.240/28","66.185.114.240/28","66.185.115.240/28","66.185.116.240/28","66.185.117.240/28","66.185.119.240/28","66.185.120.240/28","66.185.122.240/28","66.185.123.224/27","66.185.126.240/28","66.185.127.240/28","74.63.16.224/27","74.63.17.224/27","74.63.18.240/28","74.63.19.224/28","74.63.20.224/27","74.63.21.240/28","74.63.22.224/28","74.63.23.240/28","74.63.24.192/26","74.63.25.224/27","74.63.26.224/27","74.63.27.240/28","74.63.28.224/27","74.63.29.224/27","74.63.30.224/27","74.80.77.240/28","8.2.187.165/32","80.233.251.173/32","82.219.42.233/32","83.212.7.243/32","85.209.99.11/32","88.201.53.115/32","89.104.170.192/28","89.23.254.240/28","91.102.14.195/32","91.213.30.98/32","94.199.175.119/32","94.207.34.219/32"],
-                    v6: ["2001:468:500:100::/56","2001:4830:c200::/56","2001:49d0:3403::/56","2001:5e8:e0::/56","2001:690:200c::/56","2001:708:1f:900::/56","2001:def:c000:600::/56","2400:8280:2:100::/56","2400:8280:3:100::/56","2400:8280:5:100::/56","2607:d440:9999::/56","2607:fdc0:1c2::/56","2607:fdc0:202::/56","2607:fdc0:83::/56","2620:0:877:4700::/56","2620:0:877:5100::/56","2620:171:12:f000::/56","2620:171:14:f000::/56","2620:171:16:f000::/56","2620:171:1b:f000::/56","2620:171:1c::/56","2620:171:1f:f000::/56","2620:171:21:f000::/56","2620:171:22:f000::/56","2620:171:29::/56","2620:171:2a::/56","2620:171:2b:f000::/56","2620:171:2d:f000::/56","2620:171:2e:f000::/56","2620:171:2f:f000::/56","2620:171:3d:f000::/56","2620:171:3f:f000::/56","2620:171:43:f000::/56","2620:171:45:f000::/56","2620:171:4b:f000::/56","2620:171:4c:f000::/56","2620:171:4d:f000::/56","2620:171:57:f000::/56","2620:171:5a:f000::/56","2620:171:5c:f000::/56","2620:171:5e:f000::/56","2620:171:5f:f000::/56","2620:171:60::/56","2620:171:62:f000::/56","2620:171:63::/56","2620:171:66:f000::/56","2620:171:67:f000::/56","2620:171:6a:f000::/56","2620:171:6c:f000::/56","2620:171:70:f000::/56","2620:171:73:f000::/56","2620:171:74:f000::/56","2620:171:75:f000::/56","2620:171:77:f000::/56","2620:171:7a:f000::/56","2620:171:7b:f000::/56","2620:171:7e:f000::/56","2620:171:81:f000::/56","2620:171:82:f000::/56","2620:171:83:f000::/56","2620:171:85:f000::/56","2620:171:89:f000::/56","2620:171:8a:f000::/56","2620:171:8b::/56","2620:171:8d:f000::/56","2620:171:8e:f000::/56","2620:171:90:f000::/56","2620:171:96:f000::/56","2620:171:99:f000::/56","2620:171:9a:f000::/56","2620:171:9d:f000::/56","2620:171:a4:f000::/56","2620:171:a5:f000::/56","2620:171:a7:f000::/56","2620:171:ab:f000::/56","2620:171:ac:f000::/56","2620:171:ae:f000::/56","2620:171:af:f000::/56","2620:171:b1:f000::/56","2620:171:b2:f000::/56","2620:171:b5:f000::/56","2620:171:b6:f000::/56","2620:171:b7:f000::/56","2620:171:b8:f000::/56","2620:171:bb:f000::/56","2620:171:bd:f000::/56","2620:171:be:f000::/56","2620:171:bf:f000::/56","2620:171:c1:f000::/56","2620:171:c2:f000::/56","2620:171:c3:f000::/56","2620:171:c4:f000::/56","2620:171:c5:f000::/56","2620:171:c6:f000::/56","2620:171:c7:f000::/56","2620:171:c8:f000::/56","2620:171:c9:f000::/56","2620:171:cc:f000::/56","2620:171:ce::/56","2620:171:cf:f000::/56","2620:171:d0:f000::/56","2620:171:d1:f000::/56","2620:171:d3::/56","2620:171:d4:f000::/56","2620:171:d5::/56","2620:171:d6:f000::/56","2620:171:d7:f000::/56","2620:171:d9:f000::/56","2620:171:db:f000::/56","2620:171:df::/56","2620:171:e0::/56","2620:171:e1::/56","2620:171:e2:f000::/56","2620:171:e3::/56","2620:171:e4:f000::/56","2620:171:e5:f000::/56","2620:171:e7::/56","2620:171:e8:f000::/56","2620:171:ea:f000::/56","2620:171:eb::/56","2620:171:ee:f000::/56","2620:171:ef:f000::/56","2620:171:f0::/56","2620:171:f1::/56","2620:171:f2:f000::/56","2620:171:f3::/56","2620:171:f4::/56","2620:171:f5:f000::/56","2620:171:f6::/56","2620:171:f7::/56","2620:171:f8::/56","2620:171:f9::/56","2620:171:f:f000::/56","2620:171:fa::/56","2620:171:fb:f000::/56","2620:171:fc::/56","2620:171:fd::/56","2620:171:fe::/56","2800:1e0:1020::/56","2800:1e0:1025:400::/56","2800:1e0:1030:200::/56","2800:1e0:1040::/56","2800:1e0:1060::/56","2800:1e0:1080::/56","2800:1e0:1090::/56","2800:1e0:1100:100::/56","2800:1e0:1604::/56","2800:1e0:1701:100::/56","2800:1e0:2000:100::/56","2800:1e0:2441::/56","2800:1e0:3001::/56","2800:1e0:a06::/56","2800:1e0:d32:100::/56","2803:6d90:242:9900::/56","2803:cd60:5102:100::/56","2a00:1630:409::/56","2a00:1633:409::/56","2a00:1636:409::/56","2a00:1637:409::/56","2a00:1d20:49::/56","2a00:1d24:409::/56","2a00:1d26:8409::/56","2a00:1d26:c409::/56","2a00:c380:c102:1a00::/56","2a00:c380:c102:ec00::/56","2a00:c380:c102:ed00::/56","2a00:c380:f002::/56","2a01:9580:409::/56","2a01:9580:4409::/56","2a01:9580:8409::/56","2a03:2040:43::/56","2a03:2760:1:9000::/56","2a03:5440:1:4900::/56","2a04:c602:409::/56","2a04:c603:409::/56","2a04:c604:409::/56","2a04:c605:409::/56","2a04:c606:409::/56","2a04:c607:33::/56","2a0c:e080::/56","2c0f:6300:2:100::/56","2c0f:6300:2:200::/56"]
+                    v4: ["102.217.157.128/28", "102.217.157.144/28", "103.142.152.112/28", "103.175.186.195/32", "103.191.77.195/32", "103.194.167.224/28", "103.227.66.240/28", "103.23.18.113/32", "103.245.97.203/32", "103.248.210.99/32", "103.94.94.3/32", "109.200.195.192/28", "109.200.199.192/28", "109.200.209.192/28", "113.23.196.123/32", "113.23.196.139/32", "119.31.179.35/32", "121.78.35.51/32", "125.20.237.115/32", "125.20.246.123/32", "125.254.84.240/28", "134.195.207.13/32", "138.121.98.179/32", "138.128.139.128/28", "138.128.140.224/28", "147.72.242.0/28", "154.113.24.11/32", "158.38.58.179/32", "158.38.58.187/32", "160.0.104.240/28", "160.0.105.240/28", "160.0.108.240/28", "160.0.97.240/28", "160.0.98.240/28", "160.0.99.240/28", "161.53.251.21/32", "162.244.53.192/28", "162.244.55.16/28", "164.113.205.224/28", "166.70.78.3/32", "170.75.247.123/32", "177.101.25.155/32", "177.93.141.224/28", "178.132.70.15/32", "179.0.200.40/32", "185.211.231.155/32", "185.33.111.67/32", "185.40.106.224/28", "185.44.108.99/32", "185.70.1.160/28", "188.122.68.208/28", "188.122.78.192/28", "188.122.80.224/28", "188.93.173.251/32", "192.115.209.68/32", "192.40.40.3/32", "192.43.217.224/28", "192.75.191.32/32", "193.136.252.224/28", "193.148.250.92/32", "193.167.245.112/28", "193.188.15.195/32", "193.4.59.50/32", "193.46.232.192/28", "193.46.232.224/28", "193.46.232.240/28", "194.116.81.227/32", "194.149.135.211/32", "194.54.137.35/32", "195.140.195.213/32", "196.10.54.180/32", "196.10.55.181/32", "196.216.149.43/32", "196.216.216.43/32", "196.43.240.43/32", "196.49.10.187/32", "196.49.100.181/32", "196.49.14.21/32", "196.49.19.202/32", "196.49.5.131/32", "196.49.7.61/32", "196.49.88.167/32", "197.230.227.227/32", "200.107.82.206/32", "200.115.95.147/32", "200.12.251.67/32", "200.25.1.192/28", "200.25.17.208/28", "200.25.22.176/28", "200.25.38.240/28", "200.25.43.176/28", "200.25.46.192/28", "200.25.48.240/28", "200.25.52.208/28", "200.25.56.96/28", "200.25.70.192/28", "200.25.72.0/28", "200.25.78.32/28", "200.25.81.144/28", "200.25.91.176/28", "200.25.97.160/28", "202.152.129.91/32", "202.153.128.44/32", "202.160.5.147/32", "202.59.208.41/32", "202.76.225.74/32", "202.8.10.208/28", "203.159.70.147/32", "205.215.193.195/32", "206.1.36.91/32", "206.126.112.186/32", "206.126.244.184/32", "208.118.224.144/28", "212.0.192.187/32", "212.20.230.109/32", "213.128.135.26/32", "213.163.69.192/28", "213.179.203.128/27", "213.179.217.0/28", "23.136.248.67/32", "23.137.40.66/32", "23.138.113.67/32", "23.171.112.251/32", "23.189.49.96/28", "31.204.133.192/28", "43.225.27.91/32", "43.226.5.169/32", "45.136.139.193/32", "45.183.45.243/32", "45.68.21.5/32", "45.68.27.224/28", "45.68.35.195/32", "45.68.6.3/32", "45.94.14.200/32", "46.19.95.208/28", "5.1.97.80/28", "5.200.12.224/28", "51.162.33.58/32", "58.96.159.224/28", "62.72.179.131/32", "63.254.161.16/28", "63.254.168.32/28", "64.71.188.19/32", "66.102.40.112/28", "66.102.43.240/28", "66.185.112.240/28", "66.185.113.240/28", "66.185.114.240/28", "66.185.115.240/28", "66.185.116.240/28", "66.185.117.240/28", "66.185.119.240/28", "66.185.120.240/28", "66.185.122.240/28", "66.185.123.224/27", "66.185.126.240/28", "66.185.127.240/28", "74.63.16.224/27", "74.63.17.224/27", "74.63.18.240/28", "74.63.19.224/28", "74.63.20.224/27", "74.63.21.240/28", "74.63.22.224/28", "74.63.23.240/28", "74.63.24.192/26", "74.63.25.224/27", "74.63.26.224/27", "74.63.27.240/28", "74.63.28.224/27", "74.63.29.224/27", "74.63.30.224/27", "74.80.77.240/28", "8.2.187.165/32", "80.233.251.173/32", "82.219.42.233/32", "83.212.7.243/32", "85.209.99.11/32", "88.201.53.115/32", "89.104.170.192/28", "89.23.254.240/28", "91.102.14.195/32", "91.213.30.98/32", "94.199.175.119/32", "94.207.34.219/32"],
+                    v6: ["2001:468:500:100::/56", "2001:4830:c200::/56", "2001:49d0:3403::/56", "2001:5e8:e0::/56", "2001:690:200c::/56", "2001:708:1f:900::/56", "2001:def:c000:600::/56", "2400:8280:2:100::/56", "2400:8280:3:100::/56", "2400:8280:5:100::/56", "2607:d440:9999::/56", "2607:fdc0:1c2::/56", "2607:fdc0:202::/56", "2607:fdc0:83::/56", "2620:0:877:4700::/56", "2620:0:877:5100::/56", "2620:171:12:f000::/56", "2620:171:14:f000::/56", "2620:171:16:f000::/56", "2620:171:1b:f000::/56", "2620:171:1c::/56", "2620:171:1f:f000::/56", "2620:171:21:f000::/56", "2620:171:22:f000::/56", "2620:171:29::/56", "2620:171:2a::/56", "2620:171:2b:f000::/56", "2620:171:2d:f000::/56", "2620:171:2e:f000::/56", "2620:171:2f:f000::/56", "2620:171:3d:f000::/56", "2620:171:3f:f000::/56", "2620:171:43:f000::/56", "2620:171:45:f000::/56", "2620:171:4b:f000::/56", "2620:171:4c:f000::/56", "2620:171:4d:f000::/56", "2620:171:57:f000::/56", "2620:171:5a:f000::/56", "2620:171:5c:f000::/56", "2620:171:5e:f000::/56", "2620:171:5f:f000::/56", "2620:171:60::/56", "2620:171:62:f000::/56", "2620:171:63::/56", "2620:171:66:f000::/56", "2620:171:67:f000::/56", "2620:171:6a:f000::/56", "2620:171:6c:f000::/56", "2620:171:70:f000::/56", "2620:171:73:f000::/56", "2620:171:74:f000::/56", "2620:171:75:f000::/56", "2620:171:77:f000::/56", "2620:171:7a:f000::/56", "2620:171:7b:f000::/56", "2620:171:7e:f000::/56", "2620:171:81:f000::/56", "2620:171:82:f000::/56", "2620:171:83:f000::/56", "2620:171:85:f000::/56", "2620:171:89:f000::/56", "2620:171:8a:f000::/56", "2620:171:8b::/56", "2620:171:8d:f000::/56", "2620:171:8e:f000::/56", "2620:171:90:f000::/56", "2620:171:96:f000::/56", "2620:171:99:f000::/56", "2620:171:9a:f000::/56", "2620:171:9d:f000::/56", "2620:171:a4:f000::/56", "2620:171:a5:f000::/56", "2620:171:a7:f000::/56", "2620:171:ab:f000::/56", "2620:171:ac:f000::/56", "2620:171:ae:f000::/56", "2620:171:af:f000::/56", "2620:171:b1:f000::/56", "2620:171:b2:f000::/56", "2620:171:b5:f000::/56", "2620:171:b6:f000::/56", "2620:171:b7:f000::/56", "2620:171:b8:f000::/56", "2620:171:bb:f000::/56", "2620:171:bd:f000::/56", "2620:171:be:f000::/56", "2620:171:bf:f000::/56", "2620:171:c1:f000::/56", "2620:171:c2:f000::/56", "2620:171:c3:f000::/56", "2620:171:c4:f000::/56", "2620:171:c5:f000::/56", "2620:171:c6:f000::/56", "2620:171:c7:f000::/56", "2620:171:c8:f000::/56", "2620:171:c9:f000::/56", "2620:171:cc:f000::/56", "2620:171:ce::/56", "2620:171:cf:f000::/56", "2620:171:d0:f000::/56", "2620:171:d1:f000::/56", "2620:171:d3::/56", "2620:171:d4:f000::/56", "2620:171:d5::/56", "2620:171:d6:f000::/56", "2620:171:d7:f000::/56", "2620:171:d9:f000::/56", "2620:171:db:f000::/56", "2620:171:df::/56", "2620:171:e0::/56", "2620:171:e1::/56", "2620:171:e2:f000::/56", "2620:171:e3::/56", "2620:171:e4:f000::/56", "2620:171:e5:f000::/56", "2620:171:e7::/56", "2620:171:e8:f000::/56", "2620:171:ea:f000::/56", "2620:171:eb::/56", "2620:171:ee:f000::/56", "2620:171:ef:f000::/56", "2620:171:f0::/56", "2620:171:f1::/56", "2620:171:f2:f000::/56", "2620:171:f3::/56", "2620:171:f4::/56", "2620:171:f5:f000::/56", "2620:171:f6::/56", "2620:171:f7::/56", "2620:171:f8::/56", "2620:171:f9::/56", "2620:171:f:f000::/56", "2620:171:fa::/56", "2620:171:fb:f000::/56", "2620:171:fc::/56", "2620:171:fd::/56", "2620:171:fe::/56", "2800:1e0:1020::/56", "2800:1e0:1025:400::/56", "2800:1e0:1030:200::/56", "2800:1e0:1040::/56", "2800:1e0:1060::/56", "2800:1e0:1080::/56", "2800:1e0:1090::/56", "2800:1e0:1100:100::/56", "2800:1e0:1604::/56", "2800:1e0:1701:100::/56", "2800:1e0:2000:100::/56", "2800:1e0:2441::/56", "2800:1e0:3001::/56", "2800:1e0:a06::/56", "2800:1e0:d32:100::/56", "2803:6d90:242:9900::/56", "2803:cd60:5102:100::/56", "2a00:1630:409::/56", "2a00:1633:409::/56", "2a00:1636:409::/56", "2a00:1637:409::/56", "2a00:1d20:49::/56", "2a00:1d24:409::/56", "2a00:1d26:8409::/56", "2a00:1d26:c409::/56", "2a00:c380:c102:1a00::/56", "2a00:c380:c102:ec00::/56", "2a00:c380:c102:ed00::/56", "2a00:c380:f002::/56", "2a01:9580:409::/56", "2a01:9580:4409::/56", "2a01:9580:8409::/56", "2a03:2040:43::/56", "2a03:2760:1:9000::/56", "2a03:5440:1:4900::/56", "2a04:c602:409::/56", "2a04:c603:409::/56", "2a04:c604:409::/56", "2a04:c605:409::/56", "2a04:c606:409::/56", "2a04:c607:33::/56", "2a0c:e080::/56", "2c0f:6300:2:100::/56", "2c0f:6300:2:200::/56"]
                 },
                 'Google Public DNS': {
                     v4: ['34.64.0.0/24', '34.64.1.0/24', '34.64.2.0/24', '34.101.0.0/24', '34.101.1.0/24', '34.101.2.0/24', '34.116.32.0/24', '34.153.64.0/25', '34.153.64.128/26', '34.153.64.192/26', '34.153.65.0/25', '34.153.65.128/26', '34.153.65.192/26', '34.153.66.0/24', '74.114.28.0/26', '74.114.28.64/26', '74.114.28.128/26', '74.114.28.192/26', '74.114.29.0/26', '74.114.29.64/26', '74.114.29.128/26', '74.114.29.192/26', '74.114.30.0/26', '74.114.30.64/26', '74.114.30.128/25', '74.114.31.0/26', '74.114.31.64/26', '74.114.31.128/26', '74.114.31.192/26', '74.125.16.128/26', '74.125.16.192/26', '74.125.17.128/26', '74.125.17.192/26', '74.125.18.0/25', '74.125.18.128/26', '74.125.18.192/26', '74.125.19.0/25', '74.125.19.128/25', '74.125.40.0/25', '74.125.40.128/26', '74.125.40.192/26', '74.125.41.0/24', '74.125.42.0/24', '74.125.43.0/25', '74.125.43.128/25', '74.125.44.0/24', '74.125.45.0/24', '74.125.46.0/24', '74.125.47.0/24', '74.125.72.0/24', '74.125.73.0/24', '74.125.74.0/24', '74.125.75.0/24', '74.125.76.0/24', '74.125.77.0/24', '74.125.78.0/24', '74.125.79.0/24', '74.125.80.0/24', '74.125.81.0/24', '74.125.92.0/24', '74.125.112.0/24', '74.125.113.0/24', '74.125.114.128/26', '74.125.114.192/26', '74.125.115.0/24', '74.125.177.0/24', '74.125.178.0/24', '74.125.179.0/25', '74.125.179.128/26', '74.125.179.192/26', '74.125.180.0/24', '74.125.181.0/25', '74.125.181.128/26', '74.125.181.192/26', '74.125.182.0/24', '74.125.183.0/24', '74.125.184.0/24', '74.125.185.0/25', '74.125.185.128/26', '74.125.185.192/26', '74.125.186.0/25', '74.125.186.128/26', '74.125.186.192/26', '74.125.187.128/26', '74.125.187.192/26', '74.125.191.0/24', '172.217.32.0/25', '172.217.32.128/26', '172.217.32.192/26', '172.217.33.0/25', '172.217.33.128/25', '172.217.34.0/26', '172.217.34.64/26', '172.217.34.128/26', '172.217.34.192/26', '172.217.35.0/26', '172.217.35.64/26', '172.217.35.128/26', '172.217.35.192/26', '172.217.36.0/24', '172.217.37.0/25', '172.217.37.128/26', '172.217.37.192/26', '172.217.38.0/25', '172.217.38.128/26', '172.217.38.192/26', '172.217.39.128/26', '172.217.39.192/26', '172.217.40.0/25', '172.217.40.128/25', '172.217.41.0/25', '172.217.41.128/26', '172.217.41.192/26', '172.217.42.0/25', '172.217.42.128/26', '172.217.42.192/26', '172.217.43.0/25', '172.217.43.128/26', '172.217.43.192/26', '172.217.44.0/25', '172.217.44.128/26', '172.217.44.192/26', '172.217.45.0/25', '172.217.45.128/25', '172.217.46.0/24', '172.217.47.0/25', '172.217.47.128/25', '172.217.96.0/26', '172.217.96.64/26', '172.217.96.128/25', '172.217.97.0/26', '172.217.97.64/26', '172.217.97.128/25', '172.217.98.0/24', '172.217.106.0/25', '172.217.106.128/25', '172.217.107.0/26', '172.217.107.64/26', '172.217.107.128/25', '172.217.108.0/24', '172.217.109.0/25', '172.217.109.128/25', '172.217.110.0/24', '172.217.111.128/26', '172.217.111.192/26', '172.253.0.0/25', '172.253.0.128/25', '172.253.1.0/25', '172.253.1.128/26', '172.253.1.192/26', '172.253.2.0/25', '172.253.2.128/26', '172.253.2.192/26', '172.253.3.0/25', '172.253.3.128/26', '172.253.3.192/26', '172.253.4.0/25', '172.253.4.128/25', '172.253.5.0/25', '172.253.5.128/25', '172.253.6.0/25', '172.253.6.128/25', '172.253.7.0/25', '172.253.7.128/26', '172.253.7.192/26', '172.253.8.0/25', '172.253.8.128/26', '172.253.8.192/26', '172.253.9.0/25', '172.253.9.128/26', '172.253.9.192/26', '172.253.10.0/25', '172.253.10.128/25', '172.253.11.0/25', '172.253.11.128/26', '172.253.11.192/26', '172.253.12.0/25', '172.253.12.128/25', '172.253.13.0/25', '172.253.13.128/26', '172.253.13.192/26', '172.253.14.0/25', '172.253.14.128/26', '172.253.14.192/26', '172.253.15.0/25', '172.253.15.128/26', '172.253.15.192/26', '172.253.80.0/26', '172.253.80.64/26', '172.253.80.128/26', '172.253.80.192/26', '172.253.81.0/26', '172.253.81.64/26', '172.253.81.128/26', '172.253.81.192/26', '172.253.82.0/26', '172.253.82.64/26', '172.253.82.128/26', '172.253.82.192/26', '172.253.83.0/26', '172.253.83.64/26', '172.253.83.128/26', '172.253.83.192/26', '172.253.84.0/26', '172.253.84.64/26', '172.253.84.128/26', '172.253.84.192/26', '172.253.85.0/26', '172.253.85.64/26', '172.253.85.128/25', '172.253.86.0/25', '172.253.86.128/27', '172.253.86.160/27', '172.253.86.192/26', '172.253.87.0/26', '172.253.87.64/26', '172.253.87.128/25', '172.253.88.0/26', '172.253.88.64/26', '172.253.88.128/26', '172.253.88.192/27', '172.253.88.224/27', '172.253.89.0/27', '172.253.89.32/27', '172.253.89.64/26', '172.253.89.128/26', '172.253.89.192/27', '172.253.89.224/27', '172.253.90.0/26', '172.253.90.64/26', '172.253.90.128/26', '172.253.90.192/26', '172.253.91.0/26', '172.253.91.64/26', '172.253.91.128/26', '172.253.91.192/26', '172.253.92.0/26', '172.253.92.64/26', '172.253.92.128/26', '172.253.92.192/26', '172.253.93.0/26', '172.253.93.64/26', '172.253.93.128/26', '172.253.93.192/26', '172.253.94.0/25', '172.253.94.128/25', '172.253.95.0/25', '172.253.95.128/26', '172.253.95.192/26', '172.253.184.0/24', '172.253.185.0/25', '172.253.185.128/25', '172.253.186.0/24', '172.253.187.0/24', '172.253.192.0/24', '172.253.193.0/25', '172.253.193.128/26', '172.253.193.192/26', '172.253.194.128/26', '172.253.194.192/26', '172.253.195.128/26', '172.253.195.192/26', '172.253.196.0/25', '172.253.196.128/26', '172.253.196.192/26', '172.253.197.0/25', '172.253.197.128/26', '172.253.197.192/26', '172.253.198.128/26', '172.253.198.192/26', '172.253.199.0/25', '172.253.199.128/26', '172.253.199.192/26', '172.253.200.128/26', '172.253.200.192/26', '172.253.201.0/25', '172.253.201.128/25', '172.253.202.0/24', '172.253.204.0/25', '172.253.204.128/25', '172.253.205.0/24', '172.253.206.0/24', '172.253.209.0/25', '172.253.209.128/25', '172.253.210.0/24', '172.253.211.0/25', '172.253.211.128/26', '172.253.211.192/26', '172.253.212.0/25', '172.253.212.128/26', '172.253.212.192/26', '172.253.213.0/25', '172.253.213.128/26', '172.253.213.192/26', '172.253.214.0/25', '172.253.214.128/26', '172.253.214.192/26', '172.253.215.0/25', '172.253.215.128/26', '172.253.215.192/26', '172.253.216.0/25', '172.253.216.128/26', '172.253.216.192/26', '172.253.217.0/25', '172.253.217.128/25', '172.253.218.0/25', '172.253.218.128/26', '172.253.218.192/26', '172.253.219.0/25', '172.253.219.128/26', '172.253.219.192/26', '172.253.220.0/25', '172.253.220.128/26', '172.253.220.192/26', '172.253.221.0/25', '172.253.221.128/26', '172.253.221.192/26', '172.253.222.0/25', '172.253.222.128/26', '172.253.222.192/26', '172.253.223.0/25', '172.253.223.128/26', '172.253.223.192/26', '172.253.224.0/24', '172.253.225.0/24', '172.253.226.0/24', '172.253.227.0/25', '172.253.227.128/26', '172.253.227.192/26', '172.253.228.0/25', '172.253.228.128/26', '172.253.228.192/26', '172.253.229.0/25', '172.253.229.128/26', '172.253.229.192/26', '172.253.230.0/25', '172.253.230.128/26', '172.253.230.192/26', '172.253.231.0/25', '172.253.231.128/26', '172.253.231.192/26', '172.253.232.0/25', '172.253.232.128/26', '172.253.232.192/26', '172.253.233.0/25', '172.253.233.128/25', '172.253.234.0/24', '172.253.235.0/25', '172.253.235.128/25', '172.253.236.0/25', '172.253.236.128/26', '172.253.236.192/26', '172.253.237.0/25', '172.253.237.128/25', '172.253.238.0/25', '172.253.238.128/25', '172.253.239.0/25', '172.253.239.128/26', '172.253.239.192/26', '172.253.240.0/24', '172.253.241.0/24', '172.253.242.0/24', '172.253.243.0/24', '172.253.244.0/25', '172.253.244.128/26', '172.253.244.192/26', '172.253.245.0/24', '172.253.247.0/24', '172.253.248.0/24', '172.253.249.0/25', '172.253.249.128/26', '172.253.249.192/26', '172.253.250.0/24', '172.253.251.0/24', '172.253.252.0/24', '172.253.253.0/24', '172.253.254.0/24', '172.253.255.0/24', '173.194.90.0/24', '173.194.91.0/24', '173.194.93.0/24', '173.194.94.0/24', '173.194.95.0/24', '173.194.96.0/25', '173.194.96.128/25', '173.194.97.0/24', '173.194.98.0/24', '173.194.99.0/25', '173.194.99.128/25', '173.194.100.0/24', '173.194.101.0/24', '173.194.102.0/24', '173.194.103.0/24', '173.194.168.0/25', '173.194.168.128/26', '173.194.168.192/26', '173.194.169.0/24', '173.194.170.0/24', '173.194.171.0/25', '173.194.171.128/26', '173.194.171.192/26', '192.178.36.0/25', '192.178.36.128/26', '192.178.36.192/26', '192.178.37.0/26', '192.178.37.64/26', '192.178.37.128/25', '192.178.38.0/26', '192.178.38.64/26', '192.178.38.128/26', '192.178.38.192/26', '192.178.39.0/26', '192.178.39.64/26', '192.178.39.128/25', '192.178.64.0/24', '192.178.65.0/26', '192.178.65.64/26', '192.178.65.128/25', '192.178.66.0/25', '192.178.66.128/25', '192.178.67.0/26', '192.178.67.64/26', '192.178.67.128/25', '192.178.92.0/26', '192.178.92.64/26', '192.178.92.128/26', '192.178.92.192/26', '192.178.93.0/26', '192.178.93.64/26', '192.178.93.128/26', '192.178.93.192/26', '192.178.94.0/26', '192.178.94.64/26', '192.178.94.128/26', '192.178.94.192/26', '192.178.95.0/26', '192.178.95.64/26', '192.178.95.128/25', '192.178.112.0/26', '192.178.112.64/26', '192.178.112.128/26', '192.178.112.192/26', '192.178.113.0/26', '192.178.113.64/26', '192.178.113.128/26', '192.178.113.192/26', '192.178.114.0/25', '192.178.114.128/25', '192.178.115.0/26', '192.178.115.64/26', '192.178.115.128/26', '192.178.115.192/26', '192.178.116.0/26', '192.178.116.64/26', '192.178.116.128/25', '192.178.117.0/25', '192.178.117.128/26', '192.178.117.192/26', '192.178.118.0/26', '192.178.118.64/26', '192.178.118.128/26', '192.178.118.192/26', '192.178.119.0/26', '192.178.119.64/26', '192.178.119.128/25'],
@@ -2034,8 +3014,8 @@
                     v6: ['2a07:a8c0::/29', '2a07:a8c1::/29'],
                 },
                 'Cisco OpenDNS': {
-                    v4: ['208.67.222.0/24','208.67.220.0/24','146.112.0.0/16','151.186.0.0/16','155.190.0.0/16','23.89.0.0/16','194.165.192.0/19','80.254.144.0/20','46.255.40.0/21','185.60.84.0/22'],
-                    v6: ['2620:119:35::/48','2620:119:53::/48'],
+                    v4: ['208.67.222.0/24', '208.67.220.0/24', '146.112.0.0/16', '151.186.0.0/16', '155.190.0.0/16', '23.89.0.0/16', '194.165.192.0/19', '80.254.144.0/20', '46.255.40.0/21', '185.60.84.0/22'],
+                    v6: ['2620:119:35::/48', '2620:119:53::/48'],
                 },
             };
 
@@ -2060,82 +3040,82 @@
             };
 
             const PROVIDER_NAME_MAP = [
-                { match: /nextdns|misaka|m1ns/i,                  name: 'NextDNS' },
-                { match: /\bquad9\b|i3d/i,                       name: 'Quad9 DNS' },
-                { match: /\bcloudflare\b/i,                      name: 'Cloudflare DNS' },
-                { match: /\bgoogle\b/i,                          name: 'Google DNS' },
+                { match: /nextdns|misaka|m1ns/i, name: 'NextDNS' },
+                { match: /\bquad9\b|i3d/i, name: 'Quad9 DNS' },
+                { match: /\bcloudflare\b/i, name: 'Cloudflare DNS' },
+                { match: /\bgoogle\b/i, name: 'Google DNS' },
                 { match: /\bopendns\b|cisco\b|strln\.net|umbrella\b/i, name: 'Cisco OpenDNS' },
-                { match: /\badguard\b/i,                         name: 'AdGuard DNS' },
-                { match: /\balidns\b|alibaba\b/i,                name: 'Ali DNS' },
-                { match: /\bcontrold\b|cloudns/i,                name: 'ControlD' },
+                { match: /\badguard\b/i, name: 'AdGuard DNS' },
+                { match: /\balidns\b|alibaba\b/i, name: 'Ali DNS' },
+                { match: /\bcontrold\b|cloudns/i, name: 'ControlD' },
                 { match: /\bmullvad\b|datapacket\.com|cdn77\.eu/i, name: 'Mullvad' },
                 { match: /\bcleanbrowsing\b|as20473|the constant company/i, name: 'CleanBrowsing' },
-                { match: /\blibredns\b/i,                        name: 'LibreDNS' },
-                { match: /\bonedns\b/i,                          name: 'OneDNS' },
-                { match: /\bopenbld\b/i,                         name: 'OpenBLD.net' },
-                { match: /\brethinkdns\b/i,                      name: 'RethinkDNS' },
-                { match: /\bdns\.sb|\bxtom\b/i,                  name: 'DNS.SB' },
+                { match: /\blibredns\b/i, name: 'LibreDNS' },
+                { match: /\bonedns\b/i, name: 'OneDNS' },
+                { match: /\bopenbld\b/i, name: 'OpenBLD.net' },
+                { match: /\brethinkdns\b/i, name: 'RethinkDNS' },
+                { match: /\bdns\.sb|\bxtom\b/i, name: 'DNS.SB' },
                 { match: /\bdns\.pub|doh\.pub|dot\.pub|dnspod\.net/i, name: 'DNSPod Public DNS+' },
-                { match: /\bhagezi\b/i,                          name: 'HaGeZi DNS' },
-                { match: /\bbebasid\b/i,                         name: 'BebasDNS by BebasID' },
-                { match: /\bcaliph\b/i,                          name: 'Caliph DNS' },
-                { match: /\bcfiec\b/i,                           name: 'CFIEC Public DNS' },
-                { match: /\bdecloudus\b/i,                       name: 'DeCloudUs DNS' },
-                { match: /\bhe\.net|hurricane\b/i,               name: 'Hurricane Electric Public Recursor' },
-                { match: /\bnawala\b/i,                          name: 'Nawala Childprotection DNS' },
-                { match: /\bneustar\b|ultradns/i,                name: 'Neustar Recursive DNS' },
-                { match: /\bqis\.io\b/i,                         name: 'Quadrant Security' },
-                { match: /\brabbitdns\b/i,                       name: 'Rabbit DNS' },
-                { match: /\bdns\.yandex|yandex\.net/i,           name: 'Yandex DNS' },
-                { match: /\bsafesurfer\b/i,                      name: 'Safe Surfer' },
-                { match: /\bsurfshark\b/i,                       name: 'Surfshark DNS' },
-                { match: /\bv\.recipes\b/i,                       name: 'v.recipes DNS' },
-                { match: /\bwikimedia-dns\b/i,                   name: 'Wikimedia DNS' },
-                { match: /\bapplied-privacy\b/i,                 name: 'Applied Privacy DNS' },
+                { match: /\bhagezi\b/i, name: 'HaGeZi DNS' },
+                { match: /\bbebasid\b/i, name: 'BebasDNS by BebasID' },
+                { match: /\bcaliph\b/i, name: 'Caliph DNS' },
+                { match: /\bcfiec\b/i, name: 'CFIEC Public DNS' },
+                { match: /\bdecloudus\b/i, name: 'DeCloudUs DNS' },
+                { match: /\bhe\.net|hurricane\b/i, name: 'Hurricane Electric Public Recursor' },
+                { match: /\bnawala\b/i, name: 'Nawala Childprotection DNS' },
+                { match: /\bneustar\b|ultradns/i, name: 'Neustar Recursive DNS' },
+                { match: /\bqis\.io\b/i, name: 'Quadrant Security' },
+                { match: /\brabbitdns\b/i, name: 'Rabbit DNS' },
+                { match: /\bdns\.yandex|yandex\.net/i, name: 'Yandex DNS' },
+                { match: /\bsafesurfer\b/i, name: 'Safe Surfer' },
+                { match: /\bsurfshark\b/i, name: 'Surfshark DNS' },
+                { match: /\bv\.recipes\b/i, name: 'v.recipes DNS' },
+                { match: /\bwikimedia-dns\b/i, name: 'Wikimedia DNS' },
+                { match: /\bapplied-privacy\b/i, name: 'Applied Privacy DNS' },
                 { match: /\bbytedance\b|as4811|as23724|china telecommunications corporation/i, name: 'ByteDance Public DNS' },
-                { match: /\bcert\.ee\b/i,                         name: 'CERT-EE' },
-                { match: /\bcanadianshield\b|cira\.ca/i,          name: 'CIRA Canadian Shield DNS' },
-                { match: /\bcomss\.one\b/i,                       name: 'Comss.one DNS' },
-                { match: /\bnic\.cz\b|odvr\b/i,                  name: 'CZ.NIC ODVR' },
-                { match: /\bdigitale-gesellschaft\b/i,           name: 'Digitale Gesellschaft DNS' },
-                { match: /\bdnsforfamily\b/i,                    name: 'DNS for Family' },
-                { match: /\bjoindns4\.eu|dns4eu\b/i,              name: 'DNS4EU' },
-                { match: /\brestena\b/i,                         name: 'Fondation Restena DNS' },
-                { match: /\b114dns\b|zenecn\.net/i,               name: '114DNS' },
-                { match: /\biij\.jp\b/i,                         name: 'IIJ.JP DNS' },
-                { match: /\bjupitrdns\b/i,                       name: 'JupitrDNS' },
-                { match: /\bopennic\b/i,                         name: 'OpenNIC DNS' },
-                { match: /\bskydns\b/i,                          name: 'SkyDNS RU' },
-                { match: /\bswitch\.ch\b/i,                      name: 'SWITCH DNS' },
-                { match: /\bdnsprivacy\.org\.uk\b/i,             name: 'UK DNS Privacy Project' },
-                { match: /\bahadns\b/i,                          name: 'AhaDNS' },
-                { match: /\barapurayil\b/i,                      name: 'Arapurayil' },
-                { match: /\btechomespace\.com|blackmagicc\b/i,   name: 'BlackMagicc DNS' },
-                { match: /\bcaptnemo\b/i,                        name: 'Captnemo DNS' },
-                { match: /\bdnsguard\b/i,                        name: 'DNSGuard' },
-                { match: /\bdnsforge\b/i,                        name: 'DNS Forge' },
-                { match: /\bdnswarden\b/i,                       name: 'dnswarden' },
-                { match: /\bffmuc\b/i,                           name: 'FFMUC DNS' },
-                { match: /\blelux\.fi\b/i,                       name: 'Lelux DNS' },
-                { match: /\bmarbledfennec\b/i,                   name: 'Marbled Fennec' },
-                { match: /\bnwps\.fi\b/i,                        name: 'NWPS.fi DNS' },
-                { match: /\boszx\.co\b/i,                        name: 'OSZX DNS' },
-                { match: /\bpumplex\b/i,                         name: 'PumpleX' },
-                { match: /\btiar\.app|tiarap\.org/i,             name: 'Privacy-First DNS' },
-                { match: /\bseby\.io\b/i,                        name: 'Seby DNS' },
-                { match: /\bublock\.dns\b/i,                     name: 'uBlock DNS' },
+                { match: /\bcert\.ee\b/i, name: 'CERT-EE' },
+                { match: /\bcanadianshield\b|cira\.ca/i, name: 'CIRA Canadian Shield DNS' },
+                { match: /\bcomss\.one\b/i, name: 'Comss.one DNS' },
+                { match: /\bnic\.cz\b|odvr\b/i, name: 'CZ.NIC ODVR' },
+                { match: /\bdigitale-gesellschaft\b/i, name: 'Digitale Gesellschaft DNS' },
+                { match: /\bdnsforfamily\b/i, name: 'DNS for Family' },
+                { match: /\bjoindns4\.eu|dns4eu\b/i, name: 'DNS4EU' },
+                { match: /\brestena\b/i, name: 'Fondation Restena DNS' },
+                { match: /\b114dns\b|zenecn\.net/i, name: '114DNS' },
+                { match: /\biij\.jp\b/i, name: 'IIJ.JP DNS' },
+                { match: /\bjupitrdns\b/i, name: 'JupitrDNS' },
+                { match: /\bopennic\b/i, name: 'OpenNIC DNS' },
+                { match: /\bskydns\b/i, name: 'SkyDNS RU' },
+                { match: /\bswitch\.ch\b/i, name: 'SWITCH DNS' },
+                { match: /\bdnsprivacy\.org\.uk\b/i, name: 'UK DNS Privacy Project' },
+                { match: /\bahadns\b/i, name: 'AhaDNS' },
+                { match: /\barapurayil\b/i, name: 'Arapurayil' },
+                { match: /\btechomespace\.com|blackmagicc\b/i, name: 'BlackMagicc DNS' },
+                { match: /\bcaptnemo\b/i, name: 'Captnemo DNS' },
+                { match: /\bdnsguard\b/i, name: 'DNSGuard' },
+                { match: /\bdnsforge\b/i, name: 'DNS Forge' },
+                { match: /\bdnswarden\b/i, name: 'dnswarden' },
+                { match: /\bffmuc\b/i, name: 'FFMUC DNS' },
+                { match: /\blelux\.fi\b/i, name: 'Lelux DNS' },
+                { match: /\bmarbledfennec\b/i, name: 'Marbled Fennec' },
+                { match: /\bnwps\.fi\b/i, name: 'NWPS.fi DNS' },
+                { match: /\boszx\.co\b/i, name: 'OSZX DNS' },
+                { match: /\bpumplex\b/i, name: 'PumpleX' },
+                { match: /\btiar\.app|tiarap\.org/i, name: 'Privacy-First DNS' },
+                { match: /\bseby\.io\b/i, name: 'Seby DNS' },
+                { match: /\bublock\.dns\b/i, name: 'uBlock DNS' },
                 { match: /\bcomodo\b|dnsbycomodo|vultrusercontent\.com|as20473|the constant company/i, name: 'Comodo Secure DNS' },
-                { match: /\bverisign\b/i,                        name: 'Verisign Public DNS' },
-                { match: /\bdnssb\b|dns\.sb|\bxtom\b/i,          name: 'DNS.SB' },
-                { match: /\b360\b.*\bdns\b|\bdns\b.*\b360\b/i,   name: '360 Secure DNS' },
+                { match: /\bverisign\b/i, name: 'Verisign Public DNS' },
+                { match: /\bdnssb\b|dns\.sb|\bxtom\b/i, name: 'DNS.SB' },
+                { match: /\b360\b.*\bdns\b|\bdns\b.*\b360\b/i, name: '360 Secure DNS' },
                 // ── Vietnamese ISPs ──────────────────────────────────────────
                 { match: /\bvnpt\b|vnn\.vn|vnpt\.vn|Vietnam Posts and Telecommunications/i, name: 'VNPT' },
-                { match: /\bviettel\b/i,                         name: 'Viettel' },
-                { match: /\bfpt\b/i,                             name: 'FPT Telecom' },
-                { match: /\bcmc\b|cmctelecom/i,                  name: 'CMC Telecom' },
-                { match: /\bmobifone\b|vms\.com\.vn/i,           name: 'MobiFone' },
-                { match: /\bsctv\b|Saigontourist/i,              name: 'SCTV' },
-                { match: /\bnetnam\b/i,                          name: 'NetNam' },
+                { match: /\bviettel\b/i, name: 'Viettel' },
+                { match: /\bfpt\b/i, name: 'FPT Telecom' },
+                { match: /\bcmc\b|cmctelecom/i, name: 'CMC Telecom' },
+                { match: /\bmobifone\b|vms\.com\.vn/i, name: 'MobiFone' },
+                { match: /\bsctv\b|Saigontourist/i, name: 'SCTV' },
+                { match: /\bnetnam\b/i, name: 'NetNam' },
             ];
             const getProvider = (ip, org) => {
 
@@ -2148,12 +3128,12 @@
                     }
                 }
                 if (org === 'Unknown' || !org) return 'Unknown';
-                
+
                 // 1. Try Nice Names
                 for (const item of PROVIDER_NAME_MAP) {
                     if (item.match.test(org)) return item.name;
                 }
-                
+
                 // 2. Fallback: Extract Domain (e.g. xsp-h15.int.controld.com -> Controld.com)
                 const firstPart = org.split(' ')[0].replace(/\.$/, '').toLowerCase();
                 const parts = firstPart.split('.');
@@ -2161,8 +3141,8 @@
                     const domain = parts.slice(-2).join('.');
                     return domain.charAt(0).toUpperCase() + domain.slice(1);
                 }
-                
-                return org.charAt(0).toUpperCase() + org.slice(1); 
+
+                return org.charAt(0).toUpperCase() + org.slice(1);
             };
             // Step 3: Analysis - ONLY use labeled entries (Ignore Delegation Walk)
             const labeledEntries = [];
@@ -2174,14 +3154,14 @@
                     discardedEntries.push(e);
                 }
             }
-            
+
             if (discardedEntries.length > 0) {
                 console.log(`[DNS Check] --- FILTERED OUT ENTRIES ---`);
                 for (const e of discardedEntries) {
                     console.log(`[DNS Check] Skipped: ${e.qname} | IP: ${e.ip} | Reason: Invalid label (Delegation Walk)`);
                 }
             }
-            
+
             const uniqueIps = [...new Set(labeledEntries.map(e => e.ip))];
             const resolverMap = new Map();
             const geoDataMap = new Map();
@@ -2200,7 +3180,7 @@
                         }
                     }
                     if (isKnown) {
-                        geoDataMap.set(ip, { org: '' }); 
+                        geoDataMap.set(ip, { org: '' });
                         return;
                     }
                     // Use Reverse DNS (PTR) for checkDnsStatus
@@ -2232,7 +3212,7 @@
                                     geoDataMap.set(ip, { org: answer.data.replace(/\.$/, '') });
                                     return;
                                 }
-                            } catch(e) {}
+                            } catch (e) { }
                         }
 
                         // Fallback to Geo-IP if all PTR lookups fail
@@ -2244,7 +3224,7 @@
                                 geoDataMap.set(ip, { org: r1.org });
                                 return;
                             }
-                        } catch(e) {}
+                        } catch (e) { }
                         try {
                             const c = new AbortController(), t = setTimeout(() => c.abort(), 500);
                             const r2 = await fetch(`https://ipapi.co/${ip}/json/`, { signal: c.signal }).then(res => res.json()).finally(() => clearTimeout(t));
@@ -2254,9 +3234,9 @@
                                 geoDataMap.set(ip, { org: orgName });
                                 return;
                             }
-                        } catch(e) {}
-                    } catch(e) {}
-                    
+                        } catch (e) { }
+                    } catch (e) { }
+
                     geoDataMap.set(ip, { org: 'Unknown' });
                 });
                 allIpPromises.push(...batchPromises);
@@ -2339,4 +3319,5 @@
         setTimeout(checkDnsStatus, 800);
     </script>
 </body>
+
 </html>
