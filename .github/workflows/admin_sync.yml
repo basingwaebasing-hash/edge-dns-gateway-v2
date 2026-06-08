@@ -89,10 +89,12 @@ jobs:
                              JSON.stringify(urls) !== JSON.stringify(snapshot.urls);
             } catch(e) {}
           }
+          const forceSync = pending.force === true;
           if (process.env.GITHUB_OUTPUT) {
             fs.appendFileSync(process.env.GITHUB_OUTPUT, `lists_changed=${listsChanged}\n`);
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, `force_sync=${forceSync}\n`);
           }
-          console.log(`Lists changed: ${listsChanged}`);
+          console.log(`Lists changed: ${listsChanged} | Force sync: ${forceSync}`);
 
           // ── 2a. Patch the Cloudflare Pages ──────────────────────────────
           let worker = fs.readFileSync('functions/[[path]].js', 'utf8');
@@ -146,12 +148,13 @@ jobs:
           SCRIPT
 
       # ── 3. Fetch & merge all external subscription lists ───────────────────
-      - name: Fetch and merge external lists
-        if: steps.apply_config.outputs.lists_changed == 'true'
+      - name: Fetch & merge external lists
+        if: ${{ steps.apply_config.outputs.lists_changed == 'true' || steps.apply_config.outputs.force_sync == 'true' }}
         run: |
           chmod +x update_lists.sh
           bash update_lists.sh
           echo "External lists fetched and merged"
+          echo "Force flag: ${{ github.event.client_payload.force }}"
 
       # ── 4. Commit & push everything ────────────────────────────────────────
       - name: Commit and push

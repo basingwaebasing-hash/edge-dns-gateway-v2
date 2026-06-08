@@ -217,7 +217,8 @@ jobs:
           os.makedirs('unsigned_variants', exist_ok=True)
 
           for vid, vname in variants:
-              prof = make_profile(f'/ecs/{vid}', f'{host} DoH - {vname}', f'.{vid}')
+              url_path = '/unfiltered' if vid == 'unfiltered' else f'/ecs/{vid}'
+              prof = make_profile(url_path, f'{host} DoH - {vname}', f'.{vid}')
               with open(f'unsigned_variants/{vid}.mobileconfig', 'w', encoding='utf-8') as f:
                   f.write(prof)
           EOF
