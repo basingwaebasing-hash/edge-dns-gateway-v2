@@ -1,2 +1,46 @@
-/mobileconfig/*
+# Cloudflare Pages _headers file
+# Applied to all static assets and rule files
+
+# ── DNS Query & API Endpoints ──
+# These are handled by Functions (Workers), not static assets.
+# Headers below apply to static files only.
+
+# ── Rule Files ──
+# Allow public access with appropriate CORS so the Worker can self-fetch.
+/rules/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: public, max-age=3600, stale-while-revalidate=7200
+  Content-Type: text/plain; charset=utf-8
+
+# ── Database / Config Files ──
+# Allow the Worker to fetch config, but prevent browsers from indexing sensitive files.
+/database/*
+  Access-Control-Allow-Origin: *
+  Cache-Control: no-cache, no-store, must-revalidate
+  X-Robots-Tag: noindex, nofollow
+
+# ── HTML Pages ──
+/admin.html
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/index.html
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/resolver.html
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Cache-Control: no-cache, no-store, must-revalidate
+
+# ── Apple .mobileconfig ──
+# Served dynamically via Worker (/apple/*), not static.
+# This entry is a fallback safety net.
+/apple/*
   Content-Type: application/x-apple-aspen-config

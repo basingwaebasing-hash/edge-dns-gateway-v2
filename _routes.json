@@ -1,5 +1,13 @@
 {
   "version": 1,
-  "include": ["/dns-query", "/ecs/*", "/apple/*", "/check", "/unfiltered"],
+  "include": [
+    "/dns-query",
+    "/ecs/*",
+    "/apple/*",
+    "/apple",
+    "/check",
+    "/unfiltered",
+    "/debug"
+  ],
   "exclude": []
 }
