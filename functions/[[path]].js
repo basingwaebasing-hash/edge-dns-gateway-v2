@@ -18,8 +18,9 @@ const UPSTREAM_TIMEOUT = 5000;
 const ALL_LISTS_REFRESH_INTERVAL = 3600000; // 1 hour
 
 const AD_BLOCK_ENABLED = true;
-const BLOCKLIST_URL = 'https://admin.doh.bibica.net/rules/blocklists.txt';
-const ALLOWLIST_URL = 'https://admin.doh.bibica.net/rules/allowlists.txt';
+// List URLs: relative paths served from the same Cloudflare Pages deployment
+const BLOCKLIST_URL = '/rules/blocklists.txt';
+const ALLOWLIST_URL = '/rules/allowlists.txt';
 
 const ECS_INJECTION_ENABLED = true;
 const ECS_PREFIX_V4 = 24;
@@ -33,15 +34,15 @@ const BLOCK_HTTPS = false;  // TYPE 65  — HTTPS record queries
 
 // Block private/internal TLDs and router domains
 const BLOCK_PRIVATE_TLD = true;
-const PRIVATE_TLD_URL = 'https://admin.doh.bibica.net/rules/private_tlds.txt';
+const PRIVATE_TLD_URL = '/rules/private_tlds.txt';
 
 // DNS redirect/rewrite (local CNAME overrides)
 const DNS_REDIRECT_ENABLED = true;
-const REDIRECT_RULES_URL = 'https://admin.doh.bibica.net/rules/redirect_rules.txt';
+const REDIRECT_RULES_URL = '/rules/redirect_rules.txt';
 
 // Dedicated Mullvad Upstream Domains
 const MULLVAD_UPSTREAM_ENABLED = true;
-const MULLVAD_UPSTREAM_URL = 'https://admin.doh.bibica.net/rules/mullvad_upstream.txt';
+const MULLVAD_UPSTREAM_URL = '/rules/mullvad_upstream.txt';
 
 // CONFIG_END
 
@@ -202,6 +203,27 @@ const IPV6_GROUP_REGEX = /^[0-9a-f]+$/i;
 const IPV4_REGEX = /^(\d{1,3}\.){3}\d{1,3}$/;
 const IPV6_FULL_REGEX = /^([0-9a-fA-F]{1,4}:){7,7}[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,7}:|([0-9a-fA-F]{1,4}:){1,6}:[0-9a-fA-F]{1,4}|([0-9a-fA-F]{1,4}:){1,5}(:[0-9a-fA-F]{1,4}){1,2}|([0-9a-fA-F]{1,4}:){1,4}(:[0-9a-fA-F]{1,4}){1,3}|([0-9a-fA-F]{1,4}:){1,3}(:[0-9a-fA-F]{1,4}){1,4}|([0-9a-fA-F]{1,4}:){1,2}(:[0-9a-fA-F]{1,4}){1,5}|[0-9a-fA-F]{1,4}:((:[0-9a-fA-F]{1,4}){1,6})|:((:[0-9a-fA-F]{1,4}){1,7}|:)|fe80:(:[0-9a-fA-F]{0,4}){0,4}%[0-9a-zA-Z]{1,}|::(ffff(:0{1,4}){0,1}:){0,1}((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])|([0-9a-fA-F]{1,4}:){1,4}:((25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])\.){3,3}(25[0-5]|(2[0-4]|1{0,1}[0-9]){0,1}[0-9])$/;
 
+// ==================== CF ASN → ECS IP MAP (Vietnam ISPs) ====================
+// Maps Cloudflare ASN numbers to representative IPs for finer-grained ECS.
+// Covers major Vietnamese ISPs; other countries use CC_TO_ECS_IP.
+const ASN_TO_ECS_IP = {
+    // Vietnam — VNPT
+    45899: '14.160.0.0',     // VNPT Vietnam
+    // Vietnam — Viettel
+    7552:  '27.64.0.0',      // Viettel Group
+    45903: '103.1.208.0',    // Viettel Hanoi
+    // Vietnam — FPT Telecom
+    18403: '42.116.101.0',   // FPT Telecom
+    // Vietnam — MobiFone
+    38731: '103.199.79.0',   // MobiFone
+    // Vietnam — SCTV
+    131432: '27.2.0.0',
+    // Vietnam — CMC Telecom
+    38325: '42.96.63.255',
+    // Vietnam — NetNam
+    10220: '101.53.0.0',
+};
+
 function isValidIP(ip) {
     return IPV4_REGEX.test(ip) || IPV6_FULL_REGEX.test(ip);
 }
@@ -277,11 +299,13 @@ async function refreshBlocklists(baseUrl) {
 
     blocklistPromise = (async () => {
         try {
-            const bUrl = new URL(BLOCKLIST_URL, baseUrl).toString();
-            const aUrl = new URL(ALLOWLIST_URL, baseUrl).toString();
-            const pUrl = new URL(PRIVATE_TLD_URL, baseUrl).toString();
-            const rUrl = new URL(REDIRECT_RULES_URL, baseUrl).toString();
-            const mUrl = new URL(MULLVAD_UPSTREAM_URL, baseUrl).toString();
+            // Support both relative paths (e.g. '/rules/blocklists.txt') and absolute URLs
+            const resolveUrl = (path) => path.startsWith('http') ? path : new URL(path, baseUrl).toString();
+            const bUrl = resolveUrl(BLOCKLIST_URL);
+            const aUrl = resolveUrl(ALLOWLIST_URL);
+            const pUrl = resolveUrl(PRIVATE_TLD_URL);
+            const rUrl = resolveUrl(REDIRECT_RULES_URL);
+            const mUrl = resolveUrl(MULLVAD_UPSTREAM_URL);
 
             const [block, allow, privateList, redirRules, mullvadList] = await Promise.all([
                 AD_BLOCK_ENABLED ? fetchList(bUrl) : Promise.resolve(new Set()),
@@ -298,6 +322,9 @@ async function refreshBlocklists(baseUrl) {
 
             blocklistLastFetch = Date.now();
             blocklistsFetched = true;
+            console.log(`[DNS] Lists refreshed — block:${adBlocklist.size} allow:${adAllowlist.size} tlds:${privateTlds.size} redir:${redirectRules.size} mullvad:${mullvadUpstreamDomains.size}`);
+        } catch(e) {
+            console.error('[DNS] Failed to refresh blocklists:', e.message);
         } finally { blocklistPromise = null; }
     })();
 
@@ -405,8 +432,16 @@ function hasLoopbackInAnswer(buf) {
 
 function isDomainBlocked(domain) {
     if (!domain || adBlocklist.size === 0) return false;
+    // Allowlist takes priority — exact match only
     if (adAllowlist.has(domain)) return false;
+    // Blocklist: check exact domain match
     if (adBlocklist.has(domain)) return true;
+    // Subdomain check: if parent domain is blocked, block subdomain too
+    let pos = 0;
+    while ((pos = domain.indexOf('.', pos)) !== -1) {
+        if (adBlocklist.has(domain.substring(pos + 1)) && !adAllowlist.has(domain.substring(pos + 1))) return true;
+        pos++;
+    }
     return false;
 }
 
@@ -1189,9 +1224,12 @@ async function resolveQuery(query, clientIP, prefixOverride = null) {
         }
     }
 
+    // Geo-bypass: if upstream returns loopback (127.0.0.1), the domain is geo-blocked.
+    // Re-resolve via Mullvad (no ECS) to bypass regional restrictions.
     if (result && hasLoopbackInAnswer(result)) {
         try {
-            const respMullvad = await forwardQuery(processed, UPSTREAM_GEO_BYPASS);
+            // Forward WITHOUT ECS so Mullvad doesn't apply geo-restrictions
+            const respMullvad = await forwardQuery(query, UPSTREAM_GEO_BYPASS);
             if (!hasLoopbackInAnswer(respMullvad)) return respMullvad;
             return buildNxdomain(query);
         } catch {
@@ -1214,9 +1252,27 @@ async function ensureBlocklistsLoaded(url, context) {
   }
 }
 
+// ==================== AUTO ECS FROM CF DATA ====================
+// Determine best ECS IP from Cloudflare request metadata (country + ASN)
+// Used as fallback when no explicit /ecs/<cc> path or edns_client_subnet param is set.
+function getAutoEcsIP(request) {
+    try {
+        const cf = request.cf;
+        if (!cf) return null;
+        // Check ASN-based mapping first (fine-grained, e.g. Vietnamese ISPs)
+        const asn = cf.asn;
+        if (asn && ASN_TO_ECS_IP[asn]) return ASN_TO_ECS_IP[asn];
+        // Fall back to country code mapping
+        const cc = (cf.country || '').toLowerCase();
+        if (cc && CC_TO_ECS_IP[cc]) return CC_TO_ECS_IP[cc];
+    } catch { }
+    return null;
+}
+
 // ==================== HANDLERS ====================
 async function handleDNSQuery(request, context, forceEcsIP = null) {
-    const clientIP = forceEcsIP || request.headers.get('CF-Connecting-IP') || 'unknown';
+    // Use forceEcsIP (from /ecs/<cc> path), or auto-detect from CF metadata
+    const clientIP = forceEcsIP || getAutoEcsIP(request) || request.headers.get('CF-Connecting-IP') || 'unknown';
     const cors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Accept' };
     const url = new URL(request.url);
     if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
@@ -1487,21 +1543,96 @@ function safeCloseWebSocket(ws) {
     } catch { }
 }
 
+// ==================== UNFILTERED HANDLER ====================
+// Bypasses ad-block and DNS redirect — direct upstream resolution with ECS only.
+// Useful for diagnostics or trusted clients that need unfiltered results.
+async function handleUnfiltered(request, context) {
+    const cors = { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type, Accept', 'Cache-Control': 'no-store' };
+    if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: cors });
+
+    const clientIP = getAutoEcsIP(request) || request.headers.get('CF-Connecting-IP') || 'unknown';
+    let query;
+    const url = new URL(request.url);
+
+    if (request.method === 'POST') {
+        const buffer = await request.arrayBuffer();
+        if (buffer.byteLength > 512) return new Response('Query too large', { status: 413, headers: cors });
+        query = buffer;
+    } else if (request.method === 'GET') {
+        const dns = url.searchParams.get('dns');
+        if (!dns) return new Response('Missing dns parameter', { status: 400, headers: cors });
+        const b64 = dns.replace(/-/g, '+').replace(/_/g, '/');
+        const padded = b64 + '=='.slice(0, (4 - b64.length % 4) % 4);
+        try { query = Uint8Array.from(atob(padded), c => c.charCodeAt(0)).buffer; }
+        catch { return new Response('Invalid dns parameter', { status: 400, headers: cors }); }
+    } else {
+        return new Response('Method not allowed', { status: 405, headers: cors });
+    }
+
+    try {
+        const data = await resolveQuery(query, clientIP);
+        const domainParam = url.searchParams.get('domain') || url.searchParams.get('name');
+        if (domainParam) {
+            return new Response(JSON.stringify(dnsResponseToJson(data)), {
+                headers: { ...cors, 'Content-Type': 'application/json', 'X-Upstream': 'unfiltered' }
+            });
+        }
+        return new Response(data, { headers: { ...cors, 'Content-Type': 'application/dns-message', 'X-Upstream': 'unfiltered' } });
+    } catch {
+        return new Response('Upstream error', { status: 502, headers: cors });
+    }
+}
+
+// ==================== DEBUG HANDLER ====================
+// Returns live gateway status: list sizes, upstream URLs, feature flags.
+async function handleDebug(request, context) {
+    const cors = { 'Access-Control-Allow-Origin': '*' };
+    await ensureBlocklistsLoaded(request.url, context);
+    const debugData = {
+        timestamp: new Date().toISOString(),
+        upstreams: {
+            primary:   UPSTREAM_PRIMARY,
+            fallback:  UPSTREAM_FALLBACK,
+            geoBypass: UPSTREAM_GEO_BYPASS
+        },
+        features: {
+            adBlock:        { enabled: AD_BLOCK_ENABLED,          blocklist: adBlocklist.size, allowlist: adAllowlist.size },
+            ecs:            { enabled: ECS_INJECTION_ENABLED,      prefixV4: `/${ECS_PREFIX_V4}`, prefixV6: `/${ECS_PREFIX_V6}` },
+            privateTld:     { enabled: BLOCK_PRIVATE_TLD,          entries: privateTlds.size },
+            dnsRedirect:    { enabled: DNS_REDIRECT_ENABLED,       rules: redirectRules.size },
+            mullvadUpstream:{ enabled: MULLVAD_UPSTREAM_ENABLED,   entries: mullvadUpstreamDomains.size }
+        },
+        queryFilters: { BLOCK_ANY, BLOCK_AAAA, BLOCK_PTR, BLOCK_HTTPS },
+        listLastFetched: blocklistLastFetch ? new Date(blocklistLastFetch).toISOString() : 'never'
+    };
+    return new Response(JSON.stringify(debugData, null, 2), {
+        headers: { ...cors, 'Content-Type': 'application/json' }
+    });
+}
+
 // ==================== ROUTING ====================
 async function handleRequest(request, context) {
     const url = new URL(request.url);
     const path = url.pathname.replace(/\/$/, ''); // Remove trailing slash
     const upgradeHeader = request.headers.get('Upgrade')?.toLowerCase();
 
-    // Route to Verification Check
+    // Route to Verification Check (WebSocket upgrade)
     if (path === '/check' && upgradeHeader === 'websocket') {
         const [client, server] = Object.values(new WebSocketPair());
         handleCheckWS(request, server, context).catch(() => safeCloseWebSocket(server));
         return new Response(null, { status: 101, webSocket: client });
     }
 
+    // Primary DoH endpoint — standard DNS-over-HTTPS
     if (path === '/dns-query') return handleDNSQuery(request, context);
 
+    // Unfiltered endpoint — bypass ad-block and redirect rules (raw upstream)
+    if (path === '/unfiltered') return handleUnfiltered(request, context);
+
+    // Debug endpoint — live gateway status (list sizes, feature flags, upstreams)
+    if (path === '/debug') return handleDebug(request, context);
+
+    // ECS country/ISP override endpoint — e.g. /ecs/vn-fpt-hcm
     if (path.startsWith('/ecs/')) {
         const cc = path.slice(5).toLowerCase(); // e.g. 'vn', 'vn-fpt-hcm', 'sg'
         const ecsIP = CC_TO_ECS_IP[cc];
